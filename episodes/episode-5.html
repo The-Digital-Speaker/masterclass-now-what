@@ -43,6 +43,108 @@
 .animate-in{opacity:0;transform:translateY(20px)}.slide.active .animate-in{animation:fadeUp .6s ease forwards}.slide.active .animate-in:nth-child(1){animation-delay:.1s}.slide.active .animate-in:nth-child(2){animation-delay:.25s}.slide.active .animate-in:nth-child(3){animation-delay:.4s}.slide.active .animate-in:nth-child(4){animation-delay:.55s}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 @media print{.slide{position:relative!important;opacity:1!important;transform:none!important;pointer-events:auto!important;page-break-after:always;height:auto;min-height:100vh}#progress-bar,.nav-arrow,#slide-counter,#brand-footer{display:none!important}}
 @media(max-width:1024px){.slide{padding:40px 48px}.slide-title h1{font-size:36px}.content-grid,.case-study,.risk-grid{grid-template-columns:1fr}.trilogy-grid,.stat-grid,.takeaway-grid{grid-template-columns:1fr}.nav-arrow{display:none}}
+
+/* MOBILE PHONE — scrollable slides, scaled text */
+@media (max-width: 768px) {
+  .slide {
+    padding: 16px 16px 60px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+
+  /* Title slides */
+  .slide-title { align-items: flex-start; text-align: left; }
+  .slide-title h1 { font-size: 1.5rem; }
+  .slide-title .subtitle { font-size: 0.95rem; }
+  .slide-title .episode-tag { font-size: 11px; letter-spacing: 2px; margin-bottom: 12px; }
+  .slide-title .author { margin-top: 20px; font-size: 12px; }
+
+  /* Content slides */
+  .slide-content .slide-label { font-size: 10px; letter-spacing: 2px; margin-bottom: 8px; }
+  .slide-content h2 { font-size: 1.25rem; margin-bottom: 16px; }
+  .slide-content p, .slide-content li { font-size: 0.95rem; line-height: 1.6; }
+
+  /* ALL multi-column grids → single column */
+  .content-grid,
+  .case-study,
+  .stat-grid,
+  .takeaway-grid,
+  .wd-actions,
+  .climate-wave { grid-template-columns: 1fr !important; gap: 12px; }
+
+  /* Stat cards */
+  .stat-card { padding: 16px; }
+  .stat-card .stat-number { font-size: 28px; }
+  .stat-card .stat-label { font-size: 12px; }
+
+  /* Takeaway cards */
+  .takeaway-card { padding: 16px; }
+  .takeaway-card h4 { font-size: 14px; }
+  .takeaway-card p { font-size: 12px; }
+
+  /* Framework visual → vertical stack */
+  .framework-visual { flex-direction: column; gap: 8px; }
+  .fw-arrow { transform: rotate(90deg); margin: 4px 0; }
+  .fw-box { min-width: auto; width: 100%; }
+  .fw-box .fw-detail { position: static; transform: none; width: 100%; margin-top: 8px; }
+
+  /* Callout */
+  .callout { padding: 12px 16px; margin: 12px 0; }
+  .callout p { font-size: 0.9rem; }
+
+  /* Quiz */
+  .quiz-container { max-width: 100%; }
+  .quiz-question { padding: 16px; }
+  .quiz-question h4 { font-size: 14px; }
+  .quiz-option { padding: 10px 14px; font-size: 0.9rem; }
+
+  /* Lists */
+  .styled-list li { font-size: 0.95rem; padding-left: 20px; margin-bottom: 12px; }
+  .action-list li { gap: 10px; padding: 12px 0; }
+  .action-list .action-num { font-size: 20px; min-width: 30px; }
+  .action-list .action-text h4 { font-size: 0.95rem; }
+  .action-list .action-text p { font-size: 0.85rem; }
+
+  /* Closing slide */
+  .slide-closing .quote { font-size: 1.1rem; margin-bottom: 16px; }
+  .slide-closing .next-ep { padding: 10px 20px; font-size: 13px; }
+  .slide-closing .cta { font-size: 12px; margin-top: 16px; }
+
+  /* Reflection */
+  .reflection-box { padding: 16px; }
+  .reflection-box textarea { height: 80px; font-size: 14px; }
+
+  /* Fixed UI elements */
+  #slide-counter { bottom: 8px; right: 16px; font-size: 12px; }
+  #brand-footer { display: none; }
+
+  /* Images */
+  img { max-width: 100%; height: auto; }
+
+  /* Episode 2: Spiral stages + principle cards */
+  .spiral-container { gap: 8px; }
+  .spiral-stage { flex-direction: column; align-items: flex-start; padding: 10px 12px; }
+  .yinyang-visual { flex-direction: column; gap: 12px; }
+  .principle-card { min-width: auto; width: 100%; }
+
+  /* Episode 4: Tech cards */
+  .tech-card { padding: 12px 16px; }
+
+  /* Episode 6: Stack items */
+  .stack-container { gap: 8px; }
+  .stack-item { padding: 10px 12px; }
+
+  /* Episode 7: WAVE cycle + details */
+  .wave-cycle { flex-direction: column; gap: 8px; }
+  .wave-phase { min-width: auto; width: 100%; }
+  .wave-arrow { transform: rotate(90deg); margin: 4px 0; font-size: 16px; }
+  .wave-detail-panel { padding: 12px; }
+  .phase-card { padding: 12px; }
+  .phase-actions { padding: 12px; }
+  .pa-section { margin-bottom: 8px; }
+  .cw-card { padding: 12px; }
+}
 </style>
 </head>
 <body>

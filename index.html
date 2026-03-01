@@ -110,9 +110,23 @@ button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;outline:none}
 }
 @media(max-width:768px){
   .ep-grid{grid-template-columns:1fr}
-  #tpanel{width:100%}
-  #controls{padding:0 12px;gap:8px;overflow-x:auto}
+  #tpanel{width:100%;margin-right:-100%!important}
+  #tpanel.collapsed{margin-right:-100%!important}
+  #tpanel:not(.collapsed){margin-right:0!important}
+  #controls{padding:0 8px;gap:4px;overflow-x:auto}
+  #controls .csep{display:none}
+  #controls .cb{width:36px;height:36px;font-size:16px;flex-shrink:0}
+  #sinfo{font-size:11px;min-width:40px}
+  #audio-sec{gap:4px}
+  #atime{font-size:10px;min-width:60px}
+  .abadge{font-size:9px;padding:2px 6px}
   .hero h1{font-size:28px}
+  .hero .sub{font-size:15px}
+  .hero{padding:24px 16px 20px}
+  .ep-grid{padding:16px;gap:12px}
+  /* When inside iframe (Ghost overlay), hide redundant top nav */
+  .in-iframe #topnav{display:none}
+  .in-iframe .view{top:0}
 }
 @media print{
   #topnav,#controls,.cb,#modal{display:none!important}
@@ -190,6 +204,9 @@ button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;outline:none}
    NOW WHAT? MASTERCLASS PLATFORM
    Audio-sync infrastructure: slides auto-advance with narration.
    ==================================================================== */
+
+// Detect if running inside an iframe (Ghost overlay) — hide redundant header on mobile
+if(window.parent!==window)document.body.classList.add('in-iframe');
 
 const EPS=[
   {n:1,t:'The Tsunami Is Already Here',s:'Why Linear Thinking Will Drown You',d:'~15 min',sl:10},
@@ -463,7 +480,14 @@ function renderMD(md){
 function hiT(sn){
   document.querySelectorAll('.ts').forEach(s=>s.classList.remove('t-active'));
   const a=document.querySelector('.ts[data-s="'+sn+'"]');
-  if(a){a.classList.add('t-active');const m=document.querySelector('.tm[data-s="'+sn+'"]');if(m)m.scrollIntoView({behavior:'smooth',block:'start'})}
+  if(a){
+    a.classList.add('t-active');
+    // Only scroll if panel is actually open — never auto-open it
+    if(!document.getElementById('tpanel').classList.contains('collapsed')){
+      const m=document.querySelector('.tm[data-s="'+sn+'"]');
+      if(m)m.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }
 }
 
 function toggleT(){document.getElementById('tpanel').classList.toggle('collapsed')}
