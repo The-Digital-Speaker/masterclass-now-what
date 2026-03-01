@@ -336,6 +336,8 @@ window.addEventListener('message',function(e){
   const d=e.data;if(!d||!d.type)return;
   if(d.type==='slideChanged'){cSl=d.current;tSl=d.total;updCtrl();onManualNav()}
   if(d.type==='keyNav'){if(d.key==='ArrowRight'||d.key===' ')navS(1);if(d.key==='ArrowLeft')navS(-1)}
+  if(d.type==='loadEpisode'){openEp(d.episode)}
+  if(d.type==='closeOverlay'){window.parent.postMessage({type:'closeMasterclass'},'*')}
 });
 
 /* ── SCREEN WAKE LOCK (keep screen on during audio) ──────────────── */

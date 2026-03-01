@@ -399,7 +399,7 @@ h1,h2,h3,h4,h5{font-family:'Work Sans',sans-serif}
   <div class="episode-tag animate-in" style="font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent2);margin-bottom:20px;">Episode Summary</div>
   <p class="quote animate-in">"Upgrading our tech is fruitless if we're strangers to ourselves. Self-awareness fuels humanity's evolution."</p>
   <p class="animate-in" style="color:var(--text-muted);font-size:16px;">— Dr. Mark van Rijmenam</p>
-  <div class="next-ep animate-in">Next → Episode 3: Eight Forces Colliding</div>
+  <div class="next-ep animate-in" style="cursor:pointer" onclick="event.preventDefault(); window.parent.postMessage({ type: 'loadEpisode', episode: 3 }, '*');">Next → Episode 3: Eight Forces Colliding</div>
   <p class="cta animate-in">Learn more at <a href="https://futurwise.com">futurwise.com</a> · Book Mark at <a href="https://TheDigitalSpeaker.com">TheDigitalSpeaker.com</a></p>
 </div>
 
