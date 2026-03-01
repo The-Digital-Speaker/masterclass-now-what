@@ -300,18 +300,9 @@
   </div>
 
 </div>
+
+<script src="slide-engine.js"></script>
 <script>
-(function(){
-  var slides=document.querySelectorAll('.slide'),total=slides.length,current=0;
-  function go(n,d){if(n<0||n>=total||n===current)return;slides[current].classList.remove('active');if(d==='next')slides[current].classList.add('exit-left');setTimeout(function(){for(var i=0;i<total;i++)slides[i].classList.remove('exit-left')},500);slides[n].classList.add('active');current=n;prog()}
-  function prog(){document.getElementById('progress-bar').style.width=((current+1)/total)*100+'%';document.getElementById('slide-counter').textContent=(current+1)+' / '+total}
-  document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(current+1,'next')}if(e.key==='ArrowLeft'){e.preventDefault();go(current-1,'prev')}});
-  document.getElementById('next-btn').addEventListener('click',function(){go(current+1,'next')});
-  document.getElementById('prev-btn').addEventListener('click',function(){go(current-1,'prev')});
-  var tx=0;document.addEventListener('touchstart',function(e){tx=e.changedTouches[0].screenX});document.addEventListener('touchend',function(e){var d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?go(current+1,'next'):go(current-1,'prev')}});
-  document.querySelectorAll('.quiz-option').forEach(function(o){o.addEventListener('click',function(){var q=this.closest('.quiz-question');if(q.classList.contains('answered'))return;q.classList.add('answered');var c=parseInt(q.dataset.correct),s=parseInt(this.dataset.idx);this.classList.add(s===c?'correct':'incorrect');if(s!==c)q.querySelectorAll('.quiz-option')[c].classList.add('correct')})});
-  prog()
-})();
 var waveData={
   watch:{color:'var(--w-watch)',icon:'\uD83D\uDC41\uFE0F',title:'Watch: See the Signals and Cultivate Awareness',desc:'Watching is not passive observation \u2014 it is a proactive practice of honing foresight. It reflects a <strong>Gestalt Shift</strong>: moving from isolated data points to entire ecosystems of interlinked trends. Like Wittgenstein\u2019s duck-rabbit illusion, the Intelligence Age demands shifting between perspectives.',a1t:'Individuals',a1:'Keep a \u201csignal journal.\u201d Subscribe to Futurwise. Track trends across at least 3 fields outside your own. Question how signals affect your goals.',a2t:'Organisations',a2:'Establish foresight teams. Create dashboards for emerging signals. Run scenario planning. Hire a futurist or science fiction writer to uncover the improbable.'},
   adapt:{color:'var(--w-adapt)',icon:'\uD83D\uDD04',title:'Adapt: Flow with Purpose and Align with Change',desc:'The Taoist principle of <strong>Wu Wei</strong> teaches alignment with change rather than fighting it. Darwin\u2019s insight: survival of the most <strong>adaptable</strong>. Ford retooled from cars to bombers in months during WWII \u2014 not by resisting but by reimagining capabilities.',a1t:'Individuals',a1:'Embrace lifelong learning. Develop transferable skills. Practice cognitive flexibility. Think in decades, not quarters.',a2t:'Organisations',a2:'Balance short-term tactics with long-term transformation. Redesign operations for resilience. Embrace continuous improvement and iterative processes.'},

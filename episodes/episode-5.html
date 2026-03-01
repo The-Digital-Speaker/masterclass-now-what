@@ -284,8 +284,7 @@
 </div>
 
 </div>
-<script>
-(function(){const s=document.querySelectorAll('.slide'),t=s.length;let c=0;function u(n){if(n<0||n>=t||n===c)return;s[c].classList.remove('active');s[n].classList.add('active');c=n;p()}function p(){document.getElementById('progress-bar').style.width=((c+1)/t)*100+'%';document.getElementById('slide-counter').textContent=(c+1)+' / '+t}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(c+1)}if(e.key==='ArrowLeft'){e.preventDefault();u(c-1)}});document.getElementById('next-btn').addEventListener('click',()=>u(c+1));document.getElementById('prev-btn').addEventListener('click',()=>u(c-1));let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?u(c+1):u(c-1)}});document.querySelectorAll('.quiz-option').forEach(o=>{o.addEventListener('click',function(){const q=this.closest('.quiz-question');if(q.classList.contains('answered'))return;q.classList.add('answered');const ci=parseInt(q.dataset.correct),si=parseInt(this.dataset.idx);this.classList.add(si===ci?'correct':'incorrect');if(si!==ci)q.querySelectorAll('.quiz-option')[ci].classList.add('correct')})});p()})();
-</script>
+
+<script src="slide-engine.js"></script>
 </body>
 </html>

@@ -427,68 +427,7 @@ h1, h2, h3, h4, h5 { font-family: 'Work Sans', sans-serif; }
 
 </div>
 
-<script>
-(function() {
-  const slides = document.querySelectorAll('.slide');
-  const total = slides.length;
-  let current = 0;
 
-  function updateSlide(newIdx, direction) {
-    if (newIdx < 0 || newIdx >= total || newIdx === current) return;
-    const oldSlide = slides[current];
-    const newSlide = slides[newIdx];
-    oldSlide.classList.remove('active');
-    oldSlide.classList.add(direction === 'next' ? 'exit-left' : '');
-    setTimeout(() => oldSlide.classList.remove('exit-left'), 500);
-    newSlide.classList.add('active');
-    current = newIdx;
-    updateProgress();
-  }
-
-  function updateProgress() {
-    const pct = ((current + 1) / total) * 100;
-    document.getElementById('progress-bar').style.width = pct + '%';
-    document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
-  }
-
-  // Keyboard nav
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); updateSlide(current + 1, 'next'); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); updateSlide(current - 1, 'prev'); }
-    if (e.key === 'Escape') { /* Could toggle overview */ }
-  });
-
-  // Button nav
-  document.getElementById('next-btn').addEventListener('click', () => updateSlide(current + 1, 'next'));
-  document.getElementById('prev-btn').addEventListener('click', () => updateSlide(current - 1, 'prev'));
-
-  // Touch/swipe
-  let touchStartX = 0;
-  document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
-  document.addEventListener('touchend', (e) => {
-    const diff = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? updateSlide(current + 1, 'next') : updateSlide(current - 1, 'prev');
-    }
-  });
-
-  // Quiz functionality
-  document.querySelectorAll('.quiz-option').forEach(opt => {
-    opt.addEventListener('click', function() {
-      const question = this.closest('.quiz-question');
-      if (question.classList.contains('answered')) return;
-      question.classList.add('answered');
-      const correctIdx = parseInt(question.dataset.correct);
-      const selectedIdx = parseInt(this.dataset.idx);
-      this.classList.add(selectedIdx === correctIdx ? 'correct' : 'incorrect');
-      if (selectedIdx !== correctIdx) {
-        question.querySelectorAll('.quiz-option')[correctIdx].classList.add('correct');
-      }
-    });
-  });
-
-  updateProgress();
-})();
-</script>
+<script src="slide-engine.js"></script>
 </body>
 </html>

@@ -363,8 +363,7 @@
 
 </div>
 
-<script>
-(function(){const slides=document.querySelectorAll('.slide');const total=slides.length;let current=0;function updateSlide(n,d){if(n<0||n>=total||n===current)return;slides[current].classList.remove('active');if(d==='next')slides[current].classList.add('exit-left');setTimeout(()=>slides[current===0?0:current].classList.remove('exit-left'),500);slides[n].classList.add('active');current=n;updateProgress()}function updateProgress(){document.getElementById('progress-bar').style.width=((current+1)/total)*100+'%';document.getElementById('slide-counter').textContent=(current+1)+' / '+total}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();updateSlide(current+1,'next')}if(e.key==='ArrowLeft'){e.preventDefault();updateSlide(current-1,'prev')}});document.getElementById('next-btn').addEventListener('click',()=>updateSlide(current+1,'next'));document.getElementById('prev-btn').addEventListener('click',()=>updateSlide(current-1,'prev'));let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?updateSlide(current+1,'next'):updateSlide(current-1,'prev')}});updateProgress()})();
-</script>
+
+<script src="slide-engine.js"></script>
 </body>
 </html>

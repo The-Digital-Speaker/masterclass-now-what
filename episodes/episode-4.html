@@ -363,13 +363,9 @@
   </div>
 </div>
 
+
+<script src="slide-engine.js"></script>
 <script>
-let current=1;const total=15;
-function showSlide(n){document.querySelectorAll('.slide').forEach(s=>{s.classList.remove('active')});const s=document.querySelector(`[data-slide="${n}"]`);if(s)s.classList.add('active');document.getElementById('progress-bar').style.width=((n/total)*100)+'%';document.getElementById('slide-counter').textContent=n+' / '+total;document.getElementById('prev-btn').style.opacity=n===1?'0.3':'1';document.getElementById('next-btn').style.opacity=n===total?'0.3':'1';}
-function changeSlide(d){const next=current+d;if(next>=1&&next<=total){current=next;showSlide(current);}}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')changeSlide(1);if(e.key==='ArrowLeft')changeSlide(-1);});
-let touchX=0;document.addEventListener('touchstart',e=>{touchX=e.touches[0].clientX;});document.addEventListener('touchend',e=>{const diff=touchX-e.changedTouches[0].clientX;if(Math.abs(diff)>50){diff>0?changeSlide(1):changeSlide(-1);}});
 function checkAnswer(el,correct){if(el.parentElement.querySelector('.correct,.incorrect'))return;el.classList.add(correct?'correct':'incorrect');if(!correct){el.parentElement.querySelectorAll('.quiz-option').forEach(o=>{if(o!==el&&o.getAttribute('onclick').includes('true'))o.classList.add('correct');});}}
-showSlide(1);
 </script>
 </body></html>
