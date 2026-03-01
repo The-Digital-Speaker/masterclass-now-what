@@ -303,7 +303,7 @@ function openEp(n){
 }
 
 function showDash(){
-  pauseA();
+  pauseA();releaseWakeLock();
   document.getElementById('player').classList.remove('active');
   document.getElementById('dashboard').classList.add('active');
   document.getElementById('tbtn').style.display='none';
@@ -336,6 +336,24 @@ window.addEventListener('message',function(e){
   const d=e.data;if(!d||!d.type)return;
   if(d.type==='slideChanged'){cSl=d.current;tSl=d.total;updCtrl();onManualNav()}
   if(d.type==='keyNav'){if(d.key==='ArrowRight'||d.key===' ')navS(1);if(d.key==='ArrowLeft')navS(-1)}
+});
+
+/* ── SCREEN WAKE LOCK (keep screen on during audio) ──────────────── */
+let wakeLock=null;
+async function requestWakeLock(){
+  try{
+    if('wakeLock' in navigator){
+      wakeLock=await navigator.wakeLock.request('screen');
+      console.log('Wake Lock active — screen will stay on');
+      wakeLock.addEventListener('release',()=>{console.log('Wake Lock released');wakeLock=null;});
+    }
+  }catch(err){console.log('Wake Lock failed:',err);}
+}
+function releaseWakeLock(){
+  if(wakeLock!==null){wakeLock.release();wakeLock=null;}
+}
+document.addEventListener('visibilitychange',async()=>{
+  if(document.visibilityState==='visible'&&aPlay){await requestWakeLock();}
 });
 
 /* ── AUDIO ENGINE (with staged reveal sync) ──────────────────────── */
@@ -377,13 +395,13 @@ function togAudio(){
       const t=ST[cEp][cSl-1]||0;
       if(Math.abs(aud.currentTime-t)>5)aud.currentTime=t;
     }
-    aud.play();aPlay=true;
+    aud.play();aPlay=true;requestWakeLock();
     document.getElementById('bplay').textContent='⏸';
   }
 }
 
 function pauseA(){
-  aud.pause();aPlay=false;
+  aud.pause();aPlay=false;releaseWakeLock();
   document.getElementById('bplay').textContent='▶';
   // Keep staged mode active but pause — elements stay where they are
 }
@@ -426,7 +444,7 @@ aud.addEventListener('timeupdate',function(){
 });
 
 aud.addEventListener('ended',function(){
-  aPlay=false;
+  aPlay=false;releaseWakeLock();
   document.getElementById('bplay').textContent='▶';
   // Disable staged mode when audio ends so manual navigation works normally
   sendToEp({type:'disableStagedMode'});
