@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Episode 2: Rewire Your Mind | Mark van Rijmenam Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#162535;--secondary:#0f1a24;--accent:#30ffeb;--accent2:#5033ff;--highlight:#FF6B35;--text-light:#F5F5F5;--text-muted:#b8c4ce;--bg:#162535;--card:#1e3348}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-light)}
+h1,h2,h3,h4,h5{font-family:'Work Sans',sans-serif}
+#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:1000;transition:width .4s ease}
+#slide-counter{position:fixed;bottom:24px;right:32px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);z-index:100;letter-spacing:2px}
+.nav-arrow{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(30,30,63,.6);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:100;transition:all .3s}
+.nav-arrow:hover{border-color:var(--accent);background:rgba(0,212,255,.1)}
+.nav-arrow svg{width:20px;height:20px;fill:var(--text-light)}
+#prev-btn{left:20px}#next-btn{right:20px}
+#brand-footer{position:fixed;bottom:20px;left:32px;display:flex;align-items:center;gap:12px;z-index:100}
+#brand-footer .brand-name{font-family:'Work Sans';font-size:11px;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px;opacity:0;transform:translateX(40px);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none;background:linear-gradient(135deg,var(--bg),var(--secondary))}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:auto}
+.slide-title{justify-content:center;align-items:center;text-align:center}
+.slide-title .episode-tag{font-family:'Work Sans';font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;font-weight:600}
+.slide-title h1{font-size:52px;font-weight:800;line-height:1.15;max-width:900px;margin-bottom:20px;background:linear-gradient(135deg,var(--text-light),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.slide-title .subtitle{font-size:20px;color:var(--text-muted);max-width:600px;line-height:1.6}
+.slide-title .author{margin-top:40px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);letter-spacing:2px}
+.slide-title .author span{color:var(--accent2)}
+.slide-content .slide-label{font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600}
+.slide-content h2{font-size:38px;font-weight:700;margin-bottom:28px;line-height:1.2}
+.slide-content p,.slide-content li{font-size:18px;color:rgba(245,245,245,.85);line-height:1.7}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
+.callout{background:rgba(0,212,255,.08);border-left:3px solid var(--accent);padding:20px 24px;border-radius:0 8px 8px 0;margin:24px 0}
+.callout .callout-label{font-family:'Work Sans';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:700}
+.callout p{font-size:17px;color:var(--text-light);line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.stat-card{background:var(--card);border-radius:12px;padding:28px 24px;text-align:center;border:1px solid rgba(255,255,255,.06)}
+.stat-card .stat-number{font-family:'Work Sans';font-size:44px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-card .stat-label{font-size:14px;color:var(--text-muted);margin-top:8px;line-height:1.4}
+.styled-list{list-style:none}
+.styled-list li{position:relative;padding-left:28px;margin-bottom:18px;font-size:18px;color:rgba(245,245,245,.85);line-height:1.6}
+.styled-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700}
+/* Spiral Diagram */
+.spiral-container{display:flex;flex-direction:column;gap:6px;margin-top:16px}
+.spiral-stage{display:flex;align-items:center;gap:16px;padding:10px 16px;border-radius:8px;cursor:pointer;transition:all .3s;border:1px solid transparent}
+.spiral-stage:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)}
+.spiral-stage .s-color{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.spiral-stage .s-name{font-family:'Work Sans';font-size:14px;font-weight:600;min-width:90px}
+.spiral-stage .s-desc{font-size:13px;color:var(--text-muted)}
+.spiral-stage .s-pct{font-family:'Work Sans';font-size:12px;color:var(--accent);min-width:50px;text-align:right}
+.spiral-stage .s-detail{display:none;grid-column:1/-1;font-size:14px;color:rgba(245,245,245,.8);line-height:1.6;padding:10px 0 4px 28px;border-top:1px solid rgba(255,255,255,.06);margin-top:8px}
+.spiral-stage.expanded{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04);flex-wrap:wrap}
+.spiral-stage.expanded .s-detail{display:block}
+.spiral-stage.expanded .s-pct{color:var(--accent2)}
+/* Yin Yang */
+.yinyang-visual{display:flex;align-items:center;gap:40px;margin-top:20px}
+.principle-card{background:var(--card);border-radius:12px;padding:24px;flex:1;border:1px solid rgba(255,255,255,.06);transition:all .3s}
+.principle-card:hover{border-color:var(--accent2);transform:translateY(-2px)}
+.principle-card h4{font-family:'Work Sans';font-size:16px;margin-bottom:8px}
+.principle-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+/* Quiz */
+.quiz-question{background:var(--card);border-radius:12px;padding:24px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06)}
+.quiz-question h4{font-family:'Work Sans';font-size:16px;margin-bottom:16px}
+.quiz-options{display:flex;flex-direction:column;gap:10px}
+.quiz-option{padding:12px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all .3s;font-size:15px}
+.quiz-option:hover{border-color:var(--accent);background:rgba(0,212,255,.06)}
+.quiz-option.correct{border-color:#10B981;background:rgba(16,185,129,.12);color:#10B981}
+.quiz-option.incorrect{border-color:#EF4444;background:rgba(239,68,68,.08);color:#EF4444}
+.reflection-box{background:var(--card);border-radius:12px;padding:28px;border:1px solid rgba(123,47,190,.3);margin-top:20px}
+.reflection-box textarea{width:100%;height:100px;background:rgba(15,15,35,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:14px;font-family:'DM Sans';font-size:15px;resize:vertical;outline:none}
+.reflection-box textarea:focus{border-color:var(--accent2)}
+.takeaway-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.takeaway-card{background:var(--card);border-radius:12px;padding:28px 24px;border-top:3px solid}
+.takeaway-card:nth-child(1){border-color:var(--accent)}
+.takeaway-card:nth-child(2){border-color:var(--accent2)}
+.takeaway-card:nth-child(3){border-color:var(--highlight)}
+.takeaway-card .tk-icon{font-size:28px;margin-bottom:12px}
+.takeaway-card h4{font-family:'Work Sans';font-size:16px;margin-bottom:8px}
+.takeaway-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.action-list{list-style:none;margin-top:16px}
+.action-list li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.action-list .action-num{font-family:'Work Sans';font-size:28px;font-weight:800;color:var(--accent2);min-width:40px}
+.action-list .action-text h4{font-family:'Work Sans';font-size:17px;margin-bottom:4px}
+.action-list .action-text p{font-size:15px;color:var(--text-muted);line-height:1.5}
+.slide-closing{justify-content:center;align-items:center;text-align:center}
+.slide-closing .quote{font-size:26px;font-style:italic;max-width:700px;line-height:1.6;color:rgba(245,245,245,.9);margin-bottom:32px}
+.slide-closing .next-ep{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));padding:14px 32px;border-radius:8px;font-family:'Work Sans';font-size:15px;font-weight:600;color:white;margin-top:16px}
+.slide-closing .cta{margin-top:32px;font-size:14px;color:var(--text-muted)}
+.slide-closing .cta a{color:var(--accent);text-decoration:none}
+.animate-in{opacity:0;transform:translateY(20px)}
+.slide.active .animate-in{animation:fadeUp .6s ease forwards}
+.slide.active .animate-in:nth-child(1){animation-delay:.1s}
+.slide.active .animate-in:nth-child(2){animation-delay:.25s}
+.slide.active .animate-in:nth-child(3){animation-delay:.4s}
+.slide.active .animate-in:nth-child(4){animation-delay:.55s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media print{.slide{position:relative!important;opacity:1!important;transform:none!important;pointer-events:auto!important;page-break-after:always;height:auto;min-height:100vh}#progress-bar,.nav-arrow,#slide-counter,#brand-footer{display:none!important}}
+@media(max-width:1024px){.slide{padding:40px 48px}.slide-title h1{font-size:38px}.slide-content h2{font-size:30px}.content-grid{grid-template-columns:1fr}.stat-grid,.takeaway-grid{grid-template-columns:1fr}.nav-arrow{display:none}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<div id="slide-counter"></div>
+<button class="nav-arrow" id="prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg></button>
+<button class="nav-arrow" id="next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+<div id="brand-footer"><div class="brand-name">Mark van Rijmenam · The Architect of Tomorrow · Futurwise</div></div>
+
+<div id="slides-wrapper">
+
+<!-- SLIDE 1: Title -->
+<div class="slide slide-title active" data-slide="1">
+  <div class="episode-tag animate-in">Episode 02 of 08</div>
+  <h1 class="animate-in">Rewire Your Mind</h1>
+  <p class="subtitle animate-in">The Consciousness Upgrade Leaders Need Before They Can Lead in the Intelligence Age</p>
+  <p class="author animate-in">Dr. Mark van Rijmenam · <span>The Architect of Tomorrow</span></p>
+</div>
+
+<!-- SLIDE 2: Overview -->
+<div class="slide slide-content" data-slide="2">
+  <div class="slide-label animate-in">What You'll Learn</div>
+  <h2 class="animate-in">In This Episode</h2>
+  <ul class="styled-list animate-in">
+    <li>Spiral Dynamics: the 8-stage map of human consciousness evolution — and where your organisation sits</li>
+    <li>The "I" vs "We" oscillation that drives (and derails) civilisational progress</li>
+    <li>Taoism as a leadership framework: Wu Wei, Yin/Yang, and the Grass vs. Oak principle</li>
+    <li>Umwelt Theory: why every being perceives a different reality — and what leaders miss because of it</li>
+  </ul>
+</div>
+
+<!-- SLIDE 3: Spiral Dynamics -->
+<div class="slide slide-content" data-slide="3">
+  <div class="slide-label animate-in">Core Framework</div>
+  <h2 class="animate-in">Spiral Dynamics: The Map of Human Consciousness</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Developed by Clare W. Graves and popularised by Don Beck, Spiral Dynamics maps humanity's progression through eight developmental stages — from raw survival to global consciousness.</p>
+      <p style="margin-top:14px;">Each stage represents a worldview, a value system, and a way of organising society. Crucially, <strong>every stage is necessary</strong>. Earlier stages secure identity and stability; higher stages tackle complex, interconnected challenges.</p>
+      <div class="callout" style="margin-top:20px;">
+        <div class="callout-label">Key Insight</div>
+        <p>Technology evolves exponentially. Human consciousness evolves in spirals. Both must advance together — or the gap between our tools and our wisdom becomes an existential threat.</p>
+      </div>
+    </div>
+    <div class="spiral-container animate-in">
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)"><div class="s-color" style="background:#D4A574"></div><div class="s-name">Beige</div><div class="s-desc">Survival instincts</div><div class="s-pct">▸</div><div class="s-detail">The most basic level of human existence. Focused purely on biological needs: food, water, warmth, safety, and reproduction. Thinking is automatic and instinctive. Found in newborns, late-stage Alzheimer's patients, and extreme survival situations. The foundation upon which all other levels build.</div></div>
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)"><div class="s-color" style="background:#9B59B6"></div><div class="s-name">Purple</div><div class="s-desc">Tribal bonds & rituals</div><div class="s-pct">▸</div><div class="s-detail">Safety through belonging. People band together in clans and tribes, guided by rituals, traditions, and the wisdom of elders. Magical thinking prevails — the world is full of spirits, omens, and sacred places. Loyalty to the group is paramount. Found in indigenous communities, family traditions, sports fan culture, and corporate "tribe" mentality.</div></div>
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)"><div class="s-color" style="background:#E74C3C"></div><div class="s-name">Red</div><div class="s-desc">Power & dominance</div><div class="s-pct">▸</div><div class="s-detail">The emergence of the individual ego. Impulsive, power-driven, and assertive. "Might makes right." Leaders dominate through force of will. Found in rebel movements, gang cultures, frontier mentalities, and aggressive startup cultures. Red energy can be destructive but also breaks stagnant systems and drives bold action.</div></div>
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)"><div class="s-color" style="background:#3498DB"></div><div class="s-name">Blue</div><div class="s-desc">Order, rules & authority</div><div class="s-pct">~35-40%</div><div class="s-detail">Order emerges from chaos through absolute principles, rules, and hierarchies. Life has meaning through a higher authority — religious, legal, or organisational. Sacrifice now for reward later. Right and wrong are clear. Found in traditional institutions, military structures, religious fundamentalism, and compliance-driven organisations. The world's most common value system.</div></div>
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)"><div class="s-color" style="background:#F39C12"></div><div class="s-name">Orange</div><div class="s-desc">Achievement & innovation</div><div class="s-pct">~25-30%</div><div class="s-detail">The scientific, strategic, achievement-oriented mindset. Success is measured in results, profits, and progress. Competition drives improvement. The world is a machine to be understood and optimised. Found in entrepreneurial culture, Western capitalism, Silicon Valley, and merit-based organisations. Powerful engine of innovation — but blind to externalities.</div></div>
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)"><div class="s-color" style="background:#27AE60"></div><div class="s-name">Green</div><div class="s-desc">Equality & community</div><div class="s-pct">~10%</div><div class="s-detail">A reaction to Orange's excesses. Emphasis on equality, feelings, consensus, and environmental awareness. Every voice matters. Hierarchy is suspect. Found in social justice movements, NGOs, progressive education, and flat organisational structures. Green brings empathy and inclusion but can struggle with decisiveness and sometimes rejects necessary structure.</div></div>
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)" style="border-color:rgba(48,255,235,.3);background:rgba(48,255,235,.05)"><div class="s-color" style="background:#F1C40F"></div><div class="s-name">Yellow</div><div class="s-desc">Systemic integration</div><div class="s-pct">~1%</div><div class="s-detail">Tier 2 begins. Yellow sees all previous levels as necessary and valid — each serving a purpose in the right context. Thinking becomes systemic, integrative, and flexible. Competence matters more than rank or consensus. Found in systems thinkers, integrative leaders, and those who can operate fluidly across different value systems without being trapped by any single one.</div></div>
+      <div class="spiral-stage" onclick="toggleSpiralDetail(this)" style="border-color:rgba(80,51,255,.3);background:rgba(80,51,255,.05)"><div class="s-color" style="background:#1ABC9C"></div><div class="s-name">Turquoise</div><div class="s-desc">Global consciousness</div><div class="s-pct">&lt;1%</div><div class="s-detail">The holistic, planetary perspective. Everything is interconnected in a living system. Combines head and heart, science and spirit. Actions are guided by the wellbeing of all living systems. Found in rare individuals and movements working at the intersection of global sustainability, consciousness research, and systemic transformation. The aspiration point for the Intelligence Age.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: I vs We + Taoism -->
+<div class="slide slide-content" data-slide="4">
+  <div class="slide-label animate-in">Core Concepts</div>
+  <h2 class="animate-in">The Dance Between "I" and "We" — And the Wisdom of the East</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Human evolution alternates between individual drive ("I" stages: Beige, Red, Orange, Yellow) and communal spirit ("We" stages: Purple, Blue, Green, Turquoise). Each breakthrough needs the other to avoid collapse.</p>
+      <div class="callout" style="margin-top:16px;">
+        <div class="callout-label">The Grass vs. the Oak</div>
+        <p>In a storm, the unyielding oak stands firm — yet risks snapping under pressure. The grass bends and sways, enduring even the fiercest winds. When the storm passes, the grass rises. The oak lies broken. <strong>Resilience lives in adaptability, not rigidity.</strong></p>
+      </div>
+    </div>
+    <div class="animate-in">
+      <div class="principle-card" style="margin-bottom:16px;">
+        <h4 style="color:var(--accent);">Wu Wei (無為) — Effortless Action</h4>
+        <p>Not passivity, but strategic alignment with the flow of change. Han Xin crawled between the bully's legs — not out of cowardice, but because his sword was meant for greater battles. Leaders who master Wu Wei know which fights to skip.</p>
+      </div>
+      <div class="principle-card" style="margin-bottom:16px;">
+        <h4 style="color:var(--accent2);">Yu Wei (有為) — Intentional Action</h4>
+        <p>The complement to Wu Wei: knowing when to act decisively. Balance means oscillating between observation and intervention — never stuck in one mode.</p>
+      </div>
+      <div class="principle-card">
+        <h4 style="color:var(--highlight);">Yin/Yang — Dynamic Balance</h4>
+        <p>Innovation (Yang) without reflection (Yin) creates chaos. Regulation (Yin) without progress (Yang) creates stagnation. The Intelligence Age demands both.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Case Study — Han Xin -->
+<div class="slide slide-content" data-slide="5">
+  <div class="slide-label animate-in">Case Study</div>
+  <h2 class="animate-in">Han Xin: The General Who Chose Humility</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p style="font-size:19px; line-height:1.7;">In ancient China's Han dynasty, a young warrior named Han Xin was confronted by a local bully who sneered: <em>"If you are brave, kill me. If you are a coward, crawl between my legs."</em></p>
+      <p style="margin-top:16px;">To the crowd's astonishment, Han Xin bent low and crawled through. Not cowardice — <strong>calculation</strong>. A marketplace brawl would do nothing for his ambitions. His sword was meant for greater battles.</p>
+      <p style="margin-top:16px;">Years later, as commander of Emperor Liu Bang's armies, Han Xin led campaigns that unified China. His humility in the marketplace became a timeless lesson: <strong>strength lies not in reacting to every challenge, but in discerning which battles are worth fighting.</strong></p>
+    </div>
+    <div class="animate-in">
+      <div class="callout">
+        <div class="callout-label">The Leadership Lesson</div>
+        <p>In the Intelligence Age, leaders face a hundred provocations daily — shiny new technologies, competitive threats, organisational politics. Han Xin's wisdom: not every disruption deserves your energy. The Gestalt Shift from Episode 1 helps you see the bigger picture. Taoism helps you <em>act</em> on it.</p>
+      </div>
+      <div class="callout" style="border-color:var(--accent2);background:rgba(123,47,190,.08);margin-top:16px;">
+        <div class="callout-label" style="color:var(--accent2);">Umwelt Theory</div>
+        <p>Each organism perceives reality through its own unique lens — its "Umwelt." A tick perceives only heat and butyric acid. Humans perceive only a fraction of the electromagnetic spectrum. Your organisation's Umwelt shapes what you see — and what you miss. Expanding your Umwelt is the first step to systemic leadership.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Quiz & Reflection -->
+<div class="slide slide-content" data-slide="6">
+  <div class="slide-label animate-in">Self-Assessment</div>
+  <h2 class="animate-in">Where Does Your Organisation Sit on the Spiral?</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <div class="quiz-question" data-correct="2">
+        <h4>1. What percentage of the global population has reached Tier 2 (Yellow/Turquoise) thinking?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" data-idx="0">About 10%</div>
+          <div class="quiz-option" data-idx="1">About 5%</div>
+          <div class="quiz-option" data-idx="2">About 1%</div>
+          <div class="quiz-option" data-idx="3">About 15%</div>
+        </div>
+      </div>
+      <div class="quiz-question" data-correct="1">
+        <h4>2. Which Taoist principle describes "effortless action" — strategic alignment with the flow rather than forcing outcomes?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" data-idx="0">Yin/Yang</div>
+          <div class="quiz-option" data-idx="1">Wu Wei</div>
+          <div class="quiz-option" data-idx="2">Yu Wei</div>
+          <div class="quiz-option" data-idx="3">Tao Te Ching</div>
+        </div>
+      </div>
+    </div>
+    <div class="animate-in">
+      <div class="reflection-box">
+        <h4 style="font-family:'Work Sans';margin-bottom:12px;font-size:16px;">🌀 Spiral Audit</h4>
+        <p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Which Spiral Dynamics stage most accurately describes your organisation's dominant culture today? Which stage would best serve your strategy 3 years from now? What's the gap?</p>
+        <textarea placeholder="My organisation currently operates at..."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Key Takeaways -->
+<div class="slide slide-content" data-slide="7">
+  <div class="slide-label animate-in">Key Takeaways</div>
+  <h2 class="animate-in">Three Things to Remember</h2>
+  <div class="takeaway-grid animate-in">
+    <div class="takeaway-card">
+      <div class="tk-icon">🌀</div>
+      <h4>Consciousness Is the Bottleneck</h4>
+      <p>Technology evolves exponentially, but human consciousness evolves in spirals. The gap between our tools and our wisdom is the most dangerous risk of the Intelligence Age. Upgrading your mindset isn't optional — it's strategic.</p>
+    </div>
+    <div class="takeaway-card">
+      <div class="tk-icon">☯️</div>
+      <h4>Balance "I" and "We"</h4>
+      <p>Oscillating between individual drive and communal responsibility is how civilisations advance. Orange innovation needs Green empathy. Yellow systems thinking needs Turquoise planetary vision. Neither alone is enough.</p>
+    </div>
+    <div class="takeaway-card">
+      <div class="tk-icon">🌿</div>
+      <h4>Be Grass, Not Oak</h4>
+      <p>Taoism's enduring wisdom: resilience comes from adaptability, not rigidity. In a world of exponential disruption, the leaders who bend — who practice Wu Wei and choose their battles — will outlast those who stand firm and snap.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Action Items -->
+<div class="slide slide-content" data-slide="8">
+  <div class="slide-label animate-in">Your Homework</div>
+  <h2 class="animate-in">Before Episode 3</h2>
+  <ul class="action-list animate-in">
+    <li>
+      <span class="action-num">01</span>
+      <div class="action-text">
+        <h4>Spiral Audit (30 min)</h4>
+        <p>Map your organisation's dominant value system across departments. Where are you Blue (rule-following)? Where Orange (achievement-driven)? Where Green (consensus-seeking)? Identify the tensions between them.</p>
+      </div>
+    </li>
+    <li>
+      <span class="action-num">02</span>
+      <div class="action-text">
+        <h4>Umwelt Expansion Exercise (20 min)</h4>
+        <p>Have a 15-minute conversation with someone who sees your industry completely differently — a customer, a competitor, a frontline worker, a teenager. Document three things they see that you've been missing.</p>
+      </div>
+    </li>
+    <li>
+      <span class="action-num">03</span>
+      <div class="action-text">
+        <h4>Wu Wei Journaling (10 min)</h4>
+        <p>Reflect on the last month: which battles did you fight that weren't worth fighting? What would Han Xin have done differently? Where could "effortless action" replace forced outcomes?</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- SLIDE 9: Closing -->
+<div class="slide slide-closing" data-slide="9">
+  <div class="episode-tag animate-in" style="font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent2);margin-bottom:20px;">Episode Summary</div>
+  <p class="quote animate-in">"Upgrading our tech is fruitless if we're strangers to ourselves. Self-awareness fuels humanity's evolution."</p>
+  <p class="animate-in" style="color:var(--text-muted);font-size:16px;">— Dr. Mark van Rijmenam</p>
+  <div class="next-ep animate-in">Next → Episode 3: Eight Forces Colliding</div>
+  <p class="cta animate-in">Learn more at <a href="https://futurwise.com">futurwise.com</a> · Book Mark at <a href="https://TheDigitalSpeaker.com">TheDigitalSpeaker.com</a></p>
+</div>
+
+</div>
+
+<script>
+(function(){const s=document.querySelectorAll('.slide'),t=s.length;let c=0;function u(n,d){if(n<0||n>=t||n===c)return;s[c].classList.remove('active');s[n].classList.add('active');c=n;p()}function p(){document.getElementById('progress-bar').style.width=((c+1)/t)*100+'%';document.getElementById('slide-counter').textContent=(c+1)+' / '+t}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(c+1,'next')}if(e.key==='ArrowLeft'){e.preventDefault();u(c-1,'prev')}});document.getElementById('next-btn').addEventListener('click',()=>u(c+1,'next'));document.getElementById('prev-btn').addEventListener('click',()=>u(c-1,'prev'));let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?u(c+1,'next'):u(c-1,'prev')}});document.querySelectorAll('.quiz-option').forEach(o=>{o.addEventListener('click',function(){const q=this.closest('.quiz-question');if(q.classList.contains('answered'))return;q.classList.add('answered');const ci=parseInt(q.dataset.correct),si=parseInt(this.dataset.idx);this.classList.add(si===ci?'correct':'incorrect');if(si!==ci)q.querySelectorAll('.quiz-option')[ci].classList.add('correct')})});p()})();
+window.toggleSpiralDetail=function(el){el.classList.toggle('expanded');var arr=el.querySelector('.s-pct');if(arr)arr.textContent=el.classList.contains('expanded')?'▾':'▸';};
+</script>
+</body>
+</html>

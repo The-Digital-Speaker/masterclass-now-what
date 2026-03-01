@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Episode 6: Unbreakable | Mark van Rijmenam Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#162535;--secondary:#0f1a24;--accent:#30ffeb;--accent2:#5033ff;--highlight:#FF6B35;--text-light:#F5F5F5;--text-muted:#b8c4ce;--bg:#162535;--card:#1e3348;--green:#10B981}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-light)}h1,h2,h3,h4,h5{font-family:'Work Sans',sans-serif}#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--green),var(--accent));z-index:1000;transition:width .4s ease}#slide-counter{position:fixed;bottom:24px;right:32px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);z-index:100;letter-spacing:2px}.nav-arrow{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(30,30,63,.6);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:100;transition:all .3s}.nav-arrow:hover{border-color:var(--accent)}.nav-arrow svg{width:20px;height:20px;fill:var(--text-light)}#prev-btn{left:20px}#next-btn{right:20px}#brand-footer{position:fixed;bottom:20px;left:32px;z-index:100}#brand-footer .brand-name{font-family:'Work Sans';font-size:11px;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase}.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px;opacity:0;transform:translateX(40px);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none;background:linear-gradient(135deg,var(--bg),var(--secondary))}.slide.active{opacity:1;transform:translateX(0);pointer-events:auto}.slide-title{justify-content:center;align-items:center;text-align:center}.slide-title .episode-tag{font-family:'Work Sans';font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:24px;font-weight:600}.slide-title h1{font-size:50px;font-weight:800;line-height:1.15;max-width:900px;margin-bottom:20px;background:linear-gradient(135deg,var(--text-light),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.slide-title .subtitle{font-size:20px;color:var(--text-muted);max-width:650px;line-height:1.6}.slide-title .author{margin-top:40px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);letter-spacing:2px}.slide-title .author span{color:var(--green)}.slide-content .slide-label{font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600}.slide-content h2{font-size:36px;font-weight:700;margin-bottom:24px;line-height:1.2}.slide-content p{font-size:18px;color:rgba(245,245,245,.85);line-height:1.7}.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}.callout{background:rgba(16,185,129,.08);border-left:3px solid var(--green);padding:20px 24px;border-radius:0 8px 8px 0;margin:20px 0}.callout .callout-label{font-family:'Work Sans';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:8px;font-weight:700}.callout p{font-size:17px;color:var(--text-light);line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}.stat-card{background:var(--card);border-radius:12px;padding:28px 24px;text-align:center;border:1px solid rgba(255,255,255,.06)}.stat-card .stat-number{font-family:'Work Sans';font-size:44px;font-weight:800;background:linear-gradient(135deg,var(--green),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.stat-card .stat-label{font-size:14px;color:var(--text-muted);margin-top:8px;line-height:1.4}
+.styled-list{list-style:none}.styled-list li{position:relative;padding-left:28px;margin-bottom:18px;font-size:18px;color:rgba(245,245,245,.85);line-height:1.6}.styled-list li::before{content:'→';position:absolute;left:0;color:var(--green);font-weight:700}
+.stack-container{display:flex;flex-direction:column;gap:12px;margin-top:16px}.stack-item{background:var(--card);border-radius:12px;padding:20px 24px;border-left:4px solid;display:flex;gap:16px;align-items:center;transition:all .3s}.stack-item:hover{transform:translateX(4px)}.stack-item:nth-child(1){border-color:var(--green)}.stack-item:nth-child(2){border-color:var(--accent)}.stack-item:nth-child(3){border-color:var(--accent2)}.stack-item:nth-child(4){border-color:var(--highlight)}.stack-item .s-num{font-family:'Work Sans';font-size:24px;font-weight:800;min-width:40px}.stack-item .s-text h4{font-family:'Work Sans';font-size:15px;margin-bottom:2px}.stack-item .s-text p{font-size:13px;color:var(--text-muted)}
+.quiz-question{background:var(--card);border-radius:12px;padding:24px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06)}.quiz-question h4{font-family:'Work Sans';font-size:16px;margin-bottom:16px}.quiz-options{display:flex;flex-direction:column;gap:10px}.quiz-option{padding:12px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all .3s;font-size:15px}.quiz-option:hover{border-color:var(--accent)}.quiz-option.correct{border-color:#10B981;background:rgba(16,185,129,.12);color:#10B981}.quiz-option.incorrect{border-color:#EF4444;background:rgba(239,68,68,.08);color:#EF4444}
+.reflection-box{background:var(--card);border-radius:12px;padding:28px;border:1px solid rgba(16,185,129,.3);margin-top:20px}.reflection-box textarea{width:100%;height:100px;background:rgba(15,15,35,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:14px;font-family:'DM Sans';font-size:15px;resize:vertical;outline:none}
+.takeaway-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}.takeaway-card{background:var(--card);border-radius:12px;padding:28px 24px;border-top:3px solid}.takeaway-card:nth-child(1){border-color:var(--green)}.takeaway-card:nth-child(2){border-color:var(--accent)}.takeaway-card:nth-child(3){border-color:var(--accent2)}.takeaway-card .tk-icon{font-size:28px;margin-bottom:12px}.takeaway-card h4{font-family:'Work Sans';font-size:16px;margin-bottom:8px}.takeaway-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.action-list{list-style:none;margin-top:16px}.action-list li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}.action-list .action-num{font-family:'Work Sans';font-size:28px;font-weight:800;color:var(--green);min-width:40px}.action-list .action-text h4{font-family:'Work Sans';font-size:17px;margin-bottom:4px}.action-list .action-text p{font-size:15px;color:var(--text-muted);line-height:1.5}
+.slide-closing{justify-content:center;align-items:center;text-align:center}.slide-closing .quote{font-size:26px;font-style:italic;max-width:700px;line-height:1.6;color:rgba(245,245,245,.9);margin-bottom:32px}.slide-closing .next-ep{display:inline-block;background:linear-gradient(135deg,var(--green),var(--accent));padding:14px 32px;border-radius:8px;font-family:'Work Sans';font-size:15px;font-weight:600;color:white;margin-top:16px}.slide-closing .cta{margin-top:32px;font-size:14px;color:var(--text-muted)}.slide-closing .cta a{color:var(--accent);text-decoration:none}
+.animate-in{opacity:0;transform:translateY(20px)}.slide.active .animate-in{animation:fadeUp .6s ease forwards}.slide.active .animate-in:nth-child(1){animation-delay:.1s}.slide.active .animate-in:nth-child(2){animation-delay:.25s}.slide.active .animate-in:nth-child(3){animation-delay:.4s}.slide.active .animate-in:nth-child(4){animation-delay:.55s}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media print{.slide{position:relative!important;opacity:1!important;transform:none!important;pointer-events:auto!important;page-break-after:always;height:auto;min-height:100vh}#progress-bar,.nav-arrow,#slide-counter,#brand-footer{display:none!important}}
+@media(max-width:1024px){.slide{padding:40px 48px}.slide-title h1{font-size:36px}.content-grid{grid-template-columns:1fr}.stat-grid,.takeaway-grid{grid-template-columns:1fr}.nav-arrow{display:none}}
+</style>
+</head>
+<body>
+<div id="progress-bar"></div><div id="slide-counter"></div>
+<button class="nav-arrow" id="prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg></button>
+<button class="nav-arrow" id="next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+<div id="brand-footer"><div class="brand-name">Mark van Rijmenam · The Architect of Tomorrow · Futurwise</div></div>
+
+<div id="slides-wrapper">
+
+<div class="slide slide-title active" data-slide="1">
+  <div class="episode-tag animate-in">Episode 06 of 08</div>
+  <h1 class="animate-in">Unbreakable</h1>
+  <p class="subtitle animate-in">Building Human Capital for the Intelligence Age — Because Your Most Valuable Asset Isn't Technology</p>
+  <p class="author animate-in">Dr. Mark van Rijmenam · <span>The Architect of Tomorrow</span></p>
+</div>
+
+<div class="slide slide-content" data-slide="2">
+  <div class="slide-label animate-in">What You'll Learn</div>
+  <h2 class="animate-in">In This Episode</h2>
+  <ul class="styled-list animate-in">
+    <li>The retention revolution: why lectures retain 5% but learning-by-doing retains 75% — and what that means for corporate training</li>
+    <li>The paradigm shift from knowledge consumption to active skill-building in an AI world</li>
+    <li>Digital literacy as survival skill: Finland's model and why it matters globally</li>
+    <li>The Lifelong Learning Stack: a framework for building adaptive human capital</li>
+  </ul>
+</div>
+
+<div class="slide slide-content" data-slide="3">
+  <div class="slide-label animate-in">The Core Problem</div>
+  <h2 class="animate-in">The 5% vs. 75% Retention Gap</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Traditional education — lectures, passive consumption, one-way knowledge transfer — retains approximately <strong>5% of information</strong>. Learning-by-doing, problem-based learning, and collaborative practice retain up to <strong>75%</strong>.</p>
+      <p style="margin-top:16px;">In the Intelligence Age, where the half-life of skills is shrinking from decades to years, this isn't an academic distinction — it's a strategic emergency. Organisations that still train their people through slide decks and webinars are building on sand.</p>
+      <div class="callout" style="margin-top:20px;">
+        <div class="callout-label">Key Insight</div>
+        <p>AI can memorise everything. What AI cannot (yet) do: adapt to novel situations with emotional intelligence, build trust across cultures, ask the right questions when the answer isn't in the data. These are the skills worth investing in.</p>
+      </div>
+    </div>
+    <div class="animate-in">
+      <div class="stat-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="stat-card"><div class="stat-number">5%</div><div class="stat-label">Retention from traditional lectures</div></div>
+        <div class="stat-card"><div class="stat-number">75%</div><div class="stat-label">Retention from learning-by-doing</div></div>
+      </div>
+      <div class="stat-grid" style="grid-template-columns:1fr;margin-top:16px;">
+        <div class="stat-card"><div class="stat-number">2.5B</div><div class="stat-label">People globally still lack internet access — the digital divide is real</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" data-slide="4">
+  <div class="slide-label animate-in">Framework</div>
+  <h2 class="animate-in">The Lifelong Learning Stack</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Building adaptive human capital requires four interconnected layers — each building on the one below.</p>
+      <div class="stack-container" style="margin-top:20px;">
+        <div class="stack-item"><div class="s-num" style="color:var(--green);">4</div><div class="s-text"><h4>Wisdom & Judgement</h4><p>Ethical reasoning, systems thinking, long-term consequence analysis</p></div></div>
+        <div class="stack-item"><div class="s-num" style="color:var(--accent);">3</div><div class="s-text"><h4>Adaptive Skills</h4><p>Critical thinking, creativity, cross-cultural collaboration, emotional intelligence</p></div></div>
+        <div class="stack-item"><div class="s-num" style="color:var(--accent2);">2</div><div class="s-text"><h4>Digital Fluency</h4><p>AI literacy, data interpretation, responsible technology use, media verification</p></div></div>
+        <div class="stack-item"><div class="s-num" style="color:var(--highlight);">1</div><div class="s-text"><h4>Foundation Access</h4><p>Connectivity, basic digital literacy, access to learning platforms, language</p></div></div>
+      </div>
+    </div>
+    <div class="animate-in">
+      <div class="callout" style="border-color:var(--accent);background:rgba(0,212,255,.08);">
+        <div class="callout-label" style="color:var(--accent);">Case Study: Finland</div>
+        <p>Finland embedded media literacy and critical thinking across its entire educational curriculum — not as a separate subject, but as a lens applied to every discipline. The result: one of the world's most misinformation-resistant populations. This isn't just education reform. It's national defence.</p>
+      </div>
+      <div class="callout" style="border-color:var(--accent2);background:rgba(123,47,190,.08);margin-top:16px;">
+        <div class="callout-label" style="color:var(--accent2);">Case Study: Khan Academy</div>
+        <p>Khan Academy demonstrated that technology can democratise learning — making world-class education available to anyone with an internet connection. AI-powered tutoring is the next frontier: personalised, adaptive, infinitely patient instruction at scale.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" data-slide="5">
+  <div class="slide-label animate-in">Self-Assessment</div>
+  <h2 class="animate-in">How Ready Is Your Team?</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <div class="quiz-question" data-correct="1">
+        <h4>1. What is the primary advantage of learning-by-doing over traditional lectures?</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" data-idx="0">It's cheaper to implement</div>
+          <div class="quiz-option" data-idx="1">It achieves 75% knowledge retention vs. 5% for lectures</div>
+          <div class="quiz-option" data-idx="2">It requires less preparation from instructors</div>
+        </div>
+      </div>
+      <div class="quiz-question" data-correct="2">
+        <h4>2. Finland's media literacy success is based on:</h4>
+        <div class="quiz-options">
+          <div class="quiz-option" data-idx="0">Banning social media in schools</div>
+          <div class="quiz-option" data-idx="1">Mandatory fact-checking courses</div>
+          <div class="quiz-option" data-idx="2">Embedding critical thinking as a lens across ALL subjects</div>
+        </div>
+      </div>
+    </div>
+    <div class="animate-in">
+      <div class="reflection-box">
+        <h4 style="font-family:'Work Sans';margin-bottom:12px;font-size:16px;">📊 Learning Audit</h4>
+        <p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Rate your team across the four layers of the Lifelong Learning Stack (1-5 each). Where is the biggest gap? What one investment would have the highest impact?</p>
+        <textarea placeholder="Foundation Access: __/5 | Digital Fluency: __/5 | Adaptive Skills: __/5 | Wisdom: __/5"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="slide slide-content" data-slide="6">
+  <div class="slide-label animate-in">Key Takeaways</div>
+  <h2 class="animate-in">Three Things to Remember</h2>
+  <div class="takeaway-grid animate-in">
+    <div class="takeaway-card"><div class="tk-icon">📚</div><h4>Retention Is Everything</h4><p>5% vs. 75% isn't a marginal improvement — it's a 15× multiplier. Every dollar spent on passive training is 95% wasted. Invest in hands-on, problem-based learning.</p></div>
+    <div class="takeaway-card"><div class="tk-icon">🇫🇮</div><h4>Digital Literacy Is Defence</h4><p>Finland proves that embedding critical thinking across all education — not as a separate module — builds resilience against misinformation at scale. This applies to corporate training too.</p></div>
+    <div class="takeaway-card"><div class="tk-icon">🧱</div><h4>Build the Stack</h4><p>The Lifelong Learning Stack — access, fluency, adaptive skills, wisdom — provides a framework for assessing and developing your team's readiness for the Intelligence Age.</p></div>
+  </div>
+</div>
+
+<div class="slide slide-content" data-slide="7">
+  <div class="slide-label animate-in">Your Homework</div>
+  <h2 class="animate-in">Before Episode 7</h2>
+  <ul class="action-list animate-in">
+    <li><span class="action-num">01</span><div class="action-text"><h4>Learning Audit (30 min)</h4><p>Assess your team's readiness using the Lifelong Learning Stack. Score each layer 1-5 across departments. Identify where passive training can be replaced with active, hands-on approaches.</p></div></li>
+    <li><span class="action-num">02</span><div class="action-text"><h4>AI Literacy Baseline (20 min)</h4><p>Survey 10 people in your organisation: Can they explain what a large language model does? Can they identify a deepfake? Can they evaluate AI-generated content critically? Document the baseline.</p></div></li>
+    <li><span class="action-num">03</span><div class="action-text"><h4>Finland Framework Application (15 min)</h4><p>Pick one ongoing training programme and redesign it using Finland's approach: embed critical thinking as a lens applied to the content, not a separate module bolted on.</p></div></li>
+  </ul>
+</div>
+
+<div class="slide slide-closing" data-slide="8">
+  <div class="episode-tag animate-in" style="font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:20px;">Episode Summary</div>
+  <p class="quote animate-in">"The most valuable asset in the Intelligence Age isn't technology. It's the human capacity to learn, adapt, create, and care."</p>
+  <p class="animate-in" style="color:var(--text-muted);font-size:16px;">— Dr. Mark van Rijmenam</p>
+  <div class="next-ep animate-in">Next → Episode 7: Ride the WAVE</div>
+  <p class="cta animate-in">Learn more at <a href="https://futurwise.com">futurwise.com</a> · Book Mark at <a href="https://TheDigitalSpeaker.com">TheDigitalSpeaker.com</a></p>
+</div>
+
+</div>
+<script>
+(function(){const s=document.querySelectorAll('.slide'),t=s.length;let c=0;function u(n){if(n<0||n>=t||n===c)return;s[c].classList.remove('active');s[n].classList.add('active');c=n;p()}function p(){document.getElementById('progress-bar').style.width=((c+1)/t)*100+'%';document.getElementById('slide-counter').textContent=(c+1)+' / '+t}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(c+1)}if(e.key==='ArrowLeft'){e.preventDefault();u(c-1)}});document.getElementById('next-btn').addEventListener('click',()=>u(c+1));document.getElementById('prev-btn').addEventListener('click',()=>u(c-1));let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?u(c+1):u(c-1)}});document.querySelectorAll('.quiz-option').forEach(o=>{o.addEventListener('click',function(){const q=this.closest('.quiz-question');if(q.classList.contains('answered'))return;q.classList.add('answered');const ci=parseInt(q.dataset.correct),si=parseInt(this.dataset.idx);this.classList.add(si===ci?'correct':'incorrect');if(si!==ci)q.querySelectorAll('.quiz-option')[ci].classList.add('correct')})});p()})();
+</script>
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Now What? Masterclass | Mark van Rijmenam</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#162535;--secondary:#0f1a24;--accent:#30ffeb;--accent2:#5033ff;--highlight:#FF6B35;--text:#F5F5F5;--muted:#94A3B8;--bg:#0f1119;--card:#1a2233;--border:rgba(255,255,255,.06);--sidebar:420px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text)}
+h1,h2,h3,h4,h5{font-family:'Work Sans',sans-serif}
+button{font-family:'DM Sans',sans-serif;cursor:pointer;border:none;outline:none}
+
+/* NAV */
+#topnav{position:fixed;top:0;left:0;right:0;height:56px;z-index:200;background:rgba(15,17,25,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px}
+.brand{font-family:'Work Sans';font-weight:700;font-size:15px;letter-spacing:.5px;white-space:nowrap}
+.brand span{color:var(--highlight)}
+#breadcrumb{font-size:13px;color:var(--muted);flex:1}
+#breadcrumb .sep{margin:0 8px;opacity:.4}
+.crumb-link{color:var(--muted);cursor:pointer;background:none;border:none;font:inherit;padding:0}
+.crumb-link:hover{color:var(--accent)}
+.nav-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:var(--text);font-size:13px;transition:all .2s}
+.nav-btn:hover{border-color:var(--accent);background:rgba(48,255,235,.06)}
+#help-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);font-size:14px;display:flex;align-items:center;justify-content:center}
+
+/* VIEWS */
+.view{position:absolute;top:56px;left:0;right:0;bottom:0;display:none}
+.view.active{display:flex}
+
+/* DASHBOARD */
+#dashboard{flex-direction:column;overflow-y:auto}
+.hero{padding:60px 48px 40px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-bottom:1px solid var(--border)}
+.hero .tag{font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--highlight);font-weight:600;margin-bottom:16px}
+.hero h1{font-size:42px;font-weight:800;line-height:1.15;max-width:700px;margin-bottom:12px}
+.hero h1 span{background:linear-gradient(135deg,var(--text),var(--highlight));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:18px;color:var(--muted);max-width:600px;line-height:1.6;margin-bottom:20px}
+.hero .author{font-family:'Work Sans';font-size:14px;color:var(--muted)}
+.hero .author strong{color:var(--text)}
+.hero .author em{color:var(--highlight);font-style:normal}
+.prog-overview{display:flex;align-items:center;gap:16px;margin-top:24px;padding:16px 20px;background:rgba(255,255,255,.04);border-radius:10px;max-width:500px}
+.prog-bar{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--highlight));border-radius:3px;transition:width .4s}
+.prog-text{font-size:13px;color:var(--muted);white-space:nowrap}
+.ep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;padding:32px 48px 60px}
+.ep-card{background:var(--card);border-radius:14px;border:1px solid var(--border);cursor:pointer;transition:all .3s;overflow:hidden}
+.ep-card:hover{border-color:rgba(48,255,235,.3);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.ep-header{padding:24px 24px 0;display:flex;align-items:flex-start;gap:16px}
+.ep-num{font-family:'Work Sans';font-size:36px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;min-width:48px}
+.ep-meta{flex:1}
+.ep-title{font-family:'Work Sans';font-size:18px;font-weight:700;margin-bottom:4px;line-height:1.3}
+.ep-subtitle{font-size:13px;color:var(--muted);line-height:1.5}
+.ep-footer{padding:16px 24px;display:flex;align-items:center;justify-content:space-between;margin-top:16px;border-top:1px solid var(--border)}
+.ep-duration{font-size:12px;color:var(--muted)}
+.ep-status{font-family:'Work Sans';font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;font-weight:600}
+.ep-status.ns{background:rgba(255,255,255,.06);color:var(--muted)}
+.ep-status.ip{background:rgba(48,255,235,.12);color:var(--accent)}
+.ep-status.done{background:rgba(16,185,129,.12);color:#10B981}
+.ep-prog{height:3px;background:rgba(255,255,255,.06)}
+.ep-prog-fill{height:100%;background:var(--accent);transition:width .3s}
+
+/* PLAYER */
+#player{flex-direction:row}
+#player-main{flex:1;display:flex;flex-direction:column;min-width:0}
+#iframe-wrap{flex:1;position:relative;background:var(--secondary)}
+#iframe-wrap iframe{width:100%;height:100%;border:none}
+#controls{height:64px;background:rgba(15,17,25,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:10px}
+.cb{width:40px;height:40px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text);font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.cb:hover{border-color:var(--accent);background:rgba(48,255,235,.08)}
+.cb:disabled{opacity:.3;cursor:default}
+.cb:disabled:hover{border-color:var(--border);background:rgba(255,255,255,.06)}
+#sinfo{font-family:'Work Sans';font-size:13px;color:var(--muted);min-width:60px;text-align:center}
+.csep{width:1px;height:28px;background:var(--border);margin:0 4px}
+#sprog{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:2px;cursor:pointer;position:relative}
+#spfill{height:100%;background:linear-gradient(90deg,var(--accent),var(--highlight));border-radius:2px;transition:width .3s;pointer-events:none}
+#audio-sec{display:flex;align-items:center;gap:8px;margin-left:4px}
+#atime{font-family:'Work Sans';font-size:12px;color:var(--muted);min-width:80px}
+.abadge{font-family:'Work Sans';font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;font-weight:600;background:rgba(255,107,53,.15);color:var(--highlight)}
+
+/* TRANSCRIPT */
+#tpanel{width:var(--sidebar);background:var(--card);border-left:1px solid var(--border);display:flex;flex-direction:column;transition:margin-right .35s ease}
+#tpanel.collapsed{margin-right:calc(-1 * var(--sidebar))}
+#thead{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+#thead h3{font-size:14px;font-weight:600}
+#tclose{background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:4px}
+#tbody{flex:1;overflow-y:auto;padding:20px;font-size:15px;line-height:1.8;color:rgba(245,245,245,.8)}
+.tm{font-family:'Work Sans';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin:28px 0 12px;font-weight:600;cursor:pointer;padding:4px 0;border-bottom:1px solid rgba(48,255,235,.15)}
+.tm:first-child{margin-top:0}
+.tm:hover{color:var(--highlight)}
+.td{font-style:italic;color:var(--muted);font-size:13px;margin-bottom:8px}
+.tl{margin-bottom:12px}
+.tl strong{color:var(--text)}
+.ts.t-active{background:rgba(48,255,235,.04);margin:-8px -12px;padding:8px 12px;border-radius:6px;border-left:3px solid var(--accent)}
+.tins{background:rgba(48,255,235,.06);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0;font-size:14px}
+.tsec{color:var(--highlight);font-family:'Work Sans';font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;margin:24px 0 10px;border-bottom:1px solid rgba(255,107,53,.15);padding-bottom:4px}
+
+/* HELP MODAL */
+#modal{position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center}
+#modal.show{display:flex}
+.mbox{background:var(--card);border-radius:16px;border:1px solid var(--border);padding:32px;max-width:480px;width:90%}
+.mbox h3{margin-bottom:20px;font-size:20px}
+.sr{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.sr:last-child{border:none}
+.sk{font-family:'Work Sans';background:rgba(255,255,255,.08);padding:2px 10px;border-radius:4px;font-size:12px}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  #tpanel{position:absolute;right:0;top:0;bottom:0;z-index:100;box-shadow:-4px 0 20px rgba(0,0,0,.4)}
+  .hero{padding:40px 24px 32px}.hero h1{font-size:32px}.ep-grid{padding:24px;gap:16px}
+}
+@media(max-width:768px){
+  .ep-grid{grid-template-columns:1fr}
+  #tpanel{width:100%}
+  #controls{padding:0 12px;gap:8px;overflow-x:auto}
+  .hero h1{font-size:28px}
+}
+@media print{
+  #topnav,#controls,.cb,#modal{display:none!important}
+  #tpanel{position:static;width:100%;margin:0;border:none}
+  #tpanel.collapsed{margin-right:0;display:block}
+}
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <div class="brand">NOW WHAT<span>?</span> Masterclass</div>
+  <div id="breadcrumb"><button class="crumb-link" onclick="showDash()">Course</button></div>
+  <button class="nav-btn" id="tbtn" onclick="toggleT()" style="display:none">Script</button>
+  <button id="help-btn" onclick="toggleH()" title="Keyboard shortcuts">?</button>
+</nav>
+
+<div class="view active" id="dashboard">
+  <div class="hero">
+    <div class="tag">8-Episode Interactive Masterclass</div>
+    <h1><span>Now What?</span> How to Ride the Tsunami of Change</h1>
+    <p class="sub">Transform exponential disruption into strategic advantage. A masterclass for senior leaders navigating AI, emerging technologies, and the profound shifts they demand.</p>
+    <p class="author"><strong>Dr. Mark van Rijmenam</strong> · <em>The Architect of Tomorrow</em></p>
+    <div class="prog-overview">
+      <div class="prog-bar"><div class="prog-fill" id="oprog" style="width:0%"></div></div>
+      <div class="prog-text" id="otxt">0 of 8 completed</div>
+    </div>
+  </div>
+  <div class="ep-grid" id="grid"></div>
+</div>
+
+<div class="view" id="player">
+  <div id="player-main">
+    <div id="iframe-wrap"><iframe id="epif" title="Episode"></iframe></div>
+    <div id="controls">
+      <button class="cb" id="bpe" onclick="navEp(-1)" title="Previous episode">⟨⟨</button>
+      <button class="cb" id="bps" onclick="navS(-1)" title="Previous slide (←)">◁</button>
+      <span id="sinfo">1 / 10</span>
+      <button class="cb" id="bns" onclick="navS(1)" title="Next slide (→)">▷</button>
+      <button class="cb" id="bne" onclick="navEp(1)" title="Next episode">⟩⟩</button>
+      <div class="csep"></div>
+      <div id="sprog" onclick="seekS(event)"><div id="spfill" style="width:0%"></div></div>
+      <div class="csep"></div>
+      <div id="audio-sec">
+        <button class="cb" id="bplay" onclick="togAudio()" title="Play/Pause audio (P)">▶</button>
+        <span id="atime">--:-- / --:--</span>
+        <span class="abadge" id="abadge">Add Audio</span>
+      </div>
+    </div>
+  </div>
+  <aside id="tpanel" class="collapsed">
+    <div id="thead"><h3>Presenter Script</h3><button id="tclose" onclick="toggleT()">✕</button></div>
+    <div id="tbody"></div>
+  </aside>
+</div>
+
+<div id="modal">
+  <div class="mbox">
+    <h3>Keyboard Shortcuts</h3>
+    <div class="sr"><span>Next slide</span><span class="sk">→</span></div>
+    <div class="sr"><span>Previous slide</span><span class="sk">←</span></div>
+    <div class="sr"><span>Play / Pause audio</span><span class="sk">P</span></div>
+    <div class="sr"><span>Toggle transcript</span><span class="sk">T</span></div>
+    <div class="sr"><span>Back to dashboard</span><span class="sk">Esc</span></div>
+    <div class="sr"><span>Previous episode</span><span class="sk">Shift + ←</span></div>
+    <div class="sr"><span>Next episode</span><span class="sk">Shift + →</span></div>
+    <div style="margin-top:20px;text-align:right"><button class="nav-btn" onclick="toggleH()">Close</button></div>
+  </div>
+</div>
+
+<audio id="aud" preload="auto"></audio>
+
+<script>
+/* ====================================================================
+   NOW WHAT? MASTERCLASS PLATFORM
+   Audio-sync infrastructure: slides auto-advance with narration.
+   ==================================================================== */
+
+const EPS=[
+  {n:1,t:'The Tsunami Is Already Here',s:'Why Linear Thinking Will Drown You',d:'~15 min',sl:10},
+  {n:2,t:'Rewire Your Mind',s:'The Consciousness Upgrade Leaders Need',d:'~15 min',sl:9},
+  {n:3,t:'Eight Forces Colliding',s:'AI, Robotics, Quantum & Blockchain',d:'~15 min',sl:14},
+  {n:4,t:'When Worlds Merge',s:'Blockchain, BCIs, 3D Printing & Synthetic Biology',d:'~18 min',sl:15},
+  {n:5,t:'The Dark Mirror',s:'Risks That Could Shatter Everything',d:'~12 min',sl:10},
+  {n:6,t:'Unbreakable',s:'Building Human Capital for the Intelligence Age',d:'~12 min',sl:8},
+  {n:7,t:'The WAVE Forward',s:'Watch. Adapt. Verify. Empower.',d:'~15 min',sl:14},
+  {n:8,t:'Architect of Tomorrow',s:'Your 2050 Starts Today',d:'~15 min',sl:11}
+];
+
+/* ── AUDIO-SYNC TIMING CONFIG ────────────────────────────────────────
+   Two-level timing: SLIDE times + ELEMENT reveal times within each slide.
+
+   HOW TO ADD AUDIO:
+   1. Record/generate narration per episode using scripts in /scripts/
+   2. Save as: audio/episode-N.mp3
+   3. Update SLIDE timestamps (ST) — when each slide should appear
+   4. Update ELEMENT timestamps (ET) — when each .animate-in element
+      within a slide should reveal. This creates the "narration pacing"
+      effect where bullets, headings, and content appear as the
+      speaker reaches that point in the script.
+   5. If you skip ET for a slide, all elements reveal together on entry.
+
+   Current values are ESTIMATES (~150 wpm). Replace after recording.
+
+   FORMAT:
+     ST[episode] = [slide1_start_sec, slide2_start_sec, ...]
+     ET[episode] = { slideNum: [elem1_sec, elem2_sec, ...], ... }
+
+   EXAMPLE: Episode 1 Slide 3 has 4 .animate-in elements.
+     ST[1][2] = 90   (slide 3 starts at 1:30)
+     ET[1][3] = [90, 110, 140, 175]
+     → element 1 appears at 1:30, element 2 at 1:50, etc.
+   ──────────────────────────────────────────────────────────────────── */
+
+const ST={
+  1:[0,45,68,158,248,338,405,472,540,585],
+  2:[0,49,73,195,317,415,464,537,586],
+  3:[0,32,43,90,154,202,245,287,330,373,431,468,511,543],
+  4:[0,34,46,120,195,258,321,367,413,481,550,584,636,688,722],
+  5:[0,34,45,119,221,290,341,392,426,460],
+  6:[0,40,53,140,239,319,359,419,459],
+  7:[0,30,40,85,140,200,260,314,354,394,434,479,524,554],
+  8:[0,42,56,146,230,313,376,439,501,543,585]
+};
+
+/* Element-level reveal timing (seconds, absolute from start of episode).
+   Only slides with explicit timing use staged reveal; others animate normally.
+   Fill these in after recording narration for precise sync. */
+const ET={
+  1:{ 1:[0,2,3,4], 2:[45,47,50,52], 3:[68,79,98,128], 5:[248,259,278,296], 8:[472,480,488,495] },
+  2:{ 1:[0,2,3,5], 3:[73,98,130,163], 4:[195,220,252,285] },
+  3:{ 1:[0,1,2,3], 3:[43,53,64,77], 5:[154,165,178,189] },
+  4:{ 1:[0,1,2,3], 3:[46,63,83,103], 5:[195,209,226,244] },
+  5:{ 1:[0,1,2,3], 3:[45,68,91,111], 5:[221,239,256,273] },
+  6:{ 1:[0,1,3,4], 3:[53,80,106,130] },
+  7:{ 1:[0,1,2,3], 3:[40,52,65,75], 4:[85,97,112,127] },
+  8:{ 1:[0,1,3,4], 3:[56,80,108,132] }
+};
+
+let cEp=null,cSl=1,tSl=10,aReady=false,aPlay=false;
+const prog=loadP();
+
+function loadP(){try{return JSON.parse(localStorage.getItem('mc_p')||'{}')}catch{return {}}}
+function saveP(){localStorage.setItem('mc_p',JSON.stringify(prog))}
+function gP(n){return prog[n]||{mx:0,done:false}}
+function uP(n,sl,tot){if(!prog[n])prog[n]={mx:0,done:false};if(sl>prog[n].mx)prog[n].mx=sl;if(sl>=tot)prog[n].done=true;saveP()}
+
+function renderGrid(){
+  const g=document.getElementById('grid');g.innerHTML='';let done=0;
+  EPS.forEach(ep=>{
+    const p=gP(ep.n);if(p.done)done++;
+    const pct=ep.sl>0?Math.round((p.mx/ep.sl)*100):0;
+    const sc=p.done?'done':p.mx>0?'ip':'ns';
+    const st=p.done?'Completed':p.mx>0?'In Progress':'Start';
+    const c=document.createElement('div');c.className='ep-card';c.onclick=()=>openEp(ep.n);
+    c.innerHTML=`<div class="ep-header"><div class="ep-num">${String(ep.n).padStart(2,'0')}</div><div class="ep-meta"><div class="ep-title">${ep.t}</div><div class="ep-subtitle">${ep.s}</div></div></div><div class="ep-footer"><span class="ep-duration">${ep.d} · ${ep.sl} slides</span><span class="ep-status ${sc}">${st}</span></div><div class="ep-prog"><div class="ep-prog-fill" style="width:${pct}%"></div></div>`;
+    g.appendChild(c);
+  });
+  document.getElementById('oprog').style.width=((done/8)*100)+'%';
+  document.getElementById('otxt').textContent=done+' of 8 completed';
+}
+
+function openEp(n){
+  cEp=n;const ep=EPS.find(e=>e.n===n);tSl=ep.sl;cSl=1;
+  document.getElementById('epif').src='episodes/episode-'+n+'.html';
+  loadScript(n);loadAud(n);
+  document.getElementById('dashboard').classList.remove('active');
+  document.getElementById('player').classList.add('active');
+  document.getElementById('tbtn').style.display='';
+  updCtrl();
+}
+
+function showDash(){
+  pauseA();
+  document.getElementById('player').classList.remove('active');
+  document.getElementById('dashboard').classList.add('active');
+  document.getElementById('tbtn').style.display='none';
+  document.getElementById('breadcrumb').innerHTML='<button class="crumb-link" onclick="showDash()">Course</button>';
+  cEp=null;renderGrid();
+}
+
+function updBC(){
+  if(!cEp)return;
+  const ep=EPS.find(e=>e.n===cEp);
+  document.getElementById('breadcrumb').innerHTML=
+    '<button class="crumb-link" onclick="showDash()">Course</button><span class="sep">›</span><span>Ep '+cEp+': '+ep.t+'</span><span class="sep">›</span><span>Slide '+cSl+' / '+tSl+'</span>';
+}
+
+function updCtrl(){
+  document.getElementById('sinfo').textContent=cSl+' / '+tSl;
+  document.getElementById('spfill').style.width=((cSl/tSl)*100)+'%';
+  document.getElementById('bps').disabled=cSl<=1;
+  document.getElementById('bns').disabled=cSl>=tSl;
+  document.getElementById('bpe').disabled=cEp<=1;
+  document.getElementById('bne').disabled=cEp>=8;
+  updBC();hiT(cSl);uP(cEp,cSl,tSl);
+}
+
+function navS(d){document.getElementById('epif').contentWindow.postMessage({type:d>0?'nextSlide':'prevSlide'},'*')}
+function seekS(e){const b=document.getElementById('sprog'),r=b.getBoundingClientRect(),p=(e.clientX-r.left)/r.width,s=Math.max(1,Math.min(tSl,Math.round(p*tSl)));document.getElementById('epif').contentWindow.postMessage({type:'goToSlide',slide:s},'*')}
+function navEp(d){const x=cEp+d;if(x>=1&&x<=8)openEp(x)}
+
+window.addEventListener('message',function(e){
+  const d=e.data;if(!d||!d.type)return;
+  if(d.type==='slideChanged'){cSl=d.current;tSl=d.total;updCtrl();onManualNav()}
+  if(d.type==='keyNav'){if(d.key==='ArrowRight'||d.key===' ')navS(1);if(d.key==='ArrowLeft')navS(-1)}
+});
+
+/* ── AUDIO ENGINE (with staged reveal sync) ──────────────────────── */
+const aud=document.getElementById('aud');
+let lastRevealState={}; // track which elements have been revealed
+
+function loadAud(n){
+  aReady=false;aPlay=false;lastRevealState={};
+  aud.src='audio/episode-'+n+'.mp3';aud.load();
+  aud.oncanplaythrough=function(){
+    aReady=true;
+    document.getElementById('abadge').textContent='Ready';
+    document.getElementById('abadge').style.cssText='font-family:Work Sans;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;font-weight:600;background:rgba(16,185,129,.15);color:#10B981';
+    document.getElementById('bplay').textContent='▶';
+  };
+  aud.onerror=function(){
+    aReady=false;
+    // When no audio, disable staged mode so animations play normally
+    sendToEp({type:'disableStagedMode'});
+    document.getElementById('abadge').textContent='Add Audio';
+    document.getElementById('abadge').style.cssText='font-family:Work Sans;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;font-weight:600;background:rgba(255,107,53,.15);color:#FF6B35';
+    document.getElementById('atime').textContent='--:-- / --:--';
+    document.getElementById('bplay').textContent='▶';
+  };
+}
+
+function sendToEp(msg){
+  const iframe=document.getElementById('epif');
+  if(iframe&&iframe.contentWindow) iframe.contentWindow.postMessage(msg,'*');
+}
+
+function togAudio(){
+  if(!aReady)return;
+  if(aPlay){pauseA()}else{
+    // Enable staged reveal mode so elements wait for audio timing
+    sendToEp({type:'enableStagedMode'});
+    // Sync audio position to current slide
+    if(cEp&&ST[cEp]){
+      const t=ST[cEp][cSl-1]||0;
+      if(Math.abs(aud.currentTime-t)>5)aud.currentTime=t;
+    }
+    aud.play();aPlay=true;
+    document.getElementById('bplay').textContent='⏸';
+  }
+}
+
+function pauseA(){
+  aud.pause();aPlay=false;
+  document.getElementById('bplay').textContent='▶';
+  // Keep staged mode active but pause — elements stay where they are
+}
+
+// Audio time update — auto-advance slides AND reveal elements
+aud.addEventListener('timeupdate',function(){
+  if(!aReady||!cEp)return;
+  const t=aud.currentTime,d=aud.duration||0;
+  document.getElementById('atime').textContent=fmtT(t)+' / '+fmtT(d);
+
+  // 1. Auto-advance slides based on slide timing
+  if(ST[cEp]){
+    const times=ST[cEp];
+    let targetSlide=1;
+    for(let i=0;i<times.length;i++){if(t>=times[i])targetSlide=i+1}
+    if(targetSlide!==cSl&&targetSlide<=tSl){
+      sendToEp({type:'goToSlide',slide:targetSlide});
+    }
+  }
+
+  // 2. Staged element reveal based on element timing
+  if(ET[cEp]&&ET[cEp][cSl]){
+    const elemTimes=ET[cEp][cSl];
+    const key=cEp+'-'+cSl;
+    if(!lastRevealState[key]) lastRevealState[key]=new Set();
+    for(let i=0;i<elemTimes.length;i++){
+      if(t>=elemTimes[i]&&!lastRevealState[key].has(i)){
+        lastRevealState[key].add(i);
+        sendToEp({type:'revealElement',slide:cSl,index:i});
+      }
+    }
+  } else if(aPlay){
+    // No element timing for this slide — reveal all at once on entry
+    const key=cEp+'-'+cSl+'-all';
+    if(!lastRevealState[key]){
+      lastRevealState[key]=true;
+      sendToEp({type:'revealAllOnSlide',slide:cSl});
+    }
+  }
+});
+
+aud.addEventListener('ended',function(){
+  aPlay=false;
+  document.getElementById('bplay').textContent='▶';
+  // Disable staged mode when audio ends so manual navigation works normally
+  sendToEp({type:'disableStagedMode'});
+  lastRevealState={};
+});
+
+// When manually navigating while audio is NOT playing, ensure elements show
+function onManualNav(){
+  if(!aPlay){
+    sendToEp({type:'revealAllOnSlide',slide:cSl});
+  }
+}
+
+function fmtT(s){if(isNaN(s)||!isFinite(s))return'--:--';return Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0')}
+
+/* ── TRANSCRIPT ────────────────────────────────────────────────────── */
+async function loadScript(n){
+  const b=document.getElementById('tbody');
+  b.innerHTML='<p style="color:var(--muted)">Loading script…</p>';
+  try{
+    const r=await fetch('scripts/episode-'+n+'-script.md');
+    if(!r.ok)throw 0;renderMD(await r.text());
+  }catch{b.innerHTML='<p style="color:var(--muted)">Script not found. Place episode-N-script.md in scripts/</p>'}
+}
+
+function renderMD(md){
+  const b=document.getElementById('tbody');b.innerHTML='';
+  let sc=null,sn=0;
+  md.split('\n').forEach(line=>{
+    const sm=line.match(/\*\*\[SLIDE\s+(\d+)/i);
+    if(sm){
+      sn=parseInt(sm[1]);
+      const m=document.createElement('div');m.className='tm';m.textContent='Slide '+sn;m.dataset.s=sn;
+      m.onclick=function(){document.getElementById('epif').contentWindow.postMessage({type:'goToSlide',slide:parseInt(this.dataset.s)},'*')};
+      b.appendChild(m);
+      sc=document.createElement('div');sc.className='ts';sc.dataset.s=sn;b.appendChild(sc);return;
+    }
+    if(!sc)return;
+    if(line.startsWith('# ')||line.startsWith('## Runtime')||line.startsWith('---')||line.startsWith('### PRODUCTION'))return;
+    if(line.startsWith('### ')){const h=document.createElement('div');h.className='tsec';h.textContent=line.replace(/^###\s*/,'');sc.appendChild(h);return}
+    const tr=line.trim();if(!tr||tr==='MARK:')return;
+    if(/^\[/.test(tr)&&/\]\s*$/.test(tr)){const d=document.createElement('div');d.className='td';d.textContent=tr;sc.appendChild(d);return}
+    if(tr.startsWith('> 💡')){const i=document.createElement('div');i.className='tins';i.textContent=tr.replace(/^>\s*💡\s*KEY INSIGHT:\s*/,'');sc.appendChild(i);return}
+    if(tr.startsWith('[INTERACTION')){const i=document.createElement('div');i.className='td';i.style.color='var(--accent2)';i.textContent=tr;sc.appendChild(i);return}
+    const p=document.createElement('div');p.className='tl';
+    p.innerHTML=tr.replace(/"/g,'').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+    sc.appendChild(p);
+  });
+}
+
+function hiT(sn){
+  document.querySelectorAll('.ts').forEach(s=>s.classList.remove('t-active'));
+  const a=document.querySelector('.ts[data-s="'+sn+'"]');
+  if(a){a.classList.add('t-active');const m=document.querySelector('.tm[data-s="'+sn+'"]');if(m)m.scrollIntoView({behavior:'smooth',block:'start'})}
+}
+
+function toggleT(){document.getElementById('tpanel').classList.toggle('collapsed')}
+function toggleH(){document.getElementById('modal').classList.toggle('show')}
+
+/* ── KEYBOARD ──────────────────────────────────────────────────────── */
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){if(document.getElementById('modal').classList.contains('show')){toggleH();return}if(cEp){showDash();return}}
+  if(!cEp)return;
+  if(e.key==='ArrowRight'&&!e.shiftKey){e.preventDefault();navS(1)}
+  if(e.key==='ArrowLeft'&&!e.shiftKey){e.preventDefault();navS(-1)}
+  if(e.key==='ArrowRight'&&e.shiftKey){e.preventDefault();navEp(1)}
+  if(e.key==='ArrowLeft'&&e.shiftKey){e.preventDefault();navEp(-1)}
+  if(e.key==='p'||e.key==='P'){e.preventDefault();togAudio()}
+  if(e.key==='t'||e.key==='T'){e.preventDefault();toggleT()}
+});
+
+renderGrid();
+</script>
+</body>
+</html>

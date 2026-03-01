@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Episode 3: Eight Forces Colliding | Mark van Rijmenam Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#162535;--secondary:#0f1a24;--accent:#30ffeb;--accent2:#5033ff;--highlight:#FF6B35;--text-light:#F5F5F5;--text-muted:#b8c4ce;--bg:#162535;--card:#1e3348}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-light)}h1,h2,h3,h4,h5{font-family:'Work Sans',sans-serif}
+#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--highlight));z-index:1000;transition:width .4s ease}#slide-counter{position:fixed;bottom:24px;right:32px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);z-index:100;letter-spacing:2px}
+.nav-arrow{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(30,51,72,.6);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:100;transition:all .3s}.nav-arrow:hover{border-color:var(--accent);background:rgba(48,255,235,.1)}.nav-arrow svg{width:20px;height:20px;fill:var(--text-light)}#prev-btn{left:20px}#next-btn{right:20px}
+#brand-footer{position:fixed;bottom:20px;left:32px;z-index:100}#brand-footer .brand-name{font-family:'Work Sans';font-size:11px;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px;opacity:0;transform:translateX(40px);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none;overflow-y:auto;background:linear-gradient(135deg,var(--bg),var(--secondary))}.slide.active{opacity:1;transform:translateX(0);pointer-events:auto}
+.slide-title{justify-content:center;align-items:center;text-align:center}.slide-title .episode-tag{font-family:'Work Sans';font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--highlight);margin-bottom:24px;font-weight:600}.slide-title h1{font-size:50px;font-weight:800;line-height:1.15;max-width:900px;margin-bottom:20px;background:linear-gradient(135deg,var(--text-light),var(--highlight));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.slide-title .subtitle{font-size:20px;color:var(--text-muted);max-width:650px;line-height:1.6}.slide-title .author{margin-top:40px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);letter-spacing:2px}.slide-title .author span{color:var(--highlight)}
+.slide-content .slide-label{font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600}.slide-content h2{font-size:36px;font-weight:700;margin-bottom:24px;line-height:1.2}.slide-content p{font-size:18px;color:rgba(245,245,245,.85);line-height:1.7}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
+.callout{background:rgba(48,255,235,.06);border-left:3px solid var(--accent);padding:20px 24px;border-radius:0 8px 8px 0;margin:20px 0}.callout .callout-label{font-family:'Work Sans';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:700}.callout p{font-size:17px;color:var(--text-light);line-height:1.6}
+.tech-card{background:var(--card);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,.06);margin-bottom:16px;transition:all .3s}.tech-card:hover{border-color:rgba(48,255,235,.25);transform:translateY(-2px)}.tech-card h4{font-family:'Work Sans';font-size:16px;margin-bottom:6px}.tech-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}.stat-card{background:var(--card);border-radius:12px;padding:24px 20px;text-align:center;border:1px solid rgba(255,255,255,.06)}.stat-card .stat-number{font-family:'Work Sans';font-size:40px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.stat-card .stat-label{font-size:13px;color:var(--text-muted);margin-top:8px;line-height:1.4}
+.styled-list{list-style:none}.styled-list li{position:relative;padding-left:28px;margin-bottom:18px;font-size:18px;color:rgba(245,245,245,.85);line-height:1.6}.styled-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700}
+.quiz-question{background:var(--card);border-radius:12px;padding:24px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06)}.quiz-question h4{font-family:'Work Sans';font-size:16px;margin-bottom:16px}.quiz-options{display:flex;flex-direction:column;gap:10px}.quiz-option{padding:12px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all .3s;font-size:15px}.quiz-option:hover{border-color:var(--accent)}.quiz-option.correct{border-color:#10B981;background:rgba(16,185,129,.12);color:#10B981}.quiz-option.incorrect{border-color:#EF4444;background:rgba(239,68,68,.08);color:#EF4444}
+.reflection-box{background:var(--card);border-radius:12px;padding:28px;border:1px solid rgba(80,51,255,.3);margin-top:20px}.reflection-box textarea{width:100%;height:100px;background:rgba(15,26,36,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:14px;font-family:'DM Sans';font-size:15px;resize:vertical;outline:none}.reflection-box textarea:focus{border-color:var(--accent2)}
+.takeaway-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:20px}.takeaway-card{background:var(--card);border-radius:12px;padding:24px 20px;border-top:3px solid}.takeaway-card:nth-child(1){border-color:var(--accent)}.takeaway-card:nth-child(2){border-color:var(--accent2)}.takeaway-card:nth-child(3){border-color:var(--highlight)}.takeaway-card:nth-child(4){border-color:#10B981}.takeaway-card .tk-icon{font-size:24px;margin-bottom:10px}.takeaway-card h4{font-family:'Work Sans';font-size:15px;margin-bottom:6px}.takeaway-card p{font-size:13px;color:var(--text-muted);line-height:1.5}
+.action-list{list-style:none;margin-top:16px}.action-list li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}.action-list .action-num{font-family:'Work Sans';font-size:28px;font-weight:800;color:var(--accent2);min-width:40px}.action-list .action-text h4{font-family:'Work Sans';font-size:17px;margin-bottom:4px}.action-list .action-text p{font-size:15px;color:var(--text-muted);line-height:1.5}
+.slide-closing{justify-content:center;align-items:center;text-align:center}.slide-closing .quote{font-size:26px;font-style:italic;max-width:700px;line-height:1.6;color:rgba(245,245,245,.9);margin-bottom:32px}.slide-closing .next-ep{display:inline-block;background:linear-gradient(135deg,var(--highlight),var(--accent));padding:14px 32px;border-radius:8px;font-family:'Work Sans';font-size:15px;font-weight:600;color:white;margin-top:16px}.slide-closing .cta{margin-top:32px;font-size:14px;color:var(--text-muted)}.slide-closing .cta a{color:var(--accent);text-decoration:none}
+.animate-in{opacity:0;transform:translateY(20px)}.slide.active .animate-in{animation:fadeUp .6s ease forwards}.slide.active .animate-in:nth-child(1){animation-delay:.1s}.slide.active .animate-in:nth-child(2){animation-delay:.25s}.slide.active .animate-in:nth-child(3){animation-delay:.4s}.slide.active .animate-in:nth-child(4){animation-delay:.55s}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media print{.slide{position:relative!important;opacity:1!important;transform:none!important;pointer-events:auto!important;page-break-after:always;height:auto;min-height:100vh}#progress-bar,.nav-arrow,#slide-counter,#brand-footer{display:none!important}}
+@media(max-width:1024px){.slide{padding:40px 48px}.slide-title h1{font-size:36px}.content-grid{grid-template-columns:1fr}.takeaway-grid{grid-template-columns:1fr 1fr}.nav-arrow{display:none}}
+</style></head><body>
+<div id="progress-bar"></div><div id="slide-counter"></div>
+<button class="nav-arrow" id="prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg></button>
+<button class="nav-arrow" id="next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+<div id="brand-footer"><div class="brand-name">Mark van Rijmenam · The Architect of Tomorrow · Futurwise</div></div>
+<div id="slides-wrapper">
+
+<!-- SLIDE 1: Title -->
+<div class="slide slide-title active" data-slide="1">
+  <div class="episode-tag animate-in">Episode 03 of 08</div>
+  <h1 class="animate-in">Eight Forces Colliding</h1>
+  <p class="subtitle animate-in">The Technologies Rewriting Reality — Part I: AI, Robotics, Quantum Computing & Blockchain</p>
+  <p class="author animate-in">Dr. Mark van Rijmenam · <span>The Architect of Tomorrow</span></p>
+</div>
+
+<!-- SLIDE 2: Overview -->
+<div class="slide slide-content" data-slide="2">
+  <div class="slide-label animate-in">What You'll Learn</div>
+  <h2 class="animate-in">In This Episode</h2>
+  <ul class="styled-list animate-in">
+    <li>AI's evolution from narrow tools to agentic systems — and the pathway to AGI</li>
+    <li>Robotics: why humanoid robots are crossing from labs to warehouses and homes</li>
+    <li>Quantum computing: how it breaks everything we know about encryption and simulation</li>
+    <li>Blockchain: from cryptocurrency to the computable economy</li>
+    <li>The Lego Block Model: how technologies click together for exponentially greater impact</li>
+  </ul>
+</div>
+
+<!-- SLIDE 3: AI Overview -->
+<div class="slide slide-content" data-slide="3">
+  <div class="slide-label animate-in">Technology 1</div>
+  <h2 class="animate-in">Artificial Intelligence: The Beating Heart of the Intelligence Age</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>AI is the foundational accelerant of our era. Systems are evolving from narrow single-task tools to multi-step autonomous agents that can plan, execute, and adapt without human intervention. This isn't incremental improvement — it's a phase transition.</p>
+      <p style="margin-top:16px;">Enterprise LLM adoption grew 400% in 2024. AI inference costs dropped 95% in 18 months. DeepSeek-R1 rivals GPT-4 at 5% of the cost — proving this is no longer only a Big Tech game. The barriers that seemed permanent dissolve in months.</p>
+      <div class="callout" style="margin-top:20px;"><div class="callout-label">Key Insight</div>
+        <p>AI isn't <em>a</em> technology — it's the accelerant layered onto every other technology. When AI converges with robotics, quantum, or biotech, the impact isn't additive. It's multiplicative.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="stat-grid"><div class="stat-card"><div class="stat-number">400%</div><div class="stat-label">Enterprise LLM adoption growth (2024)</div></div><div class="stat-card"><div class="stat-number">95%</div><div class="stat-label">Drop in AI inference costs in 18 months</div></div><div class="stat-card"><div class="stat-number">$20T+</div><div class="stat-label">AI contribution to global economy by 2030</div></div><div class="stat-card"><div class="stat-number">3×</div><div class="stat-label">AI compute tripling annually — Hyper Moore's Law</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: AI — Agentic & Implications -->
+<div class="slide slide-content" data-slide="4">
+  <div class="slide-label animate-in">Technology 1 — Agentic AI</div>
+  <h2 class="animate-in">From Tools to Teammates: The Rise of Agentic AI</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <div class="tech-card" style="border-left:3px solid var(--accent);"><h4>Narrow AI (Today)</h4><p>Single-task systems: chatbots, recommendation engines, image generators. Powerful but constrained to specific domains. Requires human oversight for each task.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--accent2);"><h4>Agentic AI (Emerging)</h4><p>Multi-step autonomous agents that plan, execute, and adapt. They can book flights, write code, manage projects — chaining complex tasks without human intervention at each step.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--highlight);"><h4>AGI (Horizon)</h4><p>Artificial General Intelligence: systems matching human-level reasoning across all domains. Timeline debated — but the trajectory is clear. Jamie Dimon calls AI a "living, breathing thing" that demands C-suite attention.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="callout" style="border-color:var(--highlight);background:rgba(255,107,53,.06);"><div class="callout-label" style="color:var(--highlight);">Case: DeepSeek-R1</div>
+        <p>January 2025: Chinese AI lab DeepSeek released R1 — an open-source model rivalling GPT-4 at a fraction of the cost, triggering a trillion-dollar stock market drop. The "only Big Tech can play" narrative shattered overnight. This is what the second half of the chessboard looks like.</p></div>
+      <div class="tech-card"><h4 style="color:var(--accent);">Action for Leaders</h4><p>Map every process where AI augmentation could save time or improve quality. Pilot agentic AI in low-risk workflows. Build AI literacy across your entire leadership team — not just IT.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Robotics -->
+<div class="slide slide-content" data-slide="5">
+  <div class="slide-label animate-in">Technology 2</div>
+  <h2 class="animate-in">Robotics: Physical Intelligence in the Real World</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Humanoid robots are crossing from research labs to warehouses, factories, and homes. Powered by AI, modern robots combine perception, reasoning, and physical action — they don't just execute pre-programmed routines, they adapt to novel situations in real-time.</p>
+      <p style="margin-top:16px;">When robotics converges with AI, machines don't just compute — they act in the physical world autonomously. This transforms manufacturing, logistics, healthcare, agriculture, and construction simultaneously.</p>
+      <div class="callout" style="margin-top:20px;"><div class="callout-label">Key Insight</div>
+        <p>The robot revolution isn't about replacing humans — it's about extending human capability into environments too dangerous, too repetitive, or too precise for biological bodies.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="tech-card" style="border-left:3px solid var(--accent);"><h4>Warehouse & Logistics</h4><p>Amazon's fleet of 750,000+ robots. Autonomous last-mile delivery. Robots picking, packing, and sorting at superhuman speed with AI vision systems.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--accent2);"><h4>Humanoid Robots</h4><p>Tesla's Optimus, Figure AI, Boston Dynamics Atlas — humanoid form factors designed to work alongside people in human-designed environments. The "Humanoids-as-a-Service" model is emerging.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--highlight);"><h4>Surgical & Medical Robotics</h4><p>da Vinci surgical systems. AI-guided precision. Robots performing microsurgeries beyond human dexterity. Remote surgery across continents.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Robotics — Implications -->
+<div class="slide slide-content" data-slide="6">
+  <div class="slide-label animate-in">Technology 2 — Implications</div>
+  <h2 class="animate-in">Robotics: The Workforce Question</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <div class="tech-card" style="border-left:3px solid #10B981;"><h4 style="color:#10B981;">The Opportunity</h4><p>Robots handle dangerous tasks (bomb disposal, deep-sea exploration, nuclear cleanup). They fill labour shortages in aging societies. They enable 24/7 manufacturing without human fatigue. Productivity gains could fund universal services.</p></div>
+      <div class="tech-card" style="border-left:3px solid #EF4444;"><h4 style="color:#EF4444;">The Challenge</h4><p>Mass displacement of routine jobs. Blue-collar and white-collar roles both affected. Social contracts built on employment may need fundamental redesign. The transition must be managed, not ignored.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="callout"><div class="callout-label">Convergence: Robotics × AI × Spatial Intelligence</div><p>AI gives robots intelligence. Spatial computing gives them enhanced perception. Digital twins let you test robotic systems virtually before deploying physically. The convergence creates robots that learn, adapt, and collaborate.</p></div>
+      <div class="tech-card"><h4 style="color:var(--accent);">Action for Leaders</h4><p>Identify the 3 most repetitive, dangerous, or error-prone processes in your organisation. Assess robotics feasibility for each. Plan for workforce transition alongside automation — not after it.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Quantum Computing -->
+<div class="slide slide-content" data-slide="7">
+  <div class="slide-label animate-in">Technology 3</div>
+  <h2 class="animate-in">Quantum Computing: Beyond Classical Limits</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Quantum computing doesn't just speed things up — it makes entirely new computations possible. Google's Willow chip solved in 5 minutes what would take the best classical supercomputer 10 septillion years. This isn't incremental progress; it's a different category of computation.</p>
+      <p style="margin-top:16px;">Quantum computers exploit superposition and entanglement to process vast numbers of possibilities simultaneously. Drug discovery, materials science, financial modelling, climate simulation, and cryptography will all be transformed.</p>
+      <div class="callout" style="margin-top:20px;"><div class="callout-label">Key Insight</div>
+        <p>Quantum computing is the silent accelerator. It won't replace classical computers — it will solve the problems classical computers simply cannot touch, particularly in molecular simulation and optimisation.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="stat-grid"><div class="stat-card"><div class="stat-number">5 min</div><div class="stat-label">What Google's Willow chip solves...</div></div><div class="stat-card"><div class="stat-number">10<sup>25</sup> yr</div><div class="stat-label">...would take a classical supercomputer this long</div></div></div>
+      <div class="tech-card" style="margin-top:16px;border-left:3px solid #EF4444;"><h4 style="color:#EF4444;">The Encryption Crisis</h4><p>Quantum computers will eventually break RSA and current encryption standards. Post-quantum cryptography is being developed, but the transition is urgent. Data encrypted today can be harvested now and decrypted later — "harvest now, decrypt later" is already a threat.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Quantum — Convergence -->
+<div class="slide slide-content" data-slide="8">
+  <div class="slide-label animate-in">Technology 3 — Strategic Impact</div>
+  <h2 class="animate-in">Quantum Computing: Who Needs It and When</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <div class="tech-card" style="border-left:3px solid var(--accent);"><h4>Pharma & Healthcare</h4><p>Simulating molecular interactions for drug discovery. What takes years of lab testing could be modelled in weeks. Personalised medicine at molecular precision.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--accent2);"><h4>Finance & Risk</h4><p>Portfolio optimisation across millions of variables simultaneously. Real-time fraud detection. Derivative pricing that accounts for quantum uncertainty.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--highlight);"><h4>Climate & Energy</h4><p>Modelling atmospheric systems at molecular level. Optimising renewable energy grids. Simulating new materials for carbon capture.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="callout"><div class="callout-label">Convergence: Quantum × AI × Blockchain</div><p>Quantum breaks encryption → Blockchain provides quantum-resistant alternatives. AI needs quantum's processing power for next-generation models. These three technologies don't just coexist — they <strong>need</strong> each other.</p></div>
+      <div class="tech-card"><h4 style="color:var(--accent);">Action for Leaders</h4><p>Audit your encryption infrastructure for quantum vulnerability. Begin post-quantum cryptography planning. Identify 2-3 problems in your business that are computationally intractable today — quantum may solve them within a decade.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: Blockchain -->
+<div class="slide slide-content" data-slide="9">
+  <div class="slide-label animate-in">Technology 4</div>
+  <h2 class="animate-in">Blockchain: Trust Infrastructure for the Intelligence Age</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Beyond cryptocurrency, blockchain enables transparent, immutable record-keeping and programmable trust. Smart contracts automate agreements without intermediaries. When combined with AI agents, blockchain creates a "computable economy" — autonomous transactions at machine speed with human-defined rules.</p>
+      <p style="margin-top:16px;">In a world of deepfakes and synthetic media, blockchain offers something increasingly precious: verifiable truth. Supply chain provenance, identity verification, intellectual property protection, and democratic governance all benefit from tamper-proof ledgers.</p>
+      <div class="callout" style="margin-top:20px;"><div class="callout-label">Key Insight</div>
+        <p>Blockchain is the trust layer the Intelligence Age demands. As AI generates more content and agents transact autonomously, we need infrastructure that can prove what's real, who owns what, and that agreements are honoured.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="tech-card" style="border-left:3px solid var(--accent);"><h4>The Computable Economy</h4><p>AI agents negotiate, transact, and settle autonomously. Blockchain provides the rails: transparent, auditable, and programmable. Smart contracts execute when conditions are met — no lawyers, no delays, no disputes.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--accent2);"><h4>Decentralised Trust</h4><p>Supply chain verification from farm to shelf. Digital identity that you own (not corporations). Voting systems resistant to manipulation. Intellectual property registered at creation.</p></div>
+      <div class="tech-card"><h4 style="color:var(--accent);">Action for Leaders</h4><p>Identify one trust problem in your business where transparency would create value. Pilot blockchain for provenance tracking or contract automation. Explore how AI agents could use smart contracts for autonomous operations.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: Lego Block Framework -->
+<div class="slide slide-content" data-slide="10">
+  <div class="slide-label animate-in">Framework</div>
+  <h2 class="animate-in">The Lego Block Model: Why Convergence > Addition</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <p>Think of each technology as a Lego block. On its own, it has value. But when you click AI with robotics, or quantum with blockchain, or spatial intelligence with biotech — entirely new structures emerge that no single technology could create alone.</p>
+      <p style="margin-top:16px;">This is the convergence thesis: the real power of the Intelligence Age isn't any single technology. It's the synergy among them all. Innovation is no longer about one technology revolutionising society. It is about the combination amplifying impact in ways that redefine what is possible.</p>
+      <div class="callout" style="margin-top:16px;"><div class="callout-label">The Convergence Principle</div>
+        <p>When technologies converge, their impact is multiplicative, not additive. The leaders who see the connections between blocks will build structures others can't even imagine.</p></div>
+    </div>
+    <div class="animate-in">
+      <div class="tech-card" style="border-left:3px solid var(--accent);margin-bottom:12px;"><h4>AI + Robotics</h4><p>Robots that learn, adapt, and make decisions in real-time. Physical intelligence in the real world.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--accent2);margin-bottom:12px;"><h4>AI + Quantum</h4><p>Next-generation AI models trained on quantum hardware. Problems unsolvable today become trivial.</p></div>
+      <div class="tech-card" style="border-left:3px solid var(--highlight);margin-bottom:12px;"><h4>AI + Blockchain</h4><p>Autonomous agents transacting with verifiable trust. The computable economy at scale.</p></div>
+      <div class="tech-card" style="border-left:3px solid #10B981;"><h4>Quantum + Blockchain</h4><p>Quantum-resistant encryption securing the digital economy. Post-quantum cryptography ensuring trust endures.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Quiz -->
+<div class="slide slide-content" data-slide="11">
+  <div class="slide-label animate-in">Self-Assessment</div>
+  <h2 class="animate-in">Test Your Understanding</h2>
+  <div class="content-grid">
+    <div class="animate-in">
+      <div class="quiz-question" data-correct="2"><h4>1. What does "agentic AI" mean?</h4><div class="quiz-options"><div class="quiz-option" data-idx="0">AI that replaces human agents in call centres</div><div class="quiz-option" data-idx="1">AI that generates agent-like avatars</div><div class="quiz-option" data-idx="2">AI that autonomously plans, executes, and adapts multi-step tasks</div><div class="quiz-option" data-idx="3">AI with physical bodies</div></div></div>
+      <div class="quiz-question" data-correct="1"><h4>2. Why is quantum computing a threat to current encryption?</h4><div class="quiz-options"><div class="quiz-option" data-idx="0">It makes passwords shorter</div><div class="quiz-option" data-idx="1">It can solve the mathematical problems that current encryption relies on</div><div class="quiz-option" data-idx="2">It deletes encrypted files</div></div></div>
+      <div class="quiz-question" data-correct="2"><h4>3. The Lego Block Model describes:</h4><div class="quiz-options"><div class="quiz-option" data-idx="0">Building AI from modular components</div><div class="quiz-option" data-idx="1">A children's education framework</div><div class="quiz-option" data-idx="2">How technologies converge to create exponentially greater impact than any single technology alone</div></div></div>
+    </div>
+    <div class="animate-in">
+      <div class="reflection-box"><h4 style="font-family:'Work Sans';margin-bottom:12px;font-size:16px;">🔗 Convergence Mapping</h4><p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Identify 3 technology combinations from this episode most relevant to your industry. What new capability would each combination unlock?</p><textarea placeholder="Combination 1:&#10;Combination 2:&#10;Combination 3:"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: Takeaways -->
+<div class="slide slide-content" data-slide="12">
+  <div class="slide-label animate-in">Key Takeaways</div>
+  <h2 class="animate-in">Four Things to Remember</h2>
+  <div class="takeaway-grid animate-in">
+    <div class="takeaway-card"><div class="tk-icon">🧠</div><h4>AI Is the Accelerant</h4><p>AI isn't one technology — it's the multiplier layered onto everything else. Every technology in this series is amplified by AI.</p></div>
+    <div class="takeaway-card"><div class="tk-icon">🤖</div><h4>Robots Enter the Workforce</h4><p>Humanoid robots are crossing from labs to real-world deployment. The workforce transition must be planned alongside automation.</p></div>
+    <div class="takeaway-card"><div class="tk-icon">⚛️</div><h4>Quantum Rewrites the Rules</h4><p>Quantum computing solves the unsolvable — but also breaks current encryption. Prepare for both opportunities and threats.</p></div>
+    <div class="takeaway-card"><div class="tk-icon">🔗</div><h4>Blockchain Builds Trust</h4><p>In an age of deepfakes and autonomous agents, verifiable truth becomes infrastructure. Blockchain is the trust layer.</p></div>
+  </div>
+</div>
+
+<!-- SLIDE 13: Homework -->
+<div class="slide slide-content" data-slide="13">
+  <div class="slide-label animate-in">Your Homework</div>
+  <h2 class="animate-in">Before Episode 4</h2>
+  <ul class="action-list animate-in">
+    <li><span class="action-num">01</span><div class="action-text"><h4>AI Audit (30 min)</h4><p>Map every process in your organisation where AI could augment human capability. Prioritise by impact and feasibility. Identify your first 3 pilot candidates.</p></div></li>
+    <li><span class="action-num">02</span><div class="action-text"><h4>Quantum Vulnerability Scan (20 min)</h4><p>Ask your security team: what happens to our encrypted data if quantum computing matures in 5 years? Is a "harvest now, decrypt later" attack relevant to us?</p></div></li>
+    <li><span class="action-num">03</span><div class="action-text"><h4>Convergence Mapping (20 min)</h4><p>Using the Lego Block Model, identify 3 technology combinations most relevant to your industry. Sketch what new products, services, or capabilities each could unlock.</p></div></li>
+  </ul>
+</div>
+
+<!-- SLIDE 14: Closing -->
+<div class="slide slide-closing" data-slide="14">
+  <div class="episode-tag animate-in" style="font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--highlight);margin-bottom:20px;">Episode Summary</div>
+  <p class="quote animate-in">"The real question is not what technology can do — but what we choose to do with it."</p>
+  <p class="animate-in" style="color:var(--text-muted);font-size:16px;">— Dr. Mark van Rijmenam</p>
+  <div class="next-ep animate-in">Next → Episode 4: When Worlds Merge</div>
+  <p class="cta animate-in">Learn more at <a href="https://futurwise.com">futurwise.com</a> · Book Mark for your next event at <a href="https://TheDigitalSpeaker.com">TheDigitalSpeaker.com</a></p>
+</div>
+
+</div>
+<script>
+(function(){const s=document.querySelectorAll('.slide'),t=s.length;let c=0;function u(n){if(n<0||n>=t||n===c)return;s[c].classList.remove('active');s[n].classList.add('active');c=n;p()}function p(){document.getElementById('progress-bar').style.width=((c+1)/t)*100+'%';document.getElementById('slide-counter').textContent=(c+1)+' / '+t}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();u(c+1)}if(e.key==='ArrowLeft'){e.preventDefault();u(c-1)}});document.getElementById('next-btn').addEventListener('click',()=>u(c+1));document.getElementById('prev-btn').addEventListener('click',()=>u(c-1));let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?u(c+1):u(c-1)}});document.querySelectorAll('.quiz-option').forEach(o=>{o.addEventListener('click',function(){const q=this.closest('.quiz-question');if(q.classList.contains('answered'))return;q.classList.add('answered');const ci=parseInt(q.dataset.correct),si=parseInt(this.dataset.idx);this.classList.add(si===ci?'correct':'incorrect');if(si!==ci)q.querySelectorAll('.quiz-option')[ci].classList.add('correct')})});p()})();
+</script></body></html>

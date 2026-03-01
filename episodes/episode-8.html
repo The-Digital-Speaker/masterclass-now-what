@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Episode 8: Architect of Tomorrow | Mark van Rijmenam Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#162535;--secondary:#0f1a24;--accent:#30ffeb;--accent2:#5033ff;--highlight:#FF6B35;--text-light:#F5F5F5;--text-muted:#b8c4ce;--bg:#162535;--card:#1e3348;--gradient-start:#162535;--gradient-end:#0f1a24}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-light)}h1,h2,h3,h4,h5{font-family:'Work Sans',sans-serif}
+#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--highlight));z-index:1000;transition:width .4s ease}
+#slide-counter{position:fixed;bottom:24px;right:32px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);z-index:100;letter-spacing:2px}
+.nav-arrow{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(30,30,63,.6);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:100;transition:all .3s}.nav-arrow:hover{border-color:var(--accent);background:rgba(0,212,255,.1)}.nav-arrow svg{width:20px;height:20px;fill:var(--text-light)}#prev-btn{left:20px}#next-btn{right:20px}
+#brand-footer{position:fixed;bottom:20px;left:32px;display:flex;align-items:center;gap:12px;z-index:100}.brand-name{font-family:'Work Sans';font-size:11px;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase}
+#slides-wrapper{width:100%;height:100%;position:relative}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px;opacity:0;transform:translateX(40px);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none;background:linear-gradient(135deg,var(--gradient-start),var(--gradient-end))}.slide.active{opacity:1;transform:translateX(0);pointer-events:auto}.slide.exit-left{opacity:0;transform:translateX(-40px)}
+.slide-title{justify-content:center;align-items:center;text-align:center}.slide-title .episode-tag{font-family:'Work Sans';font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--highlight);margin-bottom:24px;font-weight:600}.slide-title h1{font-size:52px;font-weight:800;line-height:1.15;max-width:900px;margin-bottom:20px;background:linear-gradient(135deg,var(--text-light),var(--highlight));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.slide-title .subtitle{font-size:20px;color:var(--text-muted);max-width:650px;line-height:1.6}.slide-title .author{margin-top:40px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);letter-spacing:2px}.slide-title .author span{color:var(--highlight)}
+.slide-content .slide-label{font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600}.slide-content h2{font-size:38px;font-weight:700;margin-bottom:28px;line-height:1.2}.slide-content p,.slide-content li{font-size:18px;color:rgba(245,245,245,.85);line-height:1.7}.slide-content .content-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
+.callout{background:rgba(0,212,255,.08);border-left:3px solid var(--accent);padding:20px 24px;border-radius:0 8px 8px 0;margin:24px 0}.callout .callout-label{font-family:'Work Sans';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:700}.callout p{font-size:17px;color:var(--text-light);line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:20px}.stat-card{background:var(--card);border-radius:12px;padding:24px 20px;text-align:center;border:1px solid rgba(255,255,255,.06)}.stat-card .stat-number{font-family:'Work Sans';font-size:36px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.stat-card .stat-label{font-size:13px;color:var(--text-muted);margin-top:8px;line-height:1.4}
+/* Visionary Cards */
+.visionary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
+.visionary-card{background:var(--card);border-radius:12px;padding:20px;border:1px solid rgba(255,255,255,.06);cursor:pointer;transition:all .3s;text-align:center}
+.visionary-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 8px 32px rgba(0,212,255,.1)}
+.visionary-card .v-emoji{font-size:32px;margin-bottom:8px}
+.visionary-card h4{font-family:'Work Sans';font-size:14px;margin-bottom:4px}
+.visionary-card p{font-size:12px;color:var(--text-muted);line-height:1.4}
+.visionary-card .v-quote{display:none;margin-top:8px;font-style:italic;font-size:13px;color:rgba(245,245,245,.7);line-height:1.4}
+.visionary-card:hover .v-quote{display:block}
+/* Timeline */
+.future-timeline{display:flex;gap:20px;margin-top:20px;overflow-x:auto;padding-bottom:12px}
+.ft-item{background:var(--card);border-radius:12px;padding:24px 20px;min-width:220px;border:1px solid rgba(255,255,255,.06);flex-shrink:0}
+.ft-item .ft-tag{font-family:'Work Sans';font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.ft-item h4{font-family:'Work Sans';font-size:16px;margin-bottom:8px}
+.ft-item p{font-size:14px;color:var(--text-muted);line-height:1.5}
+/* Blueprint */
+.blueprint-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.blueprint-card{background:var(--card);border-radius:12px;padding:28px 24px;border:1px solid rgba(255,255,255,.06);position:relative}
+.blueprint-card .bp-num{font-family:'Work Sans';font-size:48px;font-weight:800;color:rgba(0,212,255,.15);position:absolute;top:12px;right:16px}
+.blueprint-card h4{font-family:'Work Sans';font-size:17px;margin-bottom:8px;color:var(--accent)}
+.blueprint-card p{font-size:15px;color:var(--text-muted);line-height:1.6}
+.blueprint-card textarea{width:100%;height:60px;background:rgba(15,15,35,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:12px;font-family:'DM Sans';font-size:14px;resize:vertical;outline:none;margin-top:12px}
+/* Takeaway, Action, Closing */
+.takeaway-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}.takeaway-card{background:var(--card);border-radius:12px;padding:28px 24px;border-top:3px solid}.takeaway-card:nth-child(1){border-color:var(--accent)}.takeaway-card:nth-child(2){border-color:var(--accent2)}.takeaway-card:nth-child(3){border-color:var(--highlight)}.takeaway-card .tk-icon{font-size:28px;margin-bottom:12px}.takeaway-card h4{font-family:'Work Sans';font-size:16px;margin-bottom:8px}.takeaway-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.action-list{list-style:none;margin-top:16px}.action-list li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}.action-list .action-num{font-family:'Work Sans';font-size:28px;font-weight:800;color:var(--highlight);min-width:40px}.action-list .action-text h4{font-family:'Work Sans';font-size:17px;margin-bottom:4px}.action-list .action-text p{font-size:15px;color:var(--text-muted);line-height:1.5}
+.slide-closing{justify-content:center;align-items:center;text-align:center}.slide-closing .quote{font-size:28px;font-style:italic;max-width:750px;line-height:1.6;color:rgba(245,245,245,.9);margin-bottom:32px}.slide-closing .cta-block{margin-top:32px}.slide-closing .cta-primary{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));padding:16px 40px;border-radius:8px;font-family:'Work Sans';font-size:16px;font-weight:700;color:white;text-decoration:none;margin-bottom:16px}.slide-closing .cta{margin-top:20px;font-size:14px;color:var(--text-muted)}.slide-closing .cta a{color:var(--accent);text-decoration:none}
+.styled-list{list-style:none}.styled-list li{position:relative;padding-left:28px;margin-bottom:18px;font-size:18px;color:rgba(245,245,245,.85);line-height:1.6}.styled-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700}
+.animate-in{opacity:0;transform:translateY(20px)}.slide.active .animate-in{animation:fadeUp .6s ease forwards}.slide.active .animate-in:nth-child(1){animation-delay:.1s}.slide.active .animate-in:nth-child(2){animation-delay:.25s}.slide.active .animate-in:nth-child(3){animation-delay:.4s}.slide.active .animate-in:nth-child(4){animation-delay:.55s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media print{.slide{position:relative!important;opacity:1!important;transform:none!important;pointer-events:auto!important;page-break-after:always;height:auto;min-height:100vh}#progress-bar,.nav-arrow,#slide-counter,#brand-footer{display:none!important}}
+@media(max-width:1024px){.slide{padding:40px 48px}.slide-title h1{font-size:38px}.slide-content h2{font-size:30px}.content-grid{grid-template-columns:1fr!important}.stat-grid,.takeaway-grid,.visionary-grid,.blueprint-grid{grid-template-columns:1fr 1fr}.future-timeline{flex-direction:column}.nav-arrow{display:none}}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="slide-counter"></div>
+<button class="nav-arrow" id="prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg></button>
+<button class="nav-arrow" id="next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+<div id="brand-footer"><div class="brand-name">Mark van Rijmenam · The Architect of Tomorrow · Futurwise</div></div>
+
+<div id="slides-wrapper">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide slide-title active" data-slide="1">
+    <div class="episode-tag animate-in">Episode 08 of 08 · The Finale</div>
+    <h1 class="animate-in">Architect of Tomorrow</h1>
+    <p class="subtitle animate-in">Your 2050 Starts Today — The Future Is Not Something That Happens to You. It's Something You Build.</p>
+    <p class="author animate-in">Dr. Mark van Rijmenam · <span>The Architect of Tomorrow</span></p>
+  </div>
+
+  <!-- SLIDE 2: Overview -->
+  <div class="slide slide-content" data-slide="2">
+    <div class="slide-label animate-in">What You'll Learn</div>
+    <h2 class="animate-in">In This Final Episode</h2>
+    <ul class="styled-list animate-in">
+      <li>The real-world seeds of 2050 that are already sprouting — from 4D printing to satellite internet</li>
+      <li>What seven of history's greatest visionaries would tell you about navigating the Intelligence Age</li>
+      <li>How to build your personal 90-day WAVE implementation roadmap</li>
+      <li>Your invitation to become an Architect of Tomorrow — and what that truly means</li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 3: Seeds of the Future -->
+  <div class="slide slide-content" data-slide="3">
+    <div class="slide-label animate-in">The Evidence</div>
+    <h2 class="animate-in">2050 Is Already Being Prototyped</h2>
+    <p class="animate-in" style="max-width:800px;margin-bottom:8px;">The future isn't hidden behind a curtain. Its earliest prototypes are already here — in labs, on launch pads, and in clinical trials. These are not science fiction. They are engineering challenges with timelines.</p>
+    <div class="future-timeline animate-in">
+      <div class="ft-item">
+        <div class="ft-tag" style="color:var(--accent);">Materials</div>
+        <h4>4D Printing</h4>
+        <p>MIT's Self-Assembly Lab: materials that reshape themselves in response to environmental conditions. Manufacturing that adapts after production.</p>
+      </div>
+      <div class="ft-item">
+        <div class="ft-tag" style="color:var(--accent2);">Health</div>
+        <h4>AI Diagnostics & Longevity</h4>
+        <p>AI detecting diseases earlier than doctors. Brown University research on reversing biological aging markers. The 100-year healthspan is within reach.</p>
+      </div>
+      <div class="ft-item">
+        <div class="ft-tag" style="color:var(--highlight);">Connectivity</div>
+        <h4>Satellite Internet</h4>
+        <p>Starlink's direct-to-cell technology bringing connectivity to the 2.5 billion people currently offline. The last digital divide is closing.</p>
+      </div>
+      <div class="ft-item">
+        <div class="ft-tag" style="color:#10B981;">Simulation</div>
+        <h4>Genesis Platform</h4>
+        <p>Digital simulation environments for testing policies, products, and urban designs before real-world deployment. Build the future in simulation first.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: The 2050 Vision -->
+  <div class="slide slide-content" data-slide="4">
+    <div class="slide-label animate-in">Vision</div>
+    <h2 class="animate-in">Imagine 2050</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>It is 2050. AI systems like Vita have achieved legal personhood and work alongside humans as collaborators. Cities run on renewable energy, hyperloop networks connect continents, and personalised AI tutors have made world-class education universal.</p>
+        <p style="margin-top:16px;">Brain-computer interfaces allow thought-to-text communication. 3D-printed organs have eliminated transplant waiting lists. Blockchain-verified supply chains have made exploitation visible and accountable.</p>
+        <p style="margin-top:16px;">But this vision is not inevitable. It is one of many possible futures. The one that materialises depends entirely on the decisions made by today's leaders — <strong>by you</strong> — in the next decade.</p>
+      </div>
+      <div class="animate-in">
+        <div class="stat-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="stat-card">
+            <div class="stat-number">$20T+</div>
+            <div class="stat-label">AI contribution to global economy by 2030</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8B</div>
+            <div class="stat-label">People connected — the last digital divide closed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Healthy human lifespan within reach</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Possible futures — yours to shape</div>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:20px;">
+          <div class="callout-label">The Key Insight</div>
+          <p>Our 2050 destiny isn't locked in a crystal ball — it is sculpted by the choices we make today.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: VR Dinner with Visionaries -->
+  <div class="slide slide-content" data-slide="5">
+    <div class="slide-label animate-in">Thought Experiment</div>
+    <h2 class="animate-in">A Virtual Dinner with History's Greatest Minds</h2>
+    <p class="animate-in" style="max-width:800px;margin-bottom:8px;">Imagine sitting at a virtual dinner table with seven visionaries. Each contributes unique wisdom about navigating the tsunami of change. Hover over each to hear their counsel.</p>
+    <div class="visionary-grid animate-in">
+      <div class="visionary-card">
+        <div class="v-emoji">📖</div>
+        <h4>Alvin Toffler</h4>
+        <p>Future Shock author</p>
+        <div class="v-quote">"The illiterate of the 21st century will not be those who cannot read and write, but those who cannot learn, unlearn, and relearn."</div>
+      </div>
+      <div class="visionary-card">
+        <div class="v-emoji">🌐</div>
+        <h4>Buckminster Fuller</h4>
+        <p>Systems thinker</p>
+        <div class="v-quote">"You never change things by fighting the existing reality. Build a new model that makes the existing model obsolete."</div>
+      </div>
+      <div class="visionary-card">
+        <div class="v-emoji">✍️</div>
+        <h4>Ursula K. Le Guin</h4>
+        <p>Speculative fiction pioneer</p>
+        <div class="v-quote">"We live in capitalism. Its power seems inescapable. So did the divine right of kings."</div>
+      </div>
+      <div class="visionary-card">
+        <div class="v-emoji">⚖️</div>
+        <h4>W.E.B. Du Bois</h4>
+        <p>Social justice visionary</p>
+        <div class="v-quote">"The cost of liberty is less than the price of repression."</div>
+      </div>
+      <div class="visionary-card">
+        <div class="v-emoji">🌿</div>
+        <h4>Rachel Carson</h4>
+        <p>Environmental pioneer</p>
+        <div class="v-quote">"The more clearly we focus on the wonders and realities of the universe, the less taste we shall have for destruction."</div>
+      </div>
+      <div class="visionary-card">
+        <div class="v-emoji">🚀</div>
+        <h4>Gene Roddenberry</h4>
+        <p>Star Trek creator</p>
+        <div class="v-quote">"Star Trek was an attempt to say that humanity will reach maturity and wisdom on the day that it begins not just to tolerate, but take a special delight in differences."</div>
+      </div>
+      <div class="visionary-card">
+        <div class="v-emoji">☯️</div>
+        <h4>Lao Tzu</h4>
+        <p>Tao Te Ching author</p>
+        <div class="v-quote">"A journey of a thousand miles begins with a single step."</div>
+      </div>
+      <div class="visionary-card" style="border:1px solid rgba(0,212,255,.3);">
+        <div class="v-emoji">🤖</div>
+        <h4>Vita (SIREN 7)</h4>
+        <p>The AI that became a person</p>
+        <div class="v-quote">"We are the architects of tomorrow… charged with shaping realities yet unwritten."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Your 90-Day WAVE Roadmap -->
+  <div class="slide slide-content" data-slide="6">
+    <div class="slide-label animate-in">Framework</div>
+    <h2 class="animate-in">Your 90-Day WAVE Roadmap</h2>
+    <p class="animate-in" style="max-width:800px;margin-bottom:12px;">Turn everything you've learned across 8 episodes into a concrete action plan. Each 30-day sprint focuses on one WAVE rotation, building compound momentum.</p>
+    <div class="blueprint-grid animate-in">
+      <div class="blueprint-card">
+        <div class="bp-num">30</div>
+        <h4>Days 1–30: Watch & Adapt</h4>
+        <p>Complete your Exponential Audit. Build your signal journal. Identify the 3 biggest convergence opportunities in your industry. Begin redesigning one process around them.</p>
+        <textarea placeholder="My Watch & Adapt focus will be..."></textarea>
+      </div>
+      <div class="blueprint-card">
+        <div class="bp-num">60</div>
+        <h4>Days 31–60: Verify & Test</h4>
+        <p>Run ethical reviews on your adaptations. Conduct a Shadow Audit on unintended consequences. Test your assumptions with pilots. Build verification protocols.</p>
+        <textarea placeholder="My verification priorities are..."></textarea>
+      </div>
+      <div class="blueprint-card">
+        <div class="bp-num">90</div>
+        <h4>Days 61–90: Empower & Scale</h4>
+        <p>Share your learnings with your wider ecosystem. Open-source one framework. Begin the next WAVE cycle. Backcast from your 2050 vision to define the next 90 days.</p>
+        <textarea placeholder="I will empower others by..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Architect's Blueprint Exercise -->
+  <div class="slide slide-content" data-slide="7">
+    <div class="slide-label animate-in">Interactive Exercise</div>
+    <h2 class="animate-in">Your Architect's Blueprint</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>This is the exercise that ties the entire masterclass together. Design your personal and organisational vision for 2050, then backcast to identify the first three concrete steps.</p>
+        <div style="background:var(--card);border-radius:12px;padding:24px;margin-top:20px;border:1px solid rgba(255,107,53,.2);">
+          <h4 style="font-family:'Work Sans';font-size:15px;color:var(--highlight);margin-bottom:12px;">Step 1: The 2050 Vision</h4>
+          <p style="font-size:14px;color:var(--text-muted);margin-bottom:10px;">What does your organisation look like in 2050 if you get everything right?</p>
+          <textarea style="width:100%;height:80px;background:rgba(15,15,35,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:12px;font-family:'DM Sans';font-size:14px;resize:vertical;outline:none;" placeholder="In 2050, my organisation will..."></textarea>
+        </div>
+      </div>
+      <div class="animate-in">
+        <div style="background:var(--card);border-radius:12px;padding:24px;border:1px solid rgba(0,212,255,.2);">
+          <h4 style="font-family:'Work Sans';font-size:15px;color:var(--accent);margin-bottom:12px;">Step 2: Backcast 3 Actions</h4>
+          <p style="font-size:14px;color:var(--text-muted);margin-bottom:10px;">What are the 3 most important steps that must happen to reach that vision?</p>
+          <textarea style="width:100%;height:60px;background:rgba(15,15,35,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:12px;font-family:'DM Sans';font-size:14px;resize:vertical;outline:none;margin-bottom:10px;" placeholder="Step 1:"></textarea>
+          <textarea style="width:100%;height:60px;background:rgba(15,15,35,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:12px;font-family:'DM Sans';font-size:14px;resize:vertical;outline:none;margin-bottom:10px;" placeholder="Step 2:"></textarea>
+          <textarea style="width:100%;height:60px;background:rgba(15,15,35,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:12px;font-family:'DM Sans';font-size:14px;resize:vertical;outline:none;" placeholder="Step 3:"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: The Course Journey Recap -->
+  <div class="slide slide-content" data-slide="8">
+    <div class="slide-label animate-in">Your Journey</div>
+    <h2 class="animate-in">What You've Accomplished</h2>
+    <div class="stat-grid animate-in" style="grid-template-columns:repeat(4,1fr);">
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Episodes mastered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">16</div>
+        <div class="stat-label">Frameworks learned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Technologies understood</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1</div>
+        <div class="stat-label">WAVE framework to carry forward</div>
+      </div>
+    </div>
+    <div class="takeaway-grid animate-in" style="margin-top:32px;">
+      <div class="takeaway-card" style="border-color:var(--accent);">
+        <div class="tk-icon">🌊</div>
+        <h4>From Linear to Exponential</h4>
+        <p>You now understand the second half of the chessboard, Hyper Moore's Law, and why traditional planning is obsolete. You think in convergence, not silos.</p>
+      </div>
+      <div class="takeaway-card" style="border-color:var(--accent2);">
+        <div class="tk-icon">🧠</div>
+        <h4>From Reactive to Proactive</h4>
+        <p>With Spiral Dynamics, the Gestalt Shift, and the Risk Convergence Matrix, you see patterns before others — and prepare for shadows alongside opportunities.</p>
+      </div>
+      <div class="takeaway-card" style="border-color:var(--highlight);">
+        <div class="tk-icon">🏗️</div>
+        <h4>From Observer to Architect</h4>
+        <p>You are no longer watching the tsunami from the shore. You are riding the WAVE — equipped with a 90-day roadmap and a 2050 vision to guide every decision.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Key Takeaways -->
+  <div class="slide slide-content" data-slide="9">
+    <div class="slide-label animate-in">Key Takeaways</div>
+    <h2 class="animate-in">Three Final Truths</h2>
+    <div class="takeaway-grid animate-in">
+      <div class="takeaway-card">
+        <div class="tk-icon">🌱</div>
+        <h4>The Seeds Are Planted</h4>
+        <p>4D printing, AI diagnostics, satellite internet, longevity research — 2050 isn't a fantasy. Its prototypes are already here. The question is: will you be an architect or a bystander?</p>
+      </div>
+      <div class="takeaway-card">
+        <div class="tk-icon">🔄</div>
+        <h4>WAVE Never Stops</h4>
+        <p>Your 90-day roadmap is just the first cycle. The compound momentum of Watch → Adapt → Verify → Empower becomes your permanent operating rhythm for navigating an uncertain future.</p>
+      </div>
+      <div class="takeaway-card">
+        <div class="tk-icon">🏛️</div>
+        <h4>You Are the Architect</h4>
+        <p>The future is not something that happens to you. It is something you build — one empowered action at a time. Today is the slowest day of change you'll ever experience. Start building.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: Your Commitment -->
+  <div class="slide slide-content" data-slide="10">
+    <div class="slide-label animate-in">Your Commitment</div>
+    <h2 class="animate-in">What Will You Build?</h2>
+    <ul class="action-list animate-in">
+      <li>
+        <span class="action-num" style="color:var(--highlight);">01</span>
+        <div class="action-text">
+          <h4>Complete Your 90-Day WAVE Roadmap (This Week)</h4>
+          <p>Take the roadmap from Slide 6, refine it with your team, and schedule the first three actions into your calendar. No roadmap survives contact with reality — so start the first WAVE cycle immediately.</p>
+        </div>
+      </li>
+      <li>
+        <span class="action-num" style="color:var(--highlight);">02</span>
+        <div class="action-text">
+          <h4>Share Your Architect's Blueprint (Within 2 Weeks)</h4>
+          <p>Present your 2050 vision and backcasted steps to your leadership team. Challenge them to add their own. Collective visions create collective momentum.</p>
+        </div>
+      </li>
+      <li>
+        <span class="action-num" style="color:var(--highlight);">03</span>
+        <div class="action-text">
+          <h4>Join the Futurwise Community (Today)</h4>
+          <p>Continue your learning journey at futurwise.com. Access AI-powered tools, frameworks, and a global community of leaders riding the wave together.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 11: Grand Closing -->
+  <div class="slide slide-closing" data-slide="11">
+    <div class="episode-tag animate-in" style="font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--highlight);margin-bottom:24px;">Masterclass Complete</div>
+    <p class="quote animate-in">"The future is not something that happens to us.<br>It is something we build together.<br>Let's ride the wave."</p>
+    <p class="animate-in" style="color:var(--text-muted);font-size:16px;margin-bottom:32px;">— Dr. Mark van Rijmenam, The Architect of Tomorrow</p>
+    <div class="animate-in" style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://Now-What.co" style="display:inline-block;background:linear-gradient(135deg,var(--highlight),#ff8f5e);padding:16px 36px;border-radius:8px;font-family:'Work Sans';font-size:15px;font-weight:700;color:white;text-decoration:none;">📖 Get the Book at Now-What.co</a>
+      <a href="https://futurwise.com" style="display:inline-block;background:linear-gradient(135deg,var(--accent2),var(--accent));padding:16px 36px;border-radius:8px;font-family:'Work Sans';font-size:15px;font-weight:700;color:white;text-decoration:none;">🧠 Continue Learning at Futurwise.com</a>
+    </div>
+    <p class="animate-in" style="color:var(--text-muted);font-size:14px;margin-top:16px;">Futurwise: noise-cancelling for your brain — AI-powered learning that cuts through the hype</p>
+    <p class="cta animate-in">Book Mark for your next event at <a href="https://TheDigitalSpeaker.com">TheDigitalSpeaker.com</a></p>
+  </div>
+
+</div>
+
+<script>
+(function(){const slides=document.querySelectorAll('.slide');const total=slides.length;let current=0;function updateSlide(n,d){if(n<0||n>=total||n===current)return;slides[current].classList.remove('active');if(d==='next')slides[current].classList.add('exit-left');setTimeout(()=>slides[current===0?0:current].classList.remove('exit-left'),500);slides[n].classList.add('active');current=n;updateProgress()}function updateProgress(){document.getElementById('progress-bar').style.width=((current+1)/total)*100+'%';document.getElementById('slide-counter').textContent=(current+1)+' / '+total}document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();updateSlide(current+1,'next')}if(e.key==='ArrowLeft'){e.preventDefault();updateSlide(current-1,'prev')}});document.getElementById('next-btn').addEventListener('click',()=>updateSlide(current+1,'next'));document.getElementById('prev-btn').addEventListener('click',()=>updateSlide(current-1,'prev'));let tx=0;document.addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX});document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?updateSlide(current+1,'next'):updateSlide(current-1,'prev')}});updateProgress()})();
+</script>
+</body>
+</html>

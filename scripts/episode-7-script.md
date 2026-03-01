@@ -1,0 +1,220 @@
+# EPISODE 7: THE WAVE FORWARD
+## Runtime: ~45–50 minutes
+
+---
+
+### OPENING (3–5 minutes)
+
+**[SLIDE 1 — Title]**
+
+MARK:
+"We've covered the technologies. We've confronted the risks. We've built the learning foundation."
+
+"Now it's time for the operating system."
+
+[Beat]
+
+"For the last six episodes, I've been building toward this moment. Because frameworks are what separate leaders who **react** to change from leaders who **shape** it."
+
+"This is the **WAVE framework.** Watch. Adapt. Verify. Empower. It's not a checklist. It's a self-reinforcing cycle — a leadership operating system for navigating exponential change. And by the end of this episode, you'll have the most practical tool in this entire masterclass."
+
+---
+
+### SEGMENT 1: Watch (8–10 minutes)
+
+**[SLIDE 2 — Overview]**
+
+MARK:
+"Let's walk through each phase — with examples, because theory without application is just philosophy."
+
+**[SLIDE 3 — The WAVE Framework Overview]**
+
+"First, see the whole system. **Watch → Adapt → Verify → Empower → Watch again.** Each rotation compounds the last. The more cycles you complete, the sharper your awareness, the faster your adaptation, the more rigorous your verification, and the deeper your empowerment."
+
+"Think of it like a cyclist's cadence. Each rotation builds momentum."
+
+**[SLIDE 4 — Watch: See the Signals]**
+
+"**Watch** anchors us in awareness. In a world overflowing with misinformation and driven by Hyper Moore's Law, the ability to discern faint signals before they crescendo into disruptive forces is essential."
+
+"This reflects the Gestalt Shift from Episode 1 — moving from seeing isolated data points to viewing entire ecosystems. When you Watch effectively, you don't just track trends. You detect **convergences** — the moments when separate developments click together into something transformational."
+
+"How do you Watch well?"
+
+"Build a foresight function. Not a trend-tracking team — a **signal detection system.** Subscribe to cross-domain intelligence. Watch not just your industry but adjacent ones. The most disruptive changes often come from unexpected intersections."
+
+"Remember **Kodak.** They didn't fail to Watch — they literally **invented** the digital camera in 1975. They failed at the next step. They saw the signal and ignored it because it threatened their film business. Watching without acting is just spectating."
+
+> 💡 KEY INSIGHT: Watch isn't passive observation — it's active, disciplined signal detection. The goal is to see convergences before competitors do, and before they become crises.
+
+---
+
+### SEGMENT 2: Adapt (8–10 minutes)
+
+**[SLIDE 5 — Adapt: Flow with Purpose]**
+
+MARK:
+"From awareness flows adaptation. While Watching reveals what's coming, Adapting ensures we align with it **purposefully.**"
+
+"Darwin's insight wasn't 'survival of the fittest.' It was survival of the **most adaptable.** The Taoist principle of Wu Wei teaches us to align with the current rather than fighting it."
+
+"Adaptation in the Intelligence Age isn't about having the best strategy. It's about having the fastest **learning loop.** The organisation that experiments, fails, learns, and iterates faster than the pace of change — that's the organisation that wins."
+
+"This means redesigning how your organisation makes decisions. Traditional decision-making is hierarchical — information flows up, decisions flow down, execution happens months later. In an exponential world, that's too slow."
+
+"Adaptive organisations distribute decision-making authority. They create small, empowered teams that can experiment and pivot without waiting for committee approval. They build cultures where failure is data, not disgrace."
+
+"Netflix versus Blockbuster. Amazon versus traditional retail. Tesla versus legacy automotive. In every case, the winner adapted faster — not because they were smarter, but because their **structures** allowed faster iteration."
+
+> 💡 KEY INSIGHT: Adaptation isn't a one-time strategic pivot. It's a continuous capability — the organisational muscle that lets you change direction without losing momentum.
+
+[INTERACTION PROMPT]: "How long does it take a new idea to go from proposal to pilot in your organisation? Weeks? Months? Quarters? That cycle time is your adaptation speed — and it may be the most important metric you're not tracking."
+
+[Pause — 30 seconds]
+
+---
+
+### SEGMENT 3: Verify (8–10 minutes)
+
+**[SLIDE 6 — Verify: Pause, Discern, and Reflect]**
+
+MARK:
+"In the rush to adapt, it's easy to lose your way. **Verify** is the compass."
+
+"Verification goes beyond checking whether content is AI-generated or human-created. It's a **moral imperative.** It calls us to scrutinise what we're building, why we're building it, and for whom."
+
+"In the Intelligence Age, speed is rewarded. But speed without verification creates the shadows we discussed in Episode 5 — deepfakes that defraud, algorithms that discriminate, surveillance systems that erode trust."
+
+"Verify asks three questions:"
+
+"**Is it true?** In a world of synthetic media and AI-generated content, verification of facts, sources, and data integrity is no longer optional."
+
+"**Is it ethical?** Does this decision align with our values? Does it serve all stakeholders, not just shareholders? Would we be comfortable if it were public?"
+
+"**Is it wise?** Even if something is true and ethical, is it the right thing to do **right now?** Timing, context, and second-order effects matter."
+
+"Verification is where the Lifelong Learning Stack from Episode 6 becomes operational. Digital fluency lets your people verify facts. Adaptive skills let them think critically. Wisdom and judgement let them weigh competing values."
+
+> 💡 KEY INSIGHT: Verify isn't a speed bump — it's a quality multiplier. The time invested in verification prevents the costly errors that unchecked adaptation creates.
+
+---
+
+### SEGMENT 4: Empower (8–10 minutes)
+
+**[SLIDE 7 — Empower: Drive Action and Ignite the Future]**
+
+MARK:
+"**Empower** is the culmination — where watching, adapting, and verifying converge into purposeful action."
+
+"But empower is not about control. It's about **unleashing potential.** Equipping all stakeholders to act with clarity, confidence, and purpose."
+
+"Empowerment thrives in trust and autonomy. It transcends older hierarchical structures and taps into the distributed intelligence of your entire organisation."
+
+"What does this look like in practice?"
+
+"It means giving teams the authority and the tools to act on what they've learned. It means sharing the signal intelligence from Watch, the experimental results from Adapt, and the ethical guardrails from Verify — and trusting people to execute."
+
+"It means building **ecosystems of trust** where collaboration, mentorship, and knowledge-sharing are as valued as individual achievement."
+
+"And it means empowering not just your employees but your customers, your partners, and your communities. The organisations that will lead the Intelligence Age are the ones that empower broadly — not the ones that hoard insight at the top."
+
+> 💡 KEY INSIGHT: Empower completes the cycle by turning insight into distributed action. The goal isn't centralised control — it's collective capability.
+
+---
+
+### SEGMENT 5: The Compound Effect & Case Study (5–7 minutes)
+
+**[SLIDE 8 — The Compound Effect]**
+
+MARK:
+"Here's the magic. The WAVE is a **self-reinforcing cycle.** Each rotation makes the next one better."
+
+"Watch becomes sharper — you gather better data and build anticipatory reflexes."
+"Adapt grows faster — prior successes and failures inform quicker course corrections."
+"Verify feels second nature — ensuring moral and ethical alignment with growing fluency."
+"Empower broadens — empowering wider networks of stakeholders with growing trust."
+
+"Like compound interest, the returns accelerate over time."
+
+**[SLIDES 9–10 — WAVE Applied: EcoBlend]**
+
+"Let me bring this to life with a story from the book."
+
+"**EcoBlend** — a mid-sized craft beverage company. CEO Leila arrives in Nairobi with Vita, the AI advisor, to meet smallholder farmers."
+
+"**Watch:** The foresight team identified converging signals — AI-powered flavour profiling, blockchain-enabled supply chains, consumer demand for transparent sourcing."
+
+"**Adapt:** They restructured their supply chain to work directly with small farmers, using blockchain to track each batch from farm to shelf."
+
+"**Verify:** They tested the ethical implications — fair pricing for farmers, environmental impact, data privacy — before scaling."
+
+"**Empower:** They shared the platform with other beverage companies, creating an industry standard that benefited the entire ecosystem."
+
+"That's the WAVE in action. Not a plan that gathers dust — a **living cycle** that gets stronger with every rotation."
+
+---
+
+### INTERACTIVE SEGMENT (5–7 minutes)
+
+**[SLIDE 11 — Quiz]**
+
+MARK:
+"Quick check."
+
+"One: What did Kodak fail to do that Netflix excelled at?"
+
+[Pause]
+
+"**Watch.** Kodak literally invented the signal — the digital camera — and then ignored it. Netflix saw the streaming signal and reorganised their entire business around it."
+
+"Two: What makes the WAVE framework different from linear change management models?"
+
+[Pause]
+
+"**It's a self-reinforcing cycle** where each rotation compounds the last. Linear models assume change is a one-time event. WAVE assumes change is permanent."
+
+---
+
+### CLOSING (3–5 minutes)
+
+**[SLIDE 12 — Key Takeaways]**
+
+MARK:
+"Four things."
+
+"**Gestalt Shift first.** Before you can Watch effectively, shift your perspective — from isolated data points to interconnected ecosystems."
+
+"**WAVE is a cycle.** Watch → Adapt → Verify → Empower → Watch again. Each rotation compounds the last. This is the compound interest of organisational intelligence."
+
+"**Verify is the compass.** In a world that rewards speed, the discipline to pause, check, and reflect is what separates reckless acceleration from purposeful momentum."
+
+"**Empower broadly.** The organisations that will lead are the ones that distribute capability, not hoard it."
+
+**[SLIDE 13 — Action Items]**
+
+"Your most important homework in the course."
+
+"**One: WAVE Sprint.** Sixty minutes. Choose your most pressing strategic challenge. Run a full WAVE cycle — fifteen minutes each on Watch, Adapt, Verify, Empower. Document the output."
+
+"**Two: Signal Journal Review.** If you started a signal journal back in Episode 1, review it now. What patterns are emerging? What convergences do you see?"
+
+"**Three: Adaptation Speed Audit.** Measure how long it takes a new idea to go from proposal to pilot. Then identify one structural change that could cut that time in half."
+
+**[SLIDE 14 — Closing]**
+
+[Build energy]
+
+"One episode left. **Episode 8: Architect of Tomorrow.** We'll bring everything together — your 90-day WAVE roadmap, your 2050 vision, and the commitment that turns this masterclass from knowledge into action."
+
+[Signature close]
+
+"The future is not a fixed destination. It is a canvas shaped by every decision, every action, and every moment of reflection. The WAVE framework equips you to paint this canvas with intention."
+
+---
+
+### PRODUCTION NOTES:
+- This is the most framework-heavy episode — keep it concrete with examples
+- EcoBlend case study should feel like a story, not a diagram walkthrough
+- Kodak reference connects back to Episode 1 — make that explicit
+- The WAVE Sprint homework is the most actionable item in the course — emphasise it
+- Build anticipation for the finale

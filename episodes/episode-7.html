@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Episode 7: The WAVE Forward | Mark van Rijmenam Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#162535;--secondary:#0f1a24;--accent:#30ffeb;--accent2:#5033ff;--highlight:#FF6B35;--text-light:#F5F5F5;--text-muted:#b8c4ce;--bg:#162535;--card:#1e3348;--w-watch:#30ffeb;--w-adapt:#5033ff;--w-verify:#FF6B35;--w-empower:#10B981}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text-light)}h1,h2,h3,h4,h5{font-family:'Work Sans',sans-serif}
+#progress-bar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--highlight));z-index:1000;transition:width .4s ease}#slide-counter{position:fixed;bottom:24px;right:32px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);z-index:100;letter-spacing:2px}
+.nav-arrow{position:fixed;top:50%;transform:translateY(-50%);width:48px;height:48px;border:1px solid rgba(255,255,255,.15);border-radius:50%;background:rgba(30,51,72,.6);backdrop-filter:blur(8px);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:100;transition:all .3s}.nav-arrow:hover{border-color:var(--accent);background:rgba(48,255,235,.1)}.nav-arrow svg{width:20px;height:20px;fill:var(--text-light)}#prev-btn{left:20px}#next-btn{right:20px}
+#brand-footer{position:fixed;bottom:20px;left:32px;z-index:100}#brand-footer .brand-name{font-family:'Work Sans';font-size:11px;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase}
+.slide{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px;opacity:0;transform:translateX(40px);transition:all .5s cubic-bezier(.4,0,.2,1);pointer-events:none;overflow-y:auto;background:linear-gradient(135deg,var(--bg),var(--secondary))}.slide.active{opacity:1;transform:translateX(0);pointer-events:auto}.slide.exit-left{transform:translateX(-40px);opacity:0}
+.slide-title{justify-content:center;align-items:center;text-align:center}.slide-title .episode-tag{font-family:'Work Sans';font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--highlight);margin-bottom:24px;font-weight:600}.slide-title h1{font-size:50px;font-weight:800;line-height:1.15;max-width:900px;margin-bottom:20px;background:linear-gradient(135deg,var(--text-light),var(--highlight));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}.slide-title .subtitle{font-size:20px;color:var(--text-muted);max-width:700px;line-height:1.6}.slide-title .author{margin-top:40px;font-family:'Work Sans';font-size:14px;color:var(--text-muted);letter-spacing:2px}.slide-title .author span{color:var(--highlight)}
+.slide-content .slide-label{font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600}.slide-content h2{font-size:36px;font-weight:700;margin-bottom:24px;line-height:1.2}.slide-content p{font-size:18px;color:rgba(245,245,245,.85);line-height:1.7}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:8px}
+.callout{background:rgba(48,255,235,.06);border-left:3px solid var(--accent);padding:20px 24px;border-radius:0 8px 8px 0;margin:20px 0}.callout .callout-label{font-family:'Work Sans';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:700}.callout p{font-size:17px;color:var(--text-light);line-height:1.6}
+.wave-cycle{display:flex;align-items:center;justify-content:center;gap:8px;margin:24px auto;max-width:900px;flex-wrap:wrap}
+.wave-phase{background:var(--card);border-radius:16px;padding:20px 24px;cursor:pointer;transition:all .4s;border:2px solid transparent;text-align:center;min-width:160px}.wave-phase:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.wave-phase.active-phase{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.w-watch{color:var(--w-watch)}.w-watch:hover,.w-watch.active-phase{border-color:var(--w-watch);background:rgba(48,255,235,.08)}
+.w-adapt{color:var(--w-adapt)}.w-adapt:hover,.w-adapt.active-phase{border-color:var(--w-adapt);background:rgba(80,51,255,.08)}
+.w-verify{color:var(--w-verify)}.w-verify:hover,.w-verify.active-phase{border-color:var(--w-verify);background:rgba(255,107,53,.08)}
+.w-empower{color:var(--w-empower)}.w-empower:hover,.w-empower.active-phase{border-color:var(--w-empower);background:rgba(16,185,129,.08)}
+.wp-icon{font-size:28px;margin-bottom:8px}.wave-phase h4{font-family:'Work Sans';font-size:18px;font-weight:700;margin-bottom:4px}.wave-phase p{font-size:13px;color:var(--text-muted);line-height:1.4}
+.wave-arrow{font-size:24px;color:var(--text-muted);font-weight:300}
+.wave-detail-panel{background:var(--card);border-radius:12px;padding:28px;margin-top:20px;border:1px solid rgba(255,255,255,.08);min-height:180px;transition:all .4s;max-width:900px;margin-left:auto;margin-right:auto}
+.wave-detail-panel h4{font-family:'Work Sans';font-size:16px;margin-bottom:12px}.wave-detail-panel p{font-size:15px;color:rgba(245,245,245,.8);line-height:1.6;margin-bottom:8px}
+.wd-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.wd-action{background:rgba(15,26,36,.6);border-radius:8px;padding:14px;border:1px solid rgba(255,255,255,.06)}.wd-action h5{font-family:'Work Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}.wd-action p{font-size:13px;line-height:1.5;margin:0}
+.phase-card{background:var(--card);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,.06);margin-bottom:16px}.phase-card h4{font-family:'Work Sans';font-size:16px;margin-bottom:8px}.phase-card p{font-size:15px;color:var(--text-muted);line-height:1.6}
+.phase-actions{background:var(--card);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,.1)}.phase-actions h4{font-family:'Work Sans';font-size:15px;margin-bottom:16px}.pa-section{margin-bottom:16px}.pa-section:last-child{margin-bottom:0}.pa-section h5{font-family:'Work Sans';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}.pa-section p{font-size:14px;line-height:1.6}
+.quiz-question{background:var(--card);border-radius:12px;padding:24px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06)}.quiz-question h4{font-family:'Work Sans';font-size:16px;margin-bottom:16px}.quiz-options{display:flex;flex-direction:column;gap:10px}.quiz-option{padding:12px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all .3s;font-size:15px}.quiz-option:hover{border-color:var(--accent)}.quiz-option.correct{border-color:#10B981;background:rgba(16,185,129,.12);color:#10B981}.quiz-option.incorrect{border-color:#EF4444;background:rgba(239,68,68,.08);color:#EF4444}
+.reflection-box{background:var(--card);border-radius:12px;padding:28px;border:1px solid rgba(80,51,255,.3);margin-top:20px}.reflection-box textarea{width:100%;height:100px;background:rgba(15,26,36,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:var(--text-light);padding:14px;font-family:'DM Sans';font-size:15px;resize:vertical;outline:none}.reflection-box textarea:focus{border-color:var(--accent2)}
+.takeaway-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:20px}.takeaway-card{background:var(--card);border-radius:12px;padding:24px 20px;border-top:3px solid}.takeaway-card:nth-child(1){border-color:var(--w-watch)}.takeaway-card:nth-child(2){border-color:var(--w-adapt)}.takeaway-card:nth-child(3){border-color:var(--w-verify)}.takeaway-card:nth-child(4){border-color:var(--w-empower)}.takeaway-card .tk-icon{font-size:24px;margin-bottom:10px}.takeaway-card h4{font-family:'Work Sans';font-size:15px;margin-bottom:6px}.takeaway-card p{font-size:13px;color:var(--text-muted);line-height:1.5}
+.action-list{list-style:none;margin-top:16px}.action-list li{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}.action-list .action-num{font-family:'Work Sans';font-size:28px;font-weight:800;color:var(--accent2);min-width:40px}.action-list .action-text h4{font-family:'Work Sans';font-size:17px;margin-bottom:4px}.action-list .action-text p{font-size:15px;color:var(--text-muted);line-height:1.5}
+.climate-wave{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}.cw-card{border-radius:12px;padding:20px;border-left:3px solid}.cw-card h4{font-family:'Work Sans';font-size:15px;margin-bottom:8px}.cw-card p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.styled-list{list-style:none}.styled-list li{position:relative;padding-left:28px;margin-bottom:16px;font-size:18px;color:rgba(245,245,245,.85);line-height:1.6}.styled-list li::before{content:'\2192';position:absolute;left:0;color:var(--accent);font-weight:700}
+.slide-closing{justify-content:center;align-items:center;text-align:center}.slide-closing .quote{font-size:26px;font-style:italic;max-width:750px;line-height:1.6;color:rgba(245,245,245,.9);margin-bottom:32px}.slide-closing .next-ep{display:inline-block;background:linear-gradient(135deg,var(--highlight),var(--accent));padding:14px 32px;border-radius:8px;font-family:'Work Sans';font-size:15px;font-weight:600;color:white;margin-top:16px}.slide-closing .cta{margin-top:32px;font-size:14px;color:var(--text-muted)}.slide-closing .cta a{color:var(--accent);text-decoration:none}
+.animate-in{opacity:0;transform:translateY(20px)}.slide.active .animate-in{animation:fadeUp .6s ease forwards}.slide.active .animate-in:nth-child(1){animation-delay:.1s}.slide.active .animate-in:nth-child(2){animation-delay:.25s}.slide.active .animate-in:nth-child(3){animation-delay:.4s}.slide.active .animate-in:nth-child(4){animation-delay:.55s}@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@media print{.slide{position:relative!important;opacity:1!important;transform:none!important;pointer-events:auto!important;page-break-after:always;height:auto;min-height:100vh}#progress-bar,.nav-arrow,#slide-counter,#brand-footer{display:none!important}}
+@media(max-width:1024px){.slide{padding:40px 48px}.slide-title h1{font-size:36px}.content-grid{grid-template-columns:1fr}.takeaway-grid{grid-template-columns:1fr 1fr}.wave-cycle{gap:6px}.wave-phase{min-width:120px;padding:14px 16px}.climate-wave{grid-template-columns:1fr}.nav-arrow{display:none}}
+</style></head><body>
+<div id="progress-bar"></div><div id="slide-counter"></div>
+<button class="nav-arrow" id="prev-btn" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg></button>
+<button class="nav-arrow" id="next-btn" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg></button>
+<div id="brand-footer"><div class="brand-name">Mark van Rijmenam &middot; The Architect of Tomorrow &middot; Futurwise</div></div>
+<div id="slides-wrapper">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide slide-title active" data-slide="1">
+    <div class="episode-tag animate-in">Episode 07 of 08</div>
+    <h1 class="animate-in">The WAVE Forward</h1>
+    <p class="subtitle animate-in">Watch. Adapt. Verify. Empower. &mdash; A four-step cycle that keeps you alert, agile, honest, and impactful as exponential waves crash in. It&rsquo;s how we surf tech, not drown in it.</p>
+    <p class="author animate-in">Dr. Mark van Rijmenam &middot; <span>The Architect of Tomorrow</span></p>
+  </div>
+
+  <!-- SLIDE 2: Overview -->
+  <div class="slide slide-content" data-slide="2">
+    <div class="slide-label animate-in">What You'll Learn</div>
+    <h2 class="animate-in">In This Episode</h2>
+    <div class="content-grid">
+      <ul class="styled-list animate-in">
+        <li>The WAVE framework: a cyclical operating system for navigating exponential change</li>
+        <li>The Gestalt Shift: seeing entire ecosystems instead of isolated data points</li>
+        <li>Watch &mdash; how to detect signals before they become disruptions</li>
+        <li>Adapt &mdash; flowing with purpose using Wu Wei and strategic alignment</li>
+        <li>Verify &mdash; the moral imperative of pausing, discerning, and reflecting</li>
+        <li>Empower &mdash; unleashing collective intelligence to shape the future</li>
+      </ul>
+      <div class="animate-in">
+        <div class="callout"><div class="callout-label">From the Book</div>
+          <p>Like a cyclist finding cadence over thousands of kilometres, the WAVE framework is a continuous rhythm &mdash; each rotation building momentum, knowledge, confidence, and collective capacity. It is the &ldquo;compound interest&rdquo; of organisational and personal growth.</p></div>
+        <div class="callout" style="border-color:var(--accent2);background:rgba(80,51,255,.06);margin-top:12px;"><div class="callout-label" style="color:var(--accent2);">Why WAVE?</div>
+          <p>Each chapter in the book builds toward this moment: the second half of the chessboard (Ch.2), Spiral Dynamics and cultural wisdom (Ch.3), converging technologies (Ch.4), misinformation risks (Ch.5), and the new education paradigm (Ch.6) &mdash; all synthesised into one actionable framework.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: Interactive Overview -->
+  <div class="slide slide-content" data-slide="3">
+    <div class="slide-label animate-in">Core Framework</div>
+    <h2 class="animate-in">The WAVE Framework: A Leadership Operating System</h2>
+    <p class="animate-in" style="max-width:850px;margin-bottom:8px;">The WAVE framework is not a checklist &mdash; it is a self-reinforcing cycle. Each rotation compounds momentum, making your organisation sharper, faster, and more resilient. Click each phase below to explore.</p>
+    <div class="wave-cycle animate-in">
+      <div class="wave-phase w-watch active-phase" onclick="showWaveDetail('watch')"><div class="wp-icon">&#128065;&#65039;</div><h4>Watch</h4><p>See the signals<br>Cultivate awareness</p></div>
+      <div class="wave-arrow">&rarr;</div>
+      <div class="wave-phase w-adapt" onclick="showWaveDetail('adapt')"><div class="wp-icon">&#128260;</div><h4>Adapt</h4><p>Flow with purpose<br>Align with change</p></div>
+      <div class="wave-arrow">&rarr;</div>
+      <div class="wave-phase w-verify" onclick="showWaveDetail('verify')"><div class="wp-icon">&#128737;&#65039;</div><h4>Verify</h4><p>Pause and discern<br>Reflect with integrity</p></div>
+      <div class="wave-arrow">&rarr;</div>
+      <div class="wave-phase w-empower" onclick="showWaveDetail('empower')"><div class="wp-icon">&#9889;</div><h4>Empower</h4><p>Drive action<br>Ignite the future</p></div>
+      <div class="wave-arrow">&#8635;</div>
+    </div>
+    <div class="wave-detail-panel animate-in" id="wave-detail">
+      <h4 style="color:var(--w-watch);">&#128065;&#65039; Watch: See the Signals and Cultivate Awareness</h4>
+      <p>Watching is not passive observation &mdash; it is a proactive practice of honing foresight and recognising patterns hidden beneath the noise. It reflects a <strong>Gestalt Shift</strong> in perception: moving from seeing isolated data points to viewing entire ecosystems of interlinked trends.</p>
+      <div class="wd-actions">
+        <div class="wd-action"><h5>Individuals</h5><p>Keep a &ldquo;signal journal.&rdquo; Subscribe to platforms like Futurwise. Track trends across at least 3 fields outside your own.</p></div>
+        <div class="wd-action"><h5>Organisations</h5><p>Establish foresight teams. Create dashboards for emerging signals. Run scenario planning. Hire a futurist or science fiction writer to uncover the improbable.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Watch Deep Dive -->
+  <div class="slide slide-content" data-slide="4">
+    <div class="slide-label animate-in" style="color:var(--w-watch);">WAVE Phase 1</div>
+    <h2 class="animate-in" style="color:var(--w-watch);">Watch: See the Signals and Cultivate Awareness</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>The first wave anchors us in awareness. In a world overflowing with misinformation and driven by Hyper Moore&rsquo;s Law, the ability to discern faint signals before they crescendo into disruptive forces is essential.</p>
+        <p style="margin-top:14px;">This practice reflects a <strong>Gestalt Shift</strong> in perception &mdash; a move from seeing isolated data points to viewing entire ecosystems of interlinked trends. Like Wittgenstein&rsquo;s duck-rabbit illusion: you can see either the duck or the rabbit, but not both simultaneously. The Intelligence Age demands we learn to shift between perspectives to see the full potential of converging forces.</p>
+        <div class="callout" style="margin-top:16px;border-color:var(--w-watch);"><div class="callout-label" style="color:var(--w-watch);">Kodak vs. Netflix</div>
+          <p>Kodak invented the digital camera in 1975 but failed to watch the signal it had created. Netflix watched DVD-by-mail trends and pivoted to streaming before anyone thought it was viable. One company ignored its own invention; the other reinvented itself twice.</p></div>
+      </div>
+      <div class="animate-in">
+        <div class="phase-actions" style="border-color:rgba(48,255,235,.2);">
+          <h4 style="color:var(--w-watch);">Watch Actions: What You Can Do Today</h4>
+          <div class="pa-section"><h5>Individuals</h5><p>Commit to staying informed. Subscribe to platforms like <strong>Futurwise</strong>. Develop reflective observation &mdash; question how the signals you see affect your goals, work, and community. Keep a &ldquo;signal journal,&rdquo; tracking trends that surprise you.</p></div>
+          <div class="pa-section"><h5>Organisations</h5><p>Establish dedicated foresight teams. Leverage advanced analytics to create dashboards that visualise potential market shifts. Run futures thinking exercises imagining best- and worst-case outcomes. Hire a futurist or science fiction writer to uncover the improbable.</p></div>
+          <div class="pa-section"><h5>Key Principle</h5><p>Watch becomes sharper with each WAVE cycle. You gather better data and build anticipatory reflexes. Those who see the signals first hold the keys to thriving in exponential complexity.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Adapt Deep Dive -->
+  <div class="slide slide-content" data-slide="5">
+    <div class="slide-label animate-in" style="color:var(--w-adapt);">WAVE Phase 2</div>
+    <h2 class="animate-in" style="color:var(--w-adapt);">Adapt: Flow with Purpose and Align with Change</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>From awareness flows adaptation. While Watching reveals what is coming, Adapting ensures we align with it purposefully, guided by the Gestalt Shift in perception.</p>
+        <p style="margin-top:14px;">Darwin&rsquo;s insight wasn&rsquo;t &ldquo;survival of the fittest&rdquo; but <strong>survival of the most adaptable</strong>. The Taoist principle of <strong>Wu Wei</strong> (effortless action) teaches us to align our actions with the natural flow of change rather than fighting it. The grass bends in the storm and survives. The oak stands rigid and breaks.</p>
+        <div class="callout" style="margin-top:16px;border-color:var(--w-adapt);background:rgba(80,51,255,.06);"><div class="callout-label" style="color:var(--w-adapt);">Ford Motor Company, 1942</div>
+          <p>Ford retooled its entire operation from cars to B-24 bombers within months, achieving one bomber per hour. The company didn&rsquo;t simply react &mdash; it reimagined its capabilities, turning a challenge into a defining moment. This is adaptation driven by purpose and innovation.</p></div>
+      </div>
+      <div class="animate-in">
+        <div class="phase-actions" style="border-color:rgba(80,51,255,.2);">
+          <h4 style="color:var(--w-adapt);">Adapt Actions: What You Can Do Today</h4>
+          <div class="pa-section"><h5>Individuals</h5><p>Embrace lifelong learning. Develop transferable skills. Practice cognitive flexibility through cross-domain thinking. Think in decades, not quarters.</p></div>
+          <div class="pa-section"><h5>Organisations</h5><p>Develop agile strategies that balance short-term tactical adjustments with long-term transformational investments. Redesign operations for resilience &mdash; much like reimagining urban spaces in response to climate change. Embrace continuous improvement and iterative processes.</p></div>
+          <div class="pa-section"><h5>Key Principle</h5><p>Adapt grows faster because prior successes and failures inform quicker course corrections. Adaptation is not a concession to chaos &mdash; it is a mastery of it.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Verify Deep Dive -->
+  <div class="slide slide-content" data-slide="6">
+    <div class="slide-label animate-in" style="color:var(--w-verify);">WAVE Phase 3</div>
+    <h2 class="animate-in" style="color:var(--w-verify);">Verify: Pause, Discern, and Reflect with Integrity</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>In the rush to adapt, it is easy to lose our way. Verify is the compass &mdash; guiding us with integrity as we navigate uncharted waters. It goes beyond checking whether content is AI-generated or human-created; it is a <strong>moral imperative</strong>.</p>
+        <p style="margin-top:14px;">Verification calls us to scrutinise what we are building, why we are building it, and for whom. It demands transparency, critical thinking, and commitment to long-term consequences. In a world of deepfakes, synthetic media, and instant manipulation, distinctions between real and artificially generated grow murkier daily.</p>
+        <div class="callout" style="margin-top:16px;border-color:var(--w-verify);background:rgba(255,107,53,.06);"><div class="callout-label" style="color:var(--w-verify);">Human-in-the-Loop vs AI-in-the-Loop</div>
+          <p>Both approaches have merits, but selecting the right one requires deep understanding of the task. Verification ensures these choices are made responsibly, enhancing outcomes without undermining trust or accountability. Without verification, organisations risk cascading errors: over-automation, skill shortages, morale collapse, and governance failures.</p></div>
+      </div>
+      <div class="animate-in">
+        <div class="phase-actions" style="border-color:rgba(255,107,53,.2);">
+          <h4 style="color:var(--w-verify);">Verify Actions: What You Can Do Today</h4>
+          <div class="pa-section"><h5>Individuals</h5><p>Question what you consume. Verify AI outputs before acting on them. Develop media literacy and maintain critical thinking as your default mode.</p></div>
+          <div class="pa-section"><h5>Organisations</h5><p>Implement transparent KPIs, performance dashboards, and third-party audits. Use standardised reporting to verify change initiatives meet intended outcomes. Create feedback loops that continuously validate interactions and detect deepfakes used in scams.</p></div>
+          <div class="pa-section"><h5>Key Principle</h5><p>Verify feels second nature &mdash; ensuring moral and strategic alignment so you never stray too far off course. Progress means little if you&rsquo;re drifting from your values or fuelling unintended harm.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Empower Deep Dive -->
+  <div class="slide slide-content" data-slide="7">
+    <div class="slide-label animate-in" style="color:var(--w-empower);">WAVE Phase 4</div>
+    <h2 class="animate-in" style="color:var(--w-empower);">Empower: Drive Action and Ignite the Future</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>Empower is not about control but about <strong>unleashing potential</strong> &mdash; equipping all stakeholders to act with clarity, confidence, and purpose. It is the culmination of the WAVE framework, where watching, adapting, and verifying converge into purposeful action.</p>
+        <p style="margin-top:14px;">Empowerment thrives in trust and autonomy. It transcends older hierarchical structures to embrace a participatory worldview where autonomy is shared and innovation flourishes collectively. It honours the Indigenous principle of considering <strong>seven generations ahead</strong> &mdash; embedding foresight into every decision.</p>
+        <div class="callout" style="margin-top:16px;border-color:var(--w-empower);background:rgba(16,185,129,.06);"><div class="callout-label" style="color:var(--w-empower);">The Empowerment Paradox</div>
+          <p>When Tesla opened its patents, it accelerated the entire EV market. When Khan Academy democratised education, it raised the floor for everyone. When Satya Nadella broke down Microsoft&rsquo;s silos and decentralised decision-making, he transformed a legacy institution into an agile innovator. Sharing knowledge doesn&rsquo;t diminish your position &mdash; it strengthens the ecosystem you depend on.</p></div>
+      </div>
+      <div class="animate-in">
+        <div class="phase-actions" style="border-color:rgba(16,185,129,.2);">
+          <h4 style="color:var(--w-empower);">Empower Actions: What You Can Do Today</h4>
+          <div class="pa-section"><h5>Individuals</h5><p>See yourself as an active participant, not a passive observer. Use your skills to contribute to a shared vision. Mentor the next generation of architects of tomorrow.</p></div>
+          <div class="pa-section"><h5>Organisations</h5><p>Dismantle bureaucratic hierarchies that hinder creativity. Engage all stakeholders &mdash; from top management to grassroots teams &mdash; to co-create transformational change. Give employees access to the latest tools and trust them. Foster a culture of lifelong learning and proactive empowerment.</p></div>
+          <div class="pa-section"><h5>Key Principle</h5><p>Empower scales &mdash; distributing knowledge and resources so everyone keeps the wheels spinning. When everyone is free to innovate ethically, chaos transforms into synergy.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Cyclical Power -->
+  <div class="slide slide-content" data-slide="8">
+    <div class="slide-label animate-in">The Compound Effect</div>
+    <h2 class="animate-in">The Art of Dealing with Change</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>The WAVE is a <strong>self-reinforcing cycle</strong> &mdash; not a static plan. Like a cyclist&rsquo;s cadence, each rotation builds momentum:</p>
+        <div style="margin-top:16px;">
+          <div style="background:var(--card);border-radius:8px;padding:14px 18px;margin-bottom:10px;border-left:3px solid var(--w-watch);"><p style="font-size:15px;margin:0;"><strong style="color:var(--w-watch);">Watch</strong> becomes sharper &mdash; you gather better data and build anticipatory reflexes.</p></div>
+          <div style="background:var(--card);border-radius:8px;padding:14px 18px;margin-bottom:10px;border-left:3px solid var(--w-adapt);"><p style="font-size:15px;margin:0;"><strong style="color:var(--w-adapt);">Adapt</strong> grows faster &mdash; prior successes and failures inform quicker course corrections.</p></div>
+          <div style="background:var(--card);border-radius:8px;padding:14px 18px;margin-bottom:10px;border-left:3px solid var(--w-verify);"><p style="font-size:15px;margin:0;"><strong style="color:var(--w-verify);">Verify</strong> feels second nature &mdash; ensuring moral and strategic alignment without slowing you down.</p></div>
+          <div style="background:var(--card);border-radius:8px;padding:14px 18px;border-left:3px solid var(--w-empower);"><p style="font-size:15px;margin:0;"><strong style="color:var(--w-empower);">Empower</strong> scales &mdash; distributing knowledge and resources so everyone keeps the wheels spinning.</p></div>
+        </div>
+      </div>
+      <div class="animate-in">
+        <div style="background:var(--card);border-radius:12px;padding:24px;border:1px solid rgba(48,255,235,.15);text-align:center;">
+          <p style="font-size:24px;font-family:'Work Sans';font-weight:700;margin-bottom:8px;">Watch &rarr; Adapt &rarr; Verify &rarr; Empower</p>
+          <p style="font-size:20px;font-family:'Work Sans';color:var(--accent);margin-bottom:8px;">&#8635; Back to Watch &mdash; with more knowledge, greater confidence, fresh momentum</p>
+          <p style="font-size:14px;color:var(--text-muted);">Each completed cycle is not an endpoint but a new beginning &mdash; creating a compounding effect akin to upgrading humanity&rsquo;s operating system.</p>
+        </div>
+        <div class="callout" style="margin-top:16px;"><div class="callout-label">The Cycling Metaphor</div>
+          <p>Each pedal stroke, no matter how small, pushes you closer to your goal &mdash; provided you keep moving. If we stop pedalling &mdash; fail to watch signals, refuse to adapt, avoid validating choices, or neglect empowerment &mdash; the entire system grinds to a halt.</p></div>
+        <div class="callout" style="margin-top:12px;border-color:var(--accent2);background:rgba(80,51,255,.06);"><div class="callout-label" style="color:var(--accent2);">Chapter Connections</div>
+          <p><strong>Watch</strong> = detecting the tipping point (Ch.2). <strong>Adapt</strong> = blending cultural wisdom into flexible response (Ch.3). <strong>Verify</strong> = our moral compass against misinformation (Ch.5). <strong>Empower</strong> = unlocking every learner and leader&rsquo;s potential (Ch.6).</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: WAVE Applied to Climate Change -->
+  <div class="slide slide-content" data-slide="9">
+    <div class="slide-label animate-in">WAVE Applied</div>
+    <h2 class="animate-in">WAVE in Action: Tackling Climate Change</h2>
+    <p class="animate-in" style="max-width:850px;margin-bottom:4px;">The WAVE framework is not just a tool for navigating digital upheavals &mdash; it is a blueprint for addressing wicked problems and existential challenges.</p>
+    <div class="climate-wave animate-in">
+      <div class="cw-card" style="border-color:var(--w-watch);background:rgba(48,255,235,.06);"><h4 style="color:var(--w-watch);">&#128065;&#65039; Watch</h4><p>Deploy satellites, sensor networks, and data analytics to detect subtle shifts in temperature, sea-level rise, and extreme weather. Scan for early warning signals to anticipate crises before they escalate.</p></div>
+      <div class="cw-card" style="border-color:var(--w-adapt);background:rgba(80,51,255,.06);"><h4 style="color:var(--w-adapt);">&#128260; Adapt</h4><p>Reengineer infrastructure with deliberate purpose. Imagine coastal cities not just erecting flood barriers but reimagining entire neighbourhoods to flow with rising tides &mdash; urban ecosystems that mirror nature&rsquo;s own adaptability.</p></div>
+      <div class="cw-card" style="border-color:var(--w-verify);background:rgba(255,107,53,.06);"><h4 style="color:var(--w-verify);">&#128737;&#65039; Verify</h4><p>Insist on rigorous accountability: independent audits, transparent metrics, scientific rigour, and dynamic feedback loops to confirm that renewable energy, carbon capture, and urban planning deliver tangible results.</p></div>
+      <div class="cw-card" style="border-color:var(--w-empower);background:rgba(16,185,129,.06);"><h4 style="color:var(--w-empower);">&#9889; Empower</h4><p>Democratise climate action by engaging every stakeholder &mdash; grassroots communities to global industry leaders &mdash; in crafting ethical, effective solutions. Transform crisis into a launchpad for resilient innovation.</p></div>
+    </div>
+    <div class="callout animate-in" style="max-width:850px;margin-top:16px;"><div class="callout-label">Key Insight</div><p>Together, the WAVE framework transforms a crisis into a launchpad for transformative progress. The same pattern applies to any wicked problem your organisation faces.</p></div>
+  </div>
+
+  <!-- SLIDE 10: EcoBlend -->
+  <div class="slide slide-content" data-slide="10">
+    <div class="slide-label animate-in">WAVE in Practice</div>
+    <h2 class="animate-in">EcoBlend&rsquo;s Tidal Shift: The WAVE Forward in Practice</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <div class="phase-card" style="border-left:3px solid var(--text-muted);"><h4>The Company</h4><p>EcoBlend &mdash; a mid-sized craft beverage company. CEO Leila arrives in Nairobi with Vita (the AI advisor) to meet smallholder farmers whose coffee beans carry the local climate&rsquo;s warmth into every cup.</p></div>
+        <div class="phase-card" style="border-left:3px solid var(--w-watch);"><h4 style="color:var(--w-watch);">Watch</h4><p>The Foresight Team identified converging signals: AI-powered flavour profiling, blockchain-enabled supply chain transparency, CRISPR-enhanced yeasts for drought-resistant coffee. Vita explained how Hyper Moore&rsquo;s Law was reshaping timelines &mdash; prototypes hitting market in half the expected time.</p></div>
+        <div class="phase-card" style="border-left:3px solid var(--w-adapt);"><h4 style="color:var(--w-adapt);">Adapt</h4><p>They piloted AI-driven forecasting, blockchain verification, quantum-inspired scheduling, and biotech collaboration. Leila experienced a Gestalt Shift &mdash; this wasn&rsquo;t about layering in tech piece by piece but seeing EcoBlend&rsquo;s entire ecosystem differently, from seed to sip.</p></div>
+      </div>
+      <div class="animate-in">
+        <div class="phase-card" style="border-left:3px solid var(--w-verify);"><h4 style="color:var(--w-verify);">Verify</h4><p>Before scaling, ethical reviews: Was the AI transparent? Could customers opt out? Were supply chain workers benefiting from the transparency? Were CRISPR applications aligned with organic values?</p></div>
+        <div class="phase-card" style="border-left:3px solid var(--w-empower);"><h4 style="color:var(--w-empower);">Empower</h4><p>They open-sourced their blockchain verification framework, helping competitors adopt ethical supply chains &mdash; raising the entire industry standard. Local village elders&rsquo; centuries-old practice of planting for grandchildren yet unborn became the model for long-term thinking.</p></div>
+        <div class="callout" style="border-color:var(--accent2);background:rgba(80,51,255,.06);"><div class="callout-label" style="color:var(--accent2);">The Result</div><p>EcoBlend didn&rsquo;t just survive disruption &mdash; they shaped it. Each WAVE cycle compounded: better signals &rarr; faster adaptation &rarr; rigorous verification &rarr; wider empowerment. The compound momentum proved unstoppable.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 11: Quiz -->
+  <div class="slide slide-content" data-slide="11">
+    <div class="slide-label animate-in">Self-Assessment</div>
+    <h2 class="animate-in">Test Your WAVE Fluency</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <div class="quiz-question" data-correct="1"><h4>1. What did Kodak fail to do that Netflix excelled at?</h4><div class="quiz-options"><div class="quiz-option" data-idx="0">Adapt &mdash; couldn&rsquo;t change their business model fast enough</div><div class="quiz-option" data-idx="1">Watch &mdash; they ignored the very signal they had created</div><div class="quiz-option" data-idx="2">Verify &mdash; they didn&rsquo;t test digital photography properly</div><div class="quiz-option" data-idx="3">Empower &mdash; kept innovation siloed in leadership</div></div></div>
+        <div class="quiz-question" data-correct="2"><h4>2. What makes the WAVE framework different from linear change management?</h4><div class="quiz-options"><div class="quiz-option" data-idx="0">It&rsquo;s faster to implement</div><div class="quiz-option" data-idx="1">It focuses only on technology adoption</div><div class="quiz-option" data-idx="2">It&rsquo;s a self-reinforcing cycle &mdash; each rotation compounds the last</div><div class="quiz-option" data-idx="3">It replaces the need for strategic planning</div></div></div>
+        <div class="quiz-question" data-correct="1"><h4>3. What is the &ldquo;Gestalt Shift&rdquo; central to the Watch phase?</h4><div class="quiz-options"><div class="quiz-option" data-idx="0">Switching from digital tools to analogue methods</div><div class="quiz-option" data-idx="1">Moving from isolated data points to viewing entire ecosystems of interlinked trends</div><div class="quiz-option" data-idx="2">Reorganising team structures for better communication</div></div></div>
+      </div>
+      <div class="animate-in">
+        <div class="reflection-box"><h4 style="font-family:'Work Sans';margin-bottom:12px;font-size:16px;">&#128173; WAVE Reflection</h4><p style="font-size:15px;color:var(--text-muted);margin-bottom:14px;">Think about your organisation&rsquo;s biggest challenge. Which WAVE phase are you weakest in? What is one concrete action you could take this week to strengthen it?</p><textarea placeholder="My organisation's weakest WAVE phase is... because..."></textarea></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 12: Takeaways -->
+  <div class="slide slide-content" data-slide="12">
+    <div class="slide-label animate-in">Key Takeaways</div>
+    <h2 class="animate-in">Four Things to Remember</h2>
+    <div class="takeaway-grid animate-in">
+      <div class="takeaway-card"><div class="tk-icon">&#128065;&#65039;</div><h4>Gestalt Shift First</h4><p>Before you can watch effectively, shift perspective &mdash; from isolated data points to interconnected ecosystems. See the whole painting, not just the brushstrokes.</p></div>
+      <div class="takeaway-card"><div class="tk-icon">&#128260;</div><h4>WAVE Is a Cycle</h4><p>Watch &rarr; Adapt &rarr; Verify &rarr; Empower &rarr; Watch again. Each rotation compounds the last. The compound interest of organisational growth.</p></div>
+      <div class="takeaway-card"><div class="tk-icon">&#128737;&#65039;</div><h4>Verify Is a Moral Imperative</h4><p>In a world of deepfakes and synthetic media, verification isn&rsquo;t optional &mdash; it&rsquo;s the compass that keeps you aligned with your values and long-term vision.</p></div>
+      <div class="takeaway-card"><div class="tk-icon">&#9889;</div><h4>Empower to Protect</h4><p>The paradox: sharing knowledge strengthens the ecosystem you depend on. Tesla, Khan Academy, and Microsoft all proved that empowerment keeps pace.</p></div>
+    </div>
+  </div>
+
+  <!-- SLIDE 13: Homework -->
+  <div class="slide slide-content" data-slide="13">
+    <div class="slide-label animate-in">Your Homework</div>
+    <h2 class="animate-in">Ride the WAVE: Before Episode 8</h2>
+    <ul class="action-list animate-in">
+      <li><span class="action-num">01</span><div class="action-text"><h4>WAVE Sprint (60 min)</h4><p>Choose your most pressing strategic challenge. Run a full WAVE cycle: 15 minutes each on Watch (what signals are you missing?), Adapt (how should you reposition?), Verify (what are the ethical implications?), and Empower (how can you scale the solution?).</p></div></li>
+      <li><span class="action-num">02</span><div class="action-text"><h4>Signal Journal Review (20 min)</h4><p>Review your signal journal from Episode 1. Which signals have grown stronger? What new connections do you see? Are any converging in ways that demand action?</p></div></li>
+      <li><span class="action-num">03</span><div class="action-text"><h4>Empowerment Audit (15 min)</h4><p>Identify one capability your organisation could share openly. Write a one-paragraph proposal. Remember: sharing knowledge doesn&rsquo;t diminish your position &mdash; it strengthens the ecosystem you depend on.</p></div></li>
+    </ul>
+    <div class="callout animate-in" style="margin-top:16px;"><div class="callout-label">Download the WAVE Framework</div><p>Visit <a href="https://Now-What.co/resources" style="color:var(--accent);text-decoration:none;">Now-What.co/resources</a> to download the WAVE Forward methodology and share it with your colleagues and friends.</p></div>
+  </div>
+
+  <!-- SLIDE 14: Closing -->
+  <div class="slide slide-closing" data-slide="14">
+    <div class="episode-tag animate-in" style="font-family:'Work Sans';font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;">Episode Summary</div>
+    <p class="quote animate-in">&ldquo;The future is not a fixed destination. It is a canvas shaped by every decision, every action, and every moment of reflection. The WAVE framework equips you to paint this canvas with intention.&rdquo;</p>
+    <p class="animate-in" style="color:var(--text-muted);font-size:16px;">&mdash; Dr. Mark van Rijmenam</p>
+    <div class="next-ep animate-in">Next &rarr; Episode 8: Architect of Tomorrow &mdash; Your 2050 Starts Today</div>
+    <p class="cta animate-in">Learn more at <a href="https://futurwise.com">futurwise.com</a> &middot; Book Mark for your next event at <a href="https://TheDigitalSpeaker.com">TheDigitalSpeaker.com</a></p>
+  </div>
+
+</div>
+<script>
+(function(){
+  var slides=document.querySelectorAll('.slide'),total=slides.length,current=0;
+  function go(n,d){if(n<0||n>=total||n===current)return;slides[current].classList.remove('active');if(d==='next')slides[current].classList.add('exit-left');setTimeout(function(){for(var i=0;i<total;i++)slides[i].classList.remove('exit-left')},500);slides[n].classList.add('active');current=n;prog()}
+  function prog(){document.getElementById('progress-bar').style.width=((current+1)/total)*100+'%';document.getElementById('slide-counter').textContent=(current+1)+' / '+total}
+  document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(current+1,'next')}if(e.key==='ArrowLeft'){e.preventDefault();go(current-1,'prev')}});
+  document.getElementById('next-btn').addEventListener('click',function(){go(current+1,'next')});
+  document.getElementById('prev-btn').addEventListener('click',function(){go(current-1,'prev')});
+  var tx=0;document.addEventListener('touchstart',function(e){tx=e.changedTouches[0].screenX});document.addEventListener('touchend',function(e){var d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){d>0?go(current+1,'next'):go(current-1,'prev')}});
+  document.querySelectorAll('.quiz-option').forEach(function(o){o.addEventListener('click',function(){var q=this.closest('.quiz-question');if(q.classList.contains('answered'))return;q.classList.add('answered');var c=parseInt(q.dataset.correct),s=parseInt(this.dataset.idx);this.classList.add(s===c?'correct':'incorrect');if(s!==c)q.querySelectorAll('.quiz-option')[c].classList.add('correct')})});
+  prog()
+})();
+var waveData={
+  watch:{color:'var(--w-watch)',icon:'\uD83D\uDC41\uFE0F',title:'Watch: See the Signals and Cultivate Awareness',desc:'Watching is not passive observation \u2014 it is a proactive practice of honing foresight. It reflects a <strong>Gestalt Shift</strong>: moving from isolated data points to entire ecosystems of interlinked trends. Like Wittgenstein\u2019s duck-rabbit illusion, the Intelligence Age demands shifting between perspectives.',a1t:'Individuals',a1:'Keep a \u201csignal journal.\u201d Subscribe to Futurwise. Track trends across at least 3 fields outside your own. Question how signals affect your goals.',a2t:'Organisations',a2:'Establish foresight teams. Create dashboards for emerging signals. Run scenario planning. Hire a futurist or science fiction writer to uncover the improbable.'},
+  adapt:{color:'var(--w-adapt)',icon:'\uD83D\uDD04',title:'Adapt: Flow with Purpose and Align with Change',desc:'The Taoist principle of <strong>Wu Wei</strong> teaches alignment with change rather than fighting it. Darwin\u2019s insight: survival of the most <strong>adaptable</strong>. Ford retooled from cars to bombers in months during WWII \u2014 not by resisting but by reimagining capabilities.',a1t:'Individuals',a1:'Embrace lifelong learning. Develop transferable skills. Practice cognitive flexibility. Think in decades, not quarters.',a2t:'Organisations',a2:'Balance short-term tactics with long-term transformation. Redesign operations for resilience. Embrace continuous improvement and iterative processes.'},
+  verify:{color:'var(--w-verify)',icon:'\uD83D\uDEE1\uFE0F',title:'Verify: Pause, Discern, and Reflect with Integrity',desc:'Verification is a <strong>moral imperative</strong>. In a world of deepfakes, the ability to authenticate what is real becomes essential. It calls us to scrutinise what we build, why we build it, and for whom. The distinction between human-in-the-loop and AI-in-the-loop captures its essence.',a1t:'Individuals',a1:'Question what you consume. Verify AI outputs before acting. Develop media literacy. Maintain critical thinking as default mode.',a2t:'Organisations',a2:'Implement transparent KPIs and third-party audits. Deploy deepfake detection. Create feedback loops for continuous validation. Default to human-in-the-loop for high-stakes decisions.'},
+  empower:{color:'var(--w-empower)',icon:'\u26A1',title:'Empower: Drive Action and Ignite the Future',desc:'Empowerment is about <strong>unleashing potential</strong>. Tesla opened its patents and accelerated the entire EV market. Nadella broke Microsoft\u2019s silos and transformed a legacy institution. Khan Academy democratised education for millions. Sharing knowledge strengthens the ecosystem you depend on.',a1t:'Individuals',a1:'See yourself as an active participant. Mentor the next generation. Take ownership of your learning and growth.',a2t:'Organisations',a2:'Dismantle hierarchies that hinder creativity. Engage all stakeholders. Give employees the latest tools and trust them. Foster lifelong learning culture.'}
+};
+function showWaveDetail(phase){
+  var d=waveData[phase],panel=document.getElementById('wave-detail');
+  if(!d||!panel)return;
+  panel.innerHTML='<h4 style="color:'+d.color+';">'+d.icon+' '+d.title+'</h4><p>'+d.desc+'</p><div class="wd-actions"><div class="wd-action"><h5>'+d.a1t+'</h5><p>'+d.a1+'</p></div><div class="wd-action"><h5>'+d.a2t+'</h5><p>'+d.a2+'</p></div></div>';
+  document.querySelectorAll('.wave-phase').forEach(function(el){el.classList.remove('active-phase')});
+  var phases=document.querySelectorAll('.wave-phase');
+  var map={watch:0,adapt:1,verify:2,empower:3};
+  if(phases[map[phase]])phases[map[phase]].classList.add('active-phase');
+}
+</script>
+</body></html>

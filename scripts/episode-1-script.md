@@ -1,0 +1,218 @@
+# EPISODE 1: THE TSUNAMI IS ALREADY HERE
+## Runtime: ~40–45 minutes
+
+---
+
+### OPENING (3–5 minutes)
+
+**[SLIDE 1 — Title]**
+
+MARK:
+"Let me ask you something."
+
+[Pause]
+
+"When was the last time a plan your organisation built actually survived contact with reality?"
+
+[Beat]
+
+"Not a quarter. Not a year. I mean a plan that was still valid twelve months after you signed off on it."
+
+[Let that sit]
+
+"If you're struggling to answer, you're not alone — and you're not failing. You're just living on the second half of the chessboard."
+
+"I'm Mark van Rijmenam, and over the next eight episodes, I'm going to take you on a journey through the most consequential period of technological change in human history. Not to overwhelm you — but to equip you. By the time we're done, you'll have a framework, a vocabulary, and a plan to stop reacting to the future and start **building** it."
+
+"This first episode is about one thing: understanding **why** everything you think you know is about to change — and why that's not a threat. It's an invitation."
+
+---
+
+### SEGMENT 1: The Second Half of the Chessboard (8–10 minutes)
+
+**[SLIDE 2 — Overview]**
+
+MARK:
+"Here's what we'll cover today. We'll unpack the concept of exponential change — not as an abstract idea but as something your team is already feeling. We'll look at Hyper Moore's Law — a force tripling AI performance every year. And we'll introduce a way of seeing the world that separates the leaders who thrive from those who get blindsided."
+
+"Let's start with a story."
+
+**[SLIDE 3 — The Second Half of the Chessboard]**
+
+"You probably know this one. An ancient inventor presents a chessboard to his ruler. His reward? One grain of rice on the first square, doubled on each successive square."
+
+[Lighter tone]
+
+"The first half of the board? Manageable. By square 32, you've got about 4 billion grains. A lot of rice, but a government can handle it."
+
+"The second half? That's where everything breaks."
+
+[Shift to serious]
+
+"By square 64, the total exceeds all the rice **ever grown on Earth**. The maths didn't change — but the **scale** became incomprehensible."
+
+"Now here's why this matters to you: **we are no longer on the first half.** AI compute doubles every six months. Not every two years — every six months. Inference costs fell 150 times in just 18 months. Google's Willow quantum chip solves in five minutes what would take the world's best supercomputer ten septillion years."
+
+[Pause]
+
+"Ten septillion. That's a number most of us can't even visualise. And that's exactly the point."
+
+"Processing one billion tokens — the fundamental unit of AI work — cost $36,000 in 2022. By 2025? **$140.** A 99.6% cost collapse. That's not a trend. That's a **phase transition.**"
+
+> 💡 KEY INSIGHT: We've crossed from the manageable first half of the chessboard to the mind-bending second half — and the old rules no longer apply.
+
+"You might think: 'Sure, tech is fast. We've seen this before.' But this time is different. And the reason it's different has a name."
+
+---
+
+### SEGMENT 2: Hyper Moore's Law (8–10 minutes)
+
+**[SLIDE 4 — Hyper Moore's Law]**
+
+MARK:
+"For decades, we built strategy around Moore's Law — computing power doubles every two years through hardware miniaturisation. Predictable. Plannable. Comfortable."
+
+"That world is over."
+
+"NVIDIA CEO Jensen Huang coined the term **Hyper Moore's Law** to describe what's happening now: AI computing performance doubling or **tripling** every single year. And it's not just about faster chips. It's driven by a convergence of software breakthroughs, networking advances, algorithmic improvements, and hardware infrastructure all accelerating simultaneously."
+
+"The result? What once required the resources of Google, Amazon, or Microsoft is now within reach for a startup. A team of ten people with the right tools can now build what required a team of a thousand five years ago."
+
+[INTERACTION PROMPT]: "Think about your own organisation for a moment. What capability that seemed impossible two years ago is now something your team could actually attempt? I'll give you 30 seconds."
+
+[Pause — 30 seconds]
+
+"Whatever you just thought of — that capability will be **ten times** more accessible two years from now. That's the engine we're riding."
+
+"But here's the catch. Hyper Moore's Law doesn't just accelerate opportunity. It accelerates **obsolescence.** The playbooks, the planning cycles, the committee structures you built for a world that moved at Moore's Law speed — they expire faster than committees can update them."
+
+"This is why I call this the Intelligence Age. Not because machines are intelligent — but because intelligence itself, human **and** machine, is now the primary driver of value creation."
+
+---
+
+### SEGMENT 3: The Gestalt Shift (10–12 minutes)
+
+**[SLIDE 5 — Framework: The Gestalt Shift]**
+
+MARK:
+"So if the ground is shifting this fast, how do you make sense of it? You need a new way of seeing."
+
+"Enter the **Gestalt Shift.** Gestalt is a German concept meaning 'the whole is greater than the sum of its parts.' Think of those optical illusions — the image that's both a duck and a rabbit. Once you see both, you can never unsee it."
+
+"Most leaders today are stuck in the **Isolated View.** They see AI as one initiative. Blockchain as another. Biotech as a third. Separate projects. Separate budgets. Separate teams."
+
+"The Gestalt Shift is the moment you realise these aren't separate technologies — they're **one interconnected system.** AI doesn't just improve on its own; it supercharges quantum computing, which accelerates drug discovery, which feeds back into AI training data. Blockchain doesn't just verify transactions; it becomes the trust layer that makes autonomous AI agents possible."
+
+"When you see the convergence — when you truly make the shift — everything changes. You stop managing technologies in silos and start seeing the **system.**"
+
+> 💡 KEY INSIGHT: The Gestalt Shift is the difference between seeing individual waves and recognising the tsunami. Both views are technically correct — but only one prepares you.
+
+"In my book, I describe this as the **Digital Renaissance** — a period where technology, creativity, and human consciousness are converging in ways we haven't seen since the original Renaissance five hundred years ago."
+
+"Just as the printing press didn't merely make books cheaper — it democratised knowledge, triggered the Reformation, and restructured power across an entire civilisation — the convergence of AI, quantum, biotech, blockchain, and spatial intelligence isn't merely automating tasks. It's **restructuring reality.**"
+
+[Shift to serious]
+
+"And the organisations that thrive won't be the ones with the biggest technology budgets. They'll be the ones whose leaders made the Gestalt Shift first."
+
+---
+
+### SEGMENT 4: Case Study (8–10 minutes)
+
+**[SLIDE 6 — Case Study: From Outback to Intelligence Age]**
+
+MARK:
+"Let me tell you a personal story, because I think it captures something about how exponential change actually feels from the inside."
+
+[Lighter tone]
+
+"In 2011, my friend Reinier and I set out to cycle 14,122 kilometres around Australia. In 100 days. Just the two of us. No support crew."
+
+"If you've ever been to the Australian outback, you know — it's vast. The Nullarbor Plain alone is 1,200 kilometres of absolutely nothing. Desert heat. No shade. No towns. Just road and horizon."
+
+"Early on, every pedal stroke felt insignificant against the enormity of the distance. You look at your GPS, you've cycled for eight hours, and you've barely moved the dot on the map. It felt futile."
+
+[Shift to reflective]
+
+"But here's what I learned: exponential change works the same way. Early progress is invisible. The first grains of rice on the chessboard — they're nothing. But **they compound.** Every pedal stroke added to the last. Discipline, adaptability, and refusing to let the enormity paralyse you — that's what got us across."
+
+"We finished in 99 days. Not because any single day was extraordinary, but because we showed up every single day."
+
+"Organisations are in the same position right now. The changes may feel incremental today. A slightly better AI model. A marginally faster chip. A new pilot project. But these improvements are compounding. And one day — maybe this year, maybe next — you'll look up and realise the world has fundamentally shifted."
+
+> 💡 KEY INSIGHT: Exponential change is invisible at first and overwhelming later. The leaders who win are the ones who start pedalling before the road looks urgent.
+
+---
+
+### INTERACTIVE SEGMENT (5–7 minutes)
+
+**[SLIDE 7 — Quiz/Reflection]**
+
+MARK:
+"Let's test where you are. Three quick questions."
+
+"Question one: How often does AI compute efficiency currently double? Every two years, every twelve months, every six months, or every three months?"
+
+[Pause]
+
+"The answer is **every six months**. If you said twelve months, you're thinking of Hyper Moore's Law at the hardware level — but including software and algorithmic improvements, the effective rate is closer to six."
+
+"Question two: What was the cost drop for processing one billion tokens from 2022 to 2025?"
+
+[Pause]
+
+"**$36,000 down to $140.** A 99.6% collapse. If you got that right, you're paying attention to the most important number in business strategy right now."
+
+"Now here's the reflection that matters most."
+
+[Shift to personal tone]
+
+"Think about your organisation. What assumptions from two years ago are already outdated? What planning cycle, what capability estimate, what competitor analysis is gathering dust because reality moved faster than the document?"
+
+[Pause — 30 seconds]
+
+"Write that down. We'll come back to it."
+
+---
+
+### CLOSING (3–5 minutes)
+
+**[SLIDE 8 — Key Takeaways]**
+
+MARK:
+"Three things to take from today."
+
+"**One: We're on the second half of the chessboard.** Exponential growth is no longer theoretical. AI costs are collapsing, compute is tripling yearly, and quantum is solving the previously unsolvable. The pace will only accelerate."
+
+"**Two: Make the Gestalt Shift.** Stop seeing technologies in isolation. Convergence — AI plus blockchain plus biotech plus quantum — creates impact exponentially greater than the sum of parts. Change your lens."
+
+"**Three: Pedal stroke by pedal stroke.** Like cycling across Australia, transformation begins with showing up consistently. Don't wait for the perfect strategy. Build adaptive capacity now — the curve is steepening."
+
+**[SLIDE 9 — Action Items]**
+
+"Your homework before Episode 2."
+
+"**First: The Exponential Audit.** Thirty minutes. Identify three areas in your industry that have crossed onto the second half of the chessboard. Where are costs collapsing? What was impossible two years ago that's now routine?"
+
+"**Second: Signal Scan.** Subscribe to one futures-focused platform — Futurwise is a good start. Read for signal, not noise. Start a signal journal to track the things that surprise you."
+
+"**Third: The Gestalt Exercise.** Pick two technologies from different domains — say, AI and synthetic biology — and spend ten minutes brainstorming where they intersect. What new capabilities emerge? What old assumptions break?"
+
+**[SLIDE 10 — Closing]**
+
+[Build energy]
+
+"Next time, we go deeper. Episode 2 is called **Rewire Your Mind.** Because the biggest barrier to riding the tsunami isn't technology. It's the mental models we carry from a slower world. We'll explore consciousness, ancient wisdom, and challenge you to think about intelligence — yours and the machine's — in ways you haven't before."
+
+[Signature close]
+
+"The future is not something that happens to us. It is something we build together. Let's ride the wave."
+
+---
+
+### PRODUCTION NOTES:
+- **Emphasis words:** bolded
+- **Pauses:** [Pause], [Beat], [Let that sit]
+- **Audience interaction:** [INTERACTION PROMPT]
+- **Slide cues:** **[SLIDE N]**
+- **Tone shifts:** [Shift to serious], [Lighter tone], [Build energy], [Shift to reflective]

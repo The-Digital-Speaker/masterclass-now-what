@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Episode 1: The Tsunami Is Already Here | Mark van Rijmenam Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #162535;
+  --secondary: #0f1a24;
+  --accent: #30ffeb;
+  --accent2: #5033ff;
+  --highlight: #FF6B35;
+  --text-light: #F5F5F5;
+  --text-muted: #b8c4ce;
+  --bg: #162535;
+  --card: #1e3348;
+  --gradient-start: #162535;
+  --gradient-end: #0f1a24;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-light); }
+h1, h2, h3, h4, h5 { font-family: 'Work Sans', sans-serif; }
+
+/* Progress Bar */
+#progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2)); z-index: 1000; transition: width 0.4s ease; }
+
+/* Slide Counter */
+#slide-counter { position: fixed; bottom: 24px; right: 32px; font-family: 'Work Sans'; font-size: 14px; color: var(--text-muted); z-index: 100; letter-spacing: 2px; }
+
+/* Navigation Arrows */
+.nav-arrow { position: fixed; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; background: rgba(30,30,63,0.6); backdrop-filter: blur(8px); cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 100; transition: all 0.3s; }
+.nav-arrow:hover { border-color: var(--accent); background: rgba(0,212,255,0.1); }
+.nav-arrow svg { width: 20px; height: 20px; fill: var(--text-light); }
+#prev-btn { left: 20px; }
+#next-btn { right: 20px; }
+
+/* Branding Footer */
+#brand-footer { position: fixed; bottom: 20px; left: 32px; display: flex; align-items: center; gap: 12px; z-index: 100; }
+#brand-footer .brand-name { font-family: 'Work Sans'; font-size: 11px; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+
+/* Slides Container */
+#slides-wrapper { width: 100%; height: 100%; position: relative; }
+.slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 60px 100px; opacity: 0; transform: translateX(40px); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); pointer-events: none; background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); }
+.slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; }
+.slide.exit-left { opacity: 0; transform: translateX(-40px); }
+
+/* Slide Types */
+.slide-title { justify-content: center; align-items: center; text-align: center; }
+.slide-title .episode-tag { font-family: 'Work Sans'; font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; font-weight: 600; }
+.slide-title h1 { font-size: 52px; font-weight: 800; line-height: 1.15; max-width: 900px; margin-bottom: 20px; background: linear-gradient(135deg, var(--text-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.slide-title .subtitle { font-size: 20px; color: var(--text-muted); max-width: 600px; line-height: 1.6; }
+.slide-title .author { margin-top: 40px; font-family: 'Work Sans'; font-size: 14px; color: var(--text-muted); letter-spacing: 2px; }
+.slide-title .author span { color: var(--accent); }
+
+/* Content Slides */
+.slide-content .slide-label { font-family: 'Work Sans'; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; font-weight: 600; }
+.slide-content h2 { font-size: 38px; font-weight: 700; margin-bottom: 28px; line-height: 1.2; }
+.slide-content p, .slide-content li { font-size: 18px; color: rgba(245,245,245,0.85); line-height: 1.7; }
+.slide-content .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 8px; }
+.slide-content .content-single { max-width: 850px; }
+
+/* Callout Box */
+.callout { background: rgba(0,212,255,0.08); border-left: 3px solid var(--accent); padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+.callout .callout-label { font-family: 'Work Sans'; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; font-weight: 700; }
+.callout p { font-size: 17px; color: var(--text-light); line-height: 1.6; }
+
+/* Stat Cards */
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 20px; }
+.stat-card { background: var(--card); border-radius: 12px; padding: 28px 24px; text-align: center; border: 1px solid rgba(255,255,255,0.06); }
+.stat-card .stat-number { font-family: 'Work Sans'; font-size: 44px; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-card .stat-label { font-size: 14px; color: var(--text-muted); margin-top: 8px; line-height: 1.4; }
+
+/* Framework Diagram */
+.framework-visual { display: flex; align-items: center; justify-content: center; margin: 24px 0; position: relative; }
+.fw-box { background: var(--card); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px 28px; text-align: center; cursor: pointer; transition: all 0.3s; position: relative; min-width: 180px; }
+.fw-box:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,212,255,0.15); }
+.fw-box .fw-icon { font-size: 28px; margin-bottom: 8px; }
+.fw-box h4 { font-family: 'Work Sans'; font-size: 16px; color: var(--text-light); margin-bottom: 4px; }
+.fw-box p { font-size: 13px; color: var(--text-muted); }
+.fw-arrow { font-size: 24px; color: var(--accent); margin: 0 12px; }
+.fw-box .fw-detail { display: none; position: absolute; bottom: -70px; left: 50%; transform: translateX(-50%); background: var(--primary); border: 1px solid var(--accent); border-radius: 8px; padding: 12px 16px; width: 240px; font-size: 13px; color: var(--text-muted); z-index: 10; }
+.fw-box:hover .fw-detail { display: block; }
+
+/* Case Study */
+.case-study { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.case-timeline { position: relative; padding-left: 24px; }
+.case-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--accent), var(--accent2)); }
+.case-step { position: relative; margin-bottom: 24px; }
+.case-step::before { content: ''; position: absolute; left: -28px; top: 8px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+.case-step h4 { font-family: 'Work Sans'; font-size: 15px; color: var(--accent); margin-bottom: 4px; }
+.case-step p { font-size: 15px; color: rgba(245,245,245,0.8); line-height: 1.5; }
+
+/* Quiz */
+.quiz-container { max-width: 700px; }
+.quiz-question { background: var(--card); border-radius: 12px; padding: 24px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.06); }
+.quiz-question h4 { font-family: 'Work Sans'; font-size: 16px; margin-bottom: 16px; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { padding: 12px 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12); cursor: pointer; transition: all 0.3s; font-size: 15px; }
+.quiz-option:hover { border-color: var(--accent); background: rgba(0,212,255,0.06); }
+.quiz-option.selected { border-color: var(--accent); background: rgba(0,212,255,0.12); color: var(--accent); }
+.quiz-option.correct { border-color: #10B981; background: rgba(16,185,129,0.12); color: #10B981; }
+.quiz-option.incorrect { border-color: #EF4444; background: rgba(239,68,68,0.08); color: #EF4444; }
+
+/* Reflection */
+.reflection-box { background: var(--card); border-radius: 12px; padding: 28px; border: 1px solid rgba(123,47,190,0.3); margin-top: 20px; }
+.reflection-box textarea { width: 100%; height: 100px; background: rgba(15,15,35,0.6); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text-light); padding: 14px; font-family: 'DM Sans'; font-size: 15px; resize: vertical; outline: none; }
+.reflection-box textarea:focus { border-color: var(--accent2); }
+
+/* Takeaway Cards */
+.takeaway-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 20px; }
+.takeaway-card { background: var(--card); border-radius: 12px; padding: 28px 24px; border-top: 3px solid; }
+.takeaway-card:nth-child(1) { border-color: var(--accent); }
+.takeaway-card:nth-child(2) { border-color: var(--accent2); }
+.takeaway-card:nth-child(3) { border-color: var(--highlight); }
+.takeaway-card .tk-icon { font-size: 28px; margin-bottom: 12px; }
+.takeaway-card h4 { font-family: 'Work Sans'; font-size: 16px; margin-bottom: 8px; }
+.takeaway-card p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+/* Action Items */
+.action-list { list-style: none; margin-top: 16px; }
+.action-list li { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.action-list .action-num { font-family: 'Work Sans'; font-size: 28px; font-weight: 800; color: var(--accent); min-width: 40px; }
+.action-list .action-text h4 { font-family: 'Work Sans'; font-size: 17px; margin-bottom: 4px; }
+.action-list .action-text p { font-size: 15px; color: var(--text-muted); line-height: 1.5; }
+
+/* Closing Slide */
+.slide-closing { justify-content: center; align-items: center; text-align: center; }
+.slide-closing .quote { font-size: 26px; font-style: italic; max-width: 700px; line-height: 1.6; color: rgba(245,245,245,0.9); margin-bottom: 32px; }
+.slide-closing .next-ep { display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent2)); padding: 14px 32px; border-radius: 8px; font-family: 'Work Sans'; font-size: 15px; font-weight: 600; color: white; margin-top: 16px; }
+.slide-closing .cta { margin-top: 32px; font-size: 14px; color: var(--text-muted); }
+.slide-closing .cta a { color: var(--accent); text-decoration: none; }
+
+/* List styling */
+.styled-list { list-style: none; }
+.styled-list li { position: relative; padding-left: 28px; margin-bottom: 18px; font-size: 18px; color: rgba(245,245,245,0.85); line-height: 1.6; }
+.styled-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+/* Animated entrance */
+.animate-in { opacity: 0; transform: translateY(20px); }
+.slide.active .animate-in { animation: fadeUp 0.6s ease forwards; }
+.slide.active .animate-in:nth-child(1) { animation-delay: 0.1s; }
+.slide.active .animate-in:nth-child(2) { animation-delay: 0.25s; }
+.slide.active .animate-in:nth-child(3) { animation-delay: 0.4s; }
+.slide.active .animate-in:nth-child(4) { animation-delay: 0.55s; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* Print */
+@media print {
+  .slide { position: relative !important; opacity: 1 !important; transform: none !important; pointer-events: auto !important; page-break-after: always; height: auto; min-height: 100vh; }
+  #progress-bar, .nav-arrow, #slide-counter, #brand-footer { display: none !important; }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .slide { padding: 40px 48px; }
+  .slide-title h1 { font-size: 38px; }
+  .slide-content h2 { font-size: 30px; }
+  .content-grid, .case-study { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .takeaway-grid { grid-template-columns: 1fr; }
+  .nav-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="slide-counter"></div>
+
+<button class="nav-arrow" id="prev-btn" aria-label="Previous slide">
+  <svg viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+</button>
+<button class="nav-arrow" id="next-btn" aria-label="Next slide">
+  <svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+</button>
+
+<div id="brand-footer">
+  <div class="brand-name">Mark van Rijmenam · The Architect of Tomorrow · Futurwise</div>
+</div>
+
+<div id="slides-wrapper">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide slide-title active" data-slide="1">
+    <div class="episode-tag animate-in">Episode 01 of 08</div>
+    <h1 class="animate-in">The Tsunami Is Already Here</h1>
+    <p class="subtitle animate-in">Why Linear Thinking Will Drown You — And What To Do About It</p>
+    <p class="author animate-in">Dr. Mark van Rijmenam · <span>The Architect of Tomorrow</span></p>
+  </div>
+
+  <!-- SLIDE 2: Overview / Learning Objectives -->
+  <div class="slide slide-content" data-slide="2">
+    <div class="slide-label animate-in">What You'll Learn</div>
+    <h2 class="animate-in">In This Episode</h2>
+    <ul class="styled-list animate-in">
+      <li>Why we've crossed into the "second half of the chessboard" — and why that changes everything</li>
+      <li>How Hyper Moore's Law is tripling AI power yearly, making traditional planning obsolete</li>
+      <li>The Digital Renaissance: why this isn't another incremental change — it's a phase transition</li>
+      <li>The Gestalt Shift: a new way of seeing that separates leaders from laggards</li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 3: Concept 1 — The Second Half of the Chessboard -->
+  <div class="slide slide-content" data-slide="3">
+    <div class="slide-label animate-in">Core Concept</div>
+    <h2 class="animate-in">The Second Half of the Chessboard</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>In the ancient tale, Sissa Ben Dahir asked for one grain of rice on the first square, doubling each square. By square 32, the total was 4 billion grains. Manageable. By square 64? More rice than has ever existed on Earth.</p>
+        <p style="margin-top:16px;">We're no longer on the first half. AI compute doubles every six months. Inference costs fell 150× in 18 months. Google's Willow quantum chip solves in 5 minutes what would take the world's best supercomputer 10 septillion years.</p>
+      </div>
+      <div class="animate-in">
+        <div class="callout">
+          <div class="callout-label">Key Insight</div>
+          <p>By the time exponential growth <em>feels</em> urgent, it is often too late to respond. The leaders who thrive aren't faster — they start earlier.</p>
+        </div>
+        <div class="stat-grid" style="grid-template-columns: 1fr 1fr; margin-top:20px;">
+          <div class="stat-card">
+            <div class="stat-number">150×</div>
+            <div class="stat-label">AI inference cost reduction in 18 months</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10<sup style="font-size:20px;">25</sup></div>
+            <div class="stat-label">years of compute Willow replaces in 5 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: Concept 2 — Hyper Moore's Law -->
+  <div class="slide slide-content" data-slide="4">
+    <div class="slide-label animate-in">The Acceleration Engine</div>
+    <h2 class="animate-in">Hyper Moore's Law</h2>
+    <div class="content-grid">
+      <div class="animate-in">
+        <p>Traditional Moore's Law doubled computing power every two years through hardware miniaturization. <strong>Hyper Moore's Law</strong> — coined by NVIDIA CEO Jensen Huang — doubles or triples AI computing performance <em>annually</em>.</p>
+        <p style="margin-top:16px;">This isn't just about faster chips. It's driven by a convergence of software, networking, algorithms, and hardware infrastructure working in concert.</p>
+        <p style="margin-top:16px;">The result? What once required the resources of global hyperscalers is now within reach for startups. DeepSeek-R1 rivals GPT-4 at just 5% of the operating cost. The "only Big Tech can play" era may be over.</p>
+      </div>
+      <div class="animate-in">
+        <div class="stat-grid" style="grid-template-columns: 1fr;">
+          <div class="stat-card">
+            <div class="stat-number">$36K → $140</div>
+            <div class="stat-label">Cost to process 1 billion tokens (2022 → 2025)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">400%</div>
+            <div class="stat-label">Growth in enterprise LLM adoption in 2024</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">AI inference cost reduction in 18 months</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Framework — The Gestalt Shift -->
+  <div class="slide slide-content" data-slide="5">
+    <div class="slide-label animate-in">Framework</div>
+    <h2 class="animate-in">The Gestalt Shift: Seeing the Whole Picture</h2>
+    <p class="animate-in" style="max-width:800px; margin-bottom:24px;">Rooted in the German concept meaning "the whole is greater than the sum of its parts," the Gestalt Shift compels us to look beyond isolated data points and recognize hidden patterns. It's the difference between seeing a duck and seeing a rabbit — and knowing both exist simultaneously.</p>
+    <div class="framework-visual animate-in">
+      <div class="fw-box">
+        <div class="fw-icon">🔍</div>
+        <h4>Isolated View</h4>
+        <p>Individual technologies</p>
+        <div class="fw-detail">Seeing AI, blockchain, biotech as separate trends — missing the compounding effect</div>
+      </div>
+      <div class="fw-arrow">→</div>
+      <div class="fw-box" style="border-color: var(--accent);">
+        <div class="fw-icon">🔄</div>
+        <h4>Gestalt Shift</h4>
+        <p>Change your lens</p>
+        <div class="fw-detail">A sudden, profound change in perception — like seeing the hidden face in an illustration</div>
+      </div>
+      <div class="fw-arrow">→</div>
+      <div class="fw-box">
+        <div class="fw-icon">🌐</div>
+        <h4>Systemic View</h4>
+        <p>Convergent ecosystem</p>
+        <div class="fw-detail">Technologies as Lego blocks that "click" together — creating entirely new possibilities</div>
+      </div>
+    </div>
+    <div class="callout animate-in" style="max-width:800px; margin-top:40px;">
+      <div class="callout-label">Key Insight</div>
+      <p>It isn't about accumulating more information — it's about recalibrating your lens to reveal new pathways for growth and collaboration.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: Case Study — The Cyclist's Journey + Digital Renaissance -->
+  <div class="slide slide-content" data-slide="6">
+    <div class="slide-label animate-in">Case Study</div>
+    <h2 class="animate-in">From Outback to Intelligence Age</h2>
+    <div class="case-study">
+      <div class="case-timeline animate-in">
+        <div class="case-step">
+          <h4>The Challenge</h4>
+          <p>In 2011, Mark and his friend Reinier set out to cycle 14,122 km around Australia in 100 days — just the two of them, no support crew, battling desert heat and impossible odds.</p>
+        </div>
+        <div class="case-step">
+          <h4>The Lesson</h4>
+          <p>Every pedal stroke felt insignificant against the vastness — yet each one compounded. Discipline, adaptability, and a long-term vision carried them through the Nullarbor's 1,200 km of nothing.</p>
+        </div>
+        <div class="case-step">
+          <h4>The Parallel</h4>
+          <p>Exponential change works the same way. Early progress feels invisible. Then suddenly, you've crossed a continent — or disrupted an entire industry.</p>
+        </div>
+        <div class="case-step">
+          <h4>The Result</h4>
+          <p>14,122 km completed. €25,000 raised. A mindset forged: "Thriving isn't about reaching the finish line. It's about how you choose to ride the journey."</p>
+        </div>
+      </div>
+      <div class="animate-in">
+        <div class="callout">
+          <div class="callout-label">The Digital Renaissance</div>
+          <p>Unlike the European Renaissance (centuries), this revolution happens in years. Technologies converge like Lego blocks — AI with blockchain, spatial intelligence on biotech — generating entirely new industries in record time.</p>
+        </div>
+        <div class="callout" style="border-color: var(--accent2); background: rgba(123,47,190,0.08); margin-top:16px;">
+          <div class="callout-label" style="color: var(--accent2);">Supercooled Water</div>
+          <p>Disruption happens like supercooled water — liquid below freezing until one trigger crystallizes everything at once. Gradually, then suddenly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Interactive Quiz -->
+  <div class="slide slide-content" data-slide="7">
+    <div class="slide-label animate-in">Self-Assessment</div>
+    <h2 class="animate-in">Test Your Exponential Thinking</h2>
+    <div class="content-grid">
+      <div class="quiz-container animate-in">
+        <div class="quiz-question" data-correct="2">
+          <h4>1. How many times does AI compute efficiency currently double?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" data-idx="0">Every 2 years (traditional Moore's Law)</div>
+            <div class="quiz-option" data-idx="1">Every 12 months</div>
+            <div class="quiz-option" data-idx="2">Every 6 months</div>
+            <div class="quiz-option" data-idx="3">Every 3 months</div>
+          </div>
+        </div>
+        <div class="quiz-question" data-correct="1">
+          <h4>2. What was the cost drop for processing 1 billion tokens from 2022 to 2025?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" data-idx="0">$36,000 → $2,500 (93% drop)</div>
+            <div class="quiz-option" data-idx="1">$36,000 → $140 (99.6% drop)</div>
+            <div class="quiz-option" data-idx="2">$36,000 → $1,000 (97% drop)</div>
+            <div class="quiz-option" data-idx="3">$36,000 → $500 (98.6% drop)</div>
+          </div>
+        </div>
+      </div>
+      <div class="animate-in">
+        <div class="reflection-box">
+          <h4 style="font-family:'Work Sans'; margin-bottom:12px; font-size:16px;">💭 Reflection Prompt</h4>
+          <p style="font-size:15px; color:var(--text-muted); margin-bottom:14px;">Think about your organisation for 30 seconds: What assumptions from 2 years ago are already outdated? What "impossible" scenario is now merely improbable?</p>
+          <textarea placeholder="Write your reflection here..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: Key Takeaways -->
+  <div class="slide slide-content" data-slide="8">
+    <div class="slide-label animate-in">Key Takeaways</div>
+    <h2 class="animate-in">Three Things to Remember</h2>
+    <div class="takeaway-grid animate-in">
+      <div class="takeaway-card">
+        <div class="tk-icon">♟️</div>
+        <h4>We're on the Second Half</h4>
+        <p>Exponential growth is no longer theoretical. AI costs are collapsing, compute is tripling yearly, and quantum is already solving the previously unsolvable. The pace will only accelerate.</p>
+      </div>
+      <div class="takeaway-card">
+        <div class="tk-icon">🔄</div>
+        <h4>Make the Gestalt Shift</h4>
+        <p>Stop seeing technologies in isolation. Convergence — AI + blockchain + biotech + quantum — creates impact exponentially greater than the sum of parts. Change your lens.</p>
+      </div>
+      <div class="takeaway-card">
+        <div class="tk-icon">🚴</div>
+        <h4>Pedal Stroke by Pedal Stroke</h4>
+        <p>Like cycling across Australia, navigating exponential change demands discipline, adaptability, and a long-term vision. Small, bold, consistent steps compound into transformation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 9: Action Items -->
+  <div class="slide slide-content" data-slide="9">
+    <div class="slide-label animate-in">Your Homework</div>
+    <h2 class="animate-in">Before Episode 2</h2>
+    <ul class="action-list animate-in">
+      <li>
+        <span class="action-num">01</span>
+        <div class="action-text">
+          <h4>Exponential Audit (30 min)</h4>
+          <p>Identify 3 areas in your industry that have crossed onto the "second half of the chessboard." Where are costs collapsing? What was impossible 2 years ago but is now routine?</p>
+        </div>
+      </li>
+      <li>
+        <span class="action-num">02</span>
+        <div class="action-text">
+          <h4>Signal Scan (20 min)</h4>
+          <p>Subscribe to one futures-focused platform (Futurwise, or a niche futurist community in your field). Read for signal, not noise. Start a "signal journal" to track surprises.</p>
+        </div>
+      </li>
+      <li>
+        <span class="action-num">03</span>
+        <div class="action-text">
+          <h4>Gestalt Exercise (10 min)</h4>
+          <p>Pick two technologies from different domains (e.g., AI + biotechnology, blockchain + 3D printing). Spend 10 minutes brainstorming: what becomes possible when they converge in your industry?</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 10: Closing -->
+  <div class="slide slide-closing" data-slide="10">
+    <div class="episode-tag animate-in" style="font-family:'Work Sans'; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:20px;">Episode Summary</div>
+    <p class="quote animate-in">"The future is not something that happens to us. It is something we build together. Let's ride the wave."</p>
+    <p class="animate-in" style="color:var(--text-muted); font-size:16px;">— Dr. Mark van Rijmenam</p>
+    <div class="next-ep animate-in">Next → Episode 2: Rewire Your Mind</div>
+    <p class="cta animate-in">Learn more at <a href="https://futurwise.com">futurwise.com</a> · Book Mark for your next event at <a href="https://TheDigitalSpeaker.com">TheDigitalSpeaker.com</a></p>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function updateSlide(newIdx, direction) {
+    if (newIdx < 0 || newIdx >= total || newIdx === current) return;
+    const oldSlide = slides[current];
+    const newSlide = slides[newIdx];
+    oldSlide.classList.remove('active');
+    oldSlide.classList.add(direction === 'next' ? 'exit-left' : '');
+    setTimeout(() => oldSlide.classList.remove('exit-left'), 500);
+    newSlide.classList.add('active');
+    current = newIdx;
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const pct = ((current + 1) / total) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('slide-counter').textContent = (current + 1) + ' / ' + total;
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); updateSlide(current + 1, 'next'); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); updateSlide(current - 1, 'prev'); }
+    if (e.key === 'Escape') { /* Could toggle overview */ }
+  });
+
+  // Button nav
+  document.getElementById('next-btn').addEventListener('click', () => updateSlide(current + 1, 'next'));
+  document.getElementById('prev-btn').addEventListener('click', () => updateSlide(current - 1, 'prev'));
+
+  // Touch/swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? updateSlide(current + 1, 'next') : updateSlide(current - 1, 'prev');
+    }
+  });
+
+  // Quiz functionality
+  document.querySelectorAll('.quiz-option').forEach(opt => {
+    opt.addEventListener('click', function() {
+      const question = this.closest('.quiz-question');
+      if (question.classList.contains('answered')) return;
+      question.classList.add('answered');
+      const correctIdx = parseInt(question.dataset.correct);
+      const selectedIdx = parseInt(this.dataset.idx);
+      this.classList.add(selectedIdx === correctIdx ? 'correct' : 'incorrect');
+      if (selectedIdx !== correctIdx) {
+        question.querySelectorAll('.quiz-option')[correctIdx].classList.add('correct');
+      }
+    });
+  });
+
+  updateProgress();
+})();
+</script>
+</body>
+</html>
